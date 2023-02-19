@@ -1,0 +1,21 @@
+header {
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.row {
+    flex-flow: row;
+}
+
+.column {
+    float: left;
+    width: 45%;
+    height: 100%;
+    padding: 2.5%;
+    align-items: center;
+    margin:0 auto;
+    align-self: stretch;
+}
