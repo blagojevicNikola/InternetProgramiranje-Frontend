@@ -13,12 +13,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { ArticlesOvereviewComponent } from './articles-overeview/articles-overeview.component';
+import { ArticlesListComponent } from './articles-overeview/components/articles-list/articles-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    ArticlesOvereviewComponent
+    ArticlesOvereviewComponent,
+    ArticlesListComponent
   ],
   imports: [
     BrowserModule,

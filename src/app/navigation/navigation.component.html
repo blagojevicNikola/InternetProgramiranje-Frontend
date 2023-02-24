@@ -16,8 +16,8 @@
       </mat-form-field>
     </div>
     <div class="options-section">     
-      <button mat-flat-button style="flex:1; background-color:#F09000; color:white">Login</button>
-      <button mat-stroked-button style=" flex:1; color:#F09000; outline-color: #F09000;">Register</button>
+      <button mat-flat-button style="background-color:#F09000; color:white">Login</button>
+      <button mat-stroked-button style="color:#F09000; outline-color: #F09000;">Register</button>
     </div>
   </div>
   <div class="content-section">
@@ -28,9 +28,9 @@
           <button mat-flat-button style="font-weight:500; background-color:#8BE57D; color:white">Post article</button>
         </div>
         <mat-nav-list>
-          <a mat-list-item routerLink="/category">Category 1</a>
-          <a mat-list-item routerLink="">Category 2</a>
-          <a mat-list-item routerLink="">Category 3</a>
+          <div class="category-container" routerLink="/category">Category 1</div>
+          <div class="category-container" routerLink="">Category 2</div>
+          <div class="category-container" routerLink="">Category 3</div>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>

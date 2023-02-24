@@ -1,19 +1,9 @@
 <div class="container">
     <div class="upper-section">
-        <mat-paginator [length]="10" [pageSizeOptions]="[5,10]" aria-label="Select page"></mat-paginator>
+        <mat-paginator #paginator [length]="articles.length" [pageSize]="numOfArticles" [pageSizeOptions]="[5,10]" aria-label="Select page"></mat-paginator>
     </div>
     <div class="divider-section">
         <mat-divider></mat-divider>
     </div>
-    <section class="lower-section">
-        <mat-card style="flex:1; border-radius:15px" *ngFor="let n of [1,2,3,4,5,5,34,32,32]">
-            <mat-card-header>
-                Laptop
-            </mat-card-header>
-            <img style="width:100%; border-top-left-radius: 10px; border-top-right-radius: 10px;" mat-card-image src="./assets/laptop.jpg">
-            <mat-card-content>
-                Detalji o ovom laptopu!
-            </mat-card-content>
-        </mat-card>
-    </section>
+    <app-articles-list [articles]="articles.slice(0, 5)"></app-articles-list>
 </div>

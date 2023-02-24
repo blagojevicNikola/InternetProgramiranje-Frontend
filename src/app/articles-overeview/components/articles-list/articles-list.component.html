@@ -1,0 +1,11 @@
+<section class="lower-section">
+    <mat-card  *ngFor="let a of articles">
+        <img class="img-style" mat-card-image src="./assets/laptop.jpg">
+        <mat-card-header>
+           {{a.title}}
+        </mat-card-header>
+        <mat-card-content>
+           {{a.description}}
+        </mat-card-content>
+    </mat-card>
+</section>
