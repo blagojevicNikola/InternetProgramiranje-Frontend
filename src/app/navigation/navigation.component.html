@@ -27,11 +27,7 @@
         <div class="post-button">
           <button mat-flat-button style="font-weight:500; background-color:#8BE57D; color:white">Post article</button>
         </div>
-        <mat-nav-list>
-          <div class="category-container" routerLink="/category">Category 1</div>
-          <div class="category-container" routerLink="">Category 2</div>
-          <div class="category-container" routerLink="">Category 3</div>
-        </mat-nav-list>
+        <app-side-nav [categories]="categories$ | async"></app-side-nav>
       </mat-sidenav>
       <mat-sidenav-content>
         <router-outlet></router-outlet>

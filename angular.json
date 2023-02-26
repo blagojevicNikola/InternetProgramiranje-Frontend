@@ -64,7 +64,8 @@
               "browserTarget": "ip_etfbl:build:production"
             },
             "development": {
-              "browserTarget": "ip_etfbl:build:development"
+              "browserTarget": "ip_etfbl:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

@@ -14,13 +14,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { ArticlesOvereviewComponent } from './articles-overeview/articles-overeview.component';
 import { ArticlesListComponent } from './articles-overeview/components/articles-list/articles-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { SideNavComponent } from './navigation/components/side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     ArticlesOvereviewComponent,
-    ArticlesListComponent
+    ArticlesListComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { ArticlesListComponent } from './articles-overeview/components/articles-
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

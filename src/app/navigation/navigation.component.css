@@ -124,29 +124,5 @@ mat-sidenav-content {
   flex: 1;
 }
 
-.category-container {
-  height: 35px;
-  flex: 1;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  border-radius: 10px;
-  cursor: pointer;
-  -webkit-transition: background-color 0.1s linear;
-  -moz-transition: background-color 0.1s linear;
-  -o-transition: background-color 0.1s linear;
-  -ms-transition: background-color 0.1s linear;
-  transition: background-color 0.1s linear;
-}
 
-.category-container:hover {
-  background-color: #D9D9D9;
-}
 
-.category-container:active {
-  background-color: #ededed;
-}

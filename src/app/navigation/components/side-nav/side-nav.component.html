@@ -1,0 +1,3 @@
+<mat-nav-list>
+    <div class="category-container" *ngFor="let cat of categories" [routerLink]="['/category', cat.id]">{{cat.name}}</div>
+</mat-nav-list>
