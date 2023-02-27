@@ -4,7 +4,7 @@ import { ArticlesOvereviewComponent } from './articles-overeview/articles-overev
 
 const routes: Routes = [
   {path: "category", component: ArticlesOvereviewComponent},
-  {path: "category/:id", component: ArticlesOvereviewComponent}
+  {path: "category/:name", component: ArticlesOvereviewComponent}
 ];
 
 @NgModule({

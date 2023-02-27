@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, switchMap } from 'rxjs';
 import { Article } from '../share/models/article';
+import { ArticlesService } from '../share/services/articles/articles.service';
 
 @Component({
   selector: 'app-articles-overeview',
@@ -8,64 +11,21 @@ import { Article } from '../share/models/article';
 })
 export class ArticlesOvereviewComponent implements OnInit{
 
-  articles: Article[] = [];
+  articles: Article[] | null = [];
   numOfArticles:number | undefined;
-  constructor()
+  nameOfArticleType: string | null  = "";
+  product$: Observable<any> = this.route.paramMap.pipe(
+    switchMap(params => {
+       let name = params.get('name');
+       return this.articleService.getArticlesByType(name);
+    }))
+  constructor(private articleService:ArticlesService, private route:ActivatedRoute)
   {
-
+    this.nameOfArticleType = route.snapshot.queryParamMap.get('name');
   }
 
   ngOnInit(): void {
-    this.articles = [
-      {
-        id:1,
-        title:'Naziv',
-        price:123,
-        description: 'opis'
-      },
-      {
-        id:1,
-        title:'Naziv',
-        price:123,
-        description: 'opis'
-      },
-      {
-        id:1,
-        title:'Naziv',
-        price:123,
-        description: 'opis'
-      },
-      {
-        id:1,
-        title:'Naziv',
-        price:123,
-        description: 'opis'
-      },
-      {
-        id:1,
-        title:'Naziv',
-        price:123,
-        description: 'opis'
-      },
-      {
-        id:1,
-        title:'Naziv',
-        price:123,
-        description: 'opis'
-      },
-      {
-        id:1,
-        title:'Naziv',
-        price:123,
-        description: 'opis'
-      },
-      {
-        id:1,
-        title:'Naziv',
-        price:123,
-        description: 'opis'
-      }
-    ]  
+    
   }
 
 }

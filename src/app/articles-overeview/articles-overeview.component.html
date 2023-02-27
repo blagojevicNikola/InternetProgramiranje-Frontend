@@ -1,9 +1,9 @@
 <div class="container">
     <div class="upper-section">
-        <mat-paginator #paginator [length]="articles.length" [pageSize]="numOfArticles" [pageSizeOptions]="[5,10]" aria-label="Select page"></mat-paginator>
+        <mat-paginator #paginator [length]="3" [pageSize]="numOfArticles" [pageSizeOptions]="[5,10]" aria-label="Select page"></mat-paginator>
     </div>
     <div class="divider-section">
         <mat-divider></mat-divider>
     </div>
-    <app-articles-list [articles]="articles.slice(0, 5)"></app-articles-list>
+    <app-articles-list [articles]="product$ | async"></app-articles-list>
 </div>
