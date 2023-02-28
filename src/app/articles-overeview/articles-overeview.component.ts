@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { map, Observable, shareReplay, switchMap } from 'rxjs';
 import { Article } from '../share/models/article';
 import { ArticlesService } from '../share/services/articles/articles.service';
 
@@ -14,18 +14,27 @@ export class ArticlesOvereviewComponent implements OnInit{
   articles: Article[] | null = [];
   numOfArticles:number | undefined;
   nameOfArticleType: string | null  = "";
-  product$: Observable<any> = this.route.paramMap.pipe(
-    switchMap(params => {
-       let name = params.get('name');
-       return this.articleService.getArticlesByType(name);
-    }))
+  loading: boolean = false;
+  name$ : Observable<ParamMap> = this.route.paramMap
+  product$: Observable<Article[] | null> = this.name$.pipe(switchMap((params)=> {
+    let name = params.get('name');
+    if(name === '')
+    {
+      return this.articleService.getAllArticles();
+    }
+    else
+    {
+      return this.articleService.getArticlesByType(params.get('name'))
+    }
+  }),
+  shareReplay(1))
+
   constructor(private articleService:ArticlesService, private route:ActivatedRoute)
   {
-    this.nameOfArticleType = route.snapshot.queryParamMap.get('name');
+
   }
 
   ngOnInit(): void {
-    
   }
 
 }

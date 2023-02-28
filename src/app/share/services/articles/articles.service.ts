@@ -13,6 +13,11 @@ export class ArticlesService {
 
   getArticlesByType(name: string | null)
   {
-    return this.http.get<Article[]>(`api/articles/type/${name}`);
+    return this.http.get<Article[] | null>(`api/articles/type/${name}`);
+  }
+
+  getAllArticles()
+  {
+    return this.http.get<Article[] | null>(`api/articles`);
   }
 }
