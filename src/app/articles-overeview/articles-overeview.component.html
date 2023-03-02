@@ -5,5 +5,9 @@
     <div class="divider-section">
         <mat-divider></mat-divider>
     </div>
-    <app-articles-list [articles]="prod"></app-articles-list>
+    <div class="spinner-container" *ngIf="this.spinnerService.visibility | async; else loading">
+        <mat-spinner></mat-spinner>
+    </div>
+    <ng-template #loading><app-articles-list [articles]="prod"></app-articles-list>
+    </ng-template>
 </div>

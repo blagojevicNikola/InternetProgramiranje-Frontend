@@ -6,24 +6,24 @@ import {
   HttpInterceptor,
   HttpResponse
 } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { finalize, Observable, tap } from 'rxjs';
 import { SpinnerService } from '../../services/spinner/spinner.service';
 
 @Injectable()
 export class SpinnerInterceptor implements HttpInterceptor {
 
-  constructor(private service: SpinnerService) {}
+  constructor(private service: SpinnerService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    this.service.count++;
     this.service.show();
 
-        return next.handle(request)
-             .pipe(tap((event: HttpEvent<any>) => {
-                    if (event instanceof HttpResponse) {
-                        this.service.hide();
-                    }
-                }, (error) => {
-                    this.service.hide();
-                }));
+    return next.handle(request)
+      .pipe(finalize(() => {
+        this.service.count--;
+        if (this.service.count === 0) {
+          this.service.hide();
+        }
+      }));
   }
 }

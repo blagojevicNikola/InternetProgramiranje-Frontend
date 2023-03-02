@@ -12,12 +12,10 @@ export class SpinnerService {
   }
 
   show() {
-    this.count++;
     this.visibility.next(true);
   }
 
   hide() {
-    this.count--;
     this.visibility.next(false);
   }
 }

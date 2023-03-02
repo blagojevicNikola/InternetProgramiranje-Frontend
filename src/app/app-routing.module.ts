@@ -1,14 +1,27 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArticlesOvereviewComponent } from './articles-overeview/articles-overeview.component';
+import { LoginComponent } from './login/login.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { RegisterComponent } from './register/register.component';
+import { SpinnerInterceptor } from './share/interceptors/spinner/spinner.interceptor';
 
 const routes: Routes = [
-  {path: "category", component: ArticlesOvereviewComponent},
-  {path: "category/:name", component: ArticlesOvereviewComponent}
+  {path: "login", component: LoginComponent},
+  {path: "register", component:RegisterComponent},
+  {path: '', component: NavigationComponent, children: [
+    {path:'', component:ArticlesOvereviewComponent},
+    {path: 'category', component: NavigationComponent},
+    {path:'category/:name', component: ArticlesOvereviewComponent},
+  ]}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass:SpinnerInterceptor, multi:true}
+  ]
 })
 export class AppRoutingModule { }

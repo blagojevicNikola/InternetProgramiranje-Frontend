@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     background-color: transparent;
-    border-radius: 10px;
+    border-radius: 6px;
     cursor: pointer;
     -webkit-transition: background-color 0.1s linear;
     -moz-transition: background-color 0.1s linear;
@@ -23,4 +23,12 @@
   
   .category-container:active {
     background-color: #ededed;
+  }
+
+  .category-active{
+    background-color: #d0d0d0;
+  } 
+
+  .category-active:hover{
+    background-color: #d0d0d0;
   }

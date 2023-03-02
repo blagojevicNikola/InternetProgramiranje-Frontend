@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { map, Observable, shareReplay, switchMap } from 'rxjs';
 import { Article } from '../share/models/article';
 import { ArticlesService } from '../share/services/articles/articles.service';
+import { SpinnerService } from '../share/services/spinner/spinner.service';
 
 @Component({
   selector: 'app-articles-overeview',
@@ -29,7 +30,7 @@ export class ArticlesOvereviewComponent implements OnInit{
   }),
   shareReplay(1))
 
-  constructor(private articleService:ArticlesService, private route:ActivatedRoute)
+  constructor(private articleService:ArticlesService, private route:ActivatedRoute, public spinnerService:SpinnerService)
   {
 
   }

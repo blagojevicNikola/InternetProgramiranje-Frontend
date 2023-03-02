@@ -1,0 +1,19 @@
+<div class="main-container">
+    <div class="left-container">
+        <mat-card class="login-card">
+            <mat-form-field appearance="outline" >
+                <mat-label>Korisničko ime</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Lozinka</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <button class="login-button" mat-flat-button color="primary">Prijavi se</button>
+            <div [routerLink]="['/register']" class="register-link">Nisi registrovan?</div>
+        </mat-card>
+    </div>
+    <div class="right-container">
+
+    </div>
+</div>

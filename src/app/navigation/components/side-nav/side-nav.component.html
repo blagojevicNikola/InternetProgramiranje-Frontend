@@ -1,4 +1,4 @@
 <mat-nav-list>
-    <div class="category-container" [routerLink]="['/category']">Sve kategorije</div>
-    <div class="category-container" *ngFor="let cat of categories" [routerLink]="['/category', cat.name | lowercase]">{{cat.name}}</div>
+    <div class="category-container" *ngFor="let cat of categories" [routerLink]="['/category', cat.name | lowercase]" routerLinkActive="category-active" [routerLinkActiveOptions]="{exact:
+        true}">{{cat.name}}</div>
 </mat-nav-list>
