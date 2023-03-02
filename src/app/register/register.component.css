@@ -42,9 +42,6 @@
     min-height: 100px;
 }
 
-.login-button
-{
-}
 
 .register-link
 {
@@ -54,4 +51,18 @@
     color:blue;
     cursor:pointer;
     display:flex
+}
+
+@media(max-height:700px)
+{
+    .right-container{
+        visibility:hidden;
+        flex:0
+    }
+    .login-card{
+        display: inline-grid;
+        flex:1;
+        grid-template-columns: 1fr 1fr;
+        max-width: 1000px;
+    }
 }

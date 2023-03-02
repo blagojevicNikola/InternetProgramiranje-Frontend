@@ -15,12 +15,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { NavigationModule } from './navigation/navigation.module';
 import { RegisterComponent } from './register/register.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,

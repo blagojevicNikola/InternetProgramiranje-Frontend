@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { CategoryService } from '../share/services/category.service';
-import { Category } from '../share/models/category';
 import { Router } from '@angular/router';
+import { Category } from '../share/models/category';
+import { SidebarService } from '../share/services/sidebar/sidebar.service';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit {
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -19,9 +20,12 @@ export class NavigationComponent {
       shareReplay()
     );
 
-  categories$ = this.categoryService.getCategories$;
+  categories$! : Observable<Category[]> | null
  
-  constructor(private breakpointObserver: BreakpointObserver, private categoryService:CategoryService, private router:Router) {}
+  constructor(private breakpointObserver: BreakpointObserver, private categoryService:CategoryService, private router:Router, public sidebarService: SidebarService) {}
+  ngOnInit(): void {
+    this.categories$ = this.categoryService.getCategories$.pipe((data) => {return data}, shareReplay(1))
+  }
   
   loginNav(){
     this.router.navigateByUrl('/login')

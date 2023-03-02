@@ -5,6 +5,7 @@ import { ArticlesOvereviewComponent } from './articles-overeview/articles-overev
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { RegisterComponent } from './register/register.component';
+import { ReviewComponent } from './review/review.component';
 import { SpinnerInterceptor } from './share/interceptors/spinner/spinner.interceptor';
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
     {path:'', component:ArticlesOvereviewComponent},
     {path: 'category', component: NavigationComponent},
     {path:'category/:name', component: ArticlesOvereviewComponent},
-  ]}
+    {path:":id", component: ReviewComponent}
+  ]},
 ];
 
 @NgModule({

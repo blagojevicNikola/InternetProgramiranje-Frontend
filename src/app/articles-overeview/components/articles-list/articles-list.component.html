@@ -1,5 +1,5 @@
 <section class="lower-section">
-    <mat-card  *ngFor="let a of articles">
+    <mat-card  *ngFor="let a of articles" [routerLink]="['/', a.id]">
         <img class="img-style" mat-card-image src="./assets/laptop.jpg">
         <mat-card-header>
            {{a.title}}
