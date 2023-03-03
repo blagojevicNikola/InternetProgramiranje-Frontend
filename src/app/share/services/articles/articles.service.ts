@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ArticleInfo } from 'src/app/review/models/article-info';
 import { Article } from '../../models/article';
 
 @Injectable({
@@ -19,5 +20,10 @@ export class ArticlesService {
   getAllArticles()
   {
     return this.http.get<Article[] | null>(`api/articles`);
+  }
+
+  getArticleInfo(id: number)
+  {
+    return this.http.get<ArticleInfo>(`api/articles/info/${id}`)
   }
 }

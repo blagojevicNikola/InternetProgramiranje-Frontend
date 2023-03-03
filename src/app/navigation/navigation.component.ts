@@ -16,22 +16,26 @@ export class NavigationComponent implements OnInit {
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
-      map(result => result.matches),
+      map((result) => {
+        return result.matches;
+      }),
       shareReplay()
     );
 
-  categories$! : Observable<Category[]> | null
- 
-  constructor(private breakpointObserver: BreakpointObserver, private categoryService:CategoryService, private router:Router, public sidebarService: SidebarService) {}
+  test$: Observable<boolean> = this.sidebarService.get()
+
+  categories$!: Observable<Category[]> | null
+
+  constructor(private breakpointObserver: BreakpointObserver, private categoryService: CategoryService, private router: Router, public sidebarService: SidebarService) { }
   ngOnInit(): void {
-    this.categories$ = this.categoryService.getCategories$.pipe((data) => {return data}, shareReplay(1))
+    this.categories$ = this.categoryService.getCategories$.pipe((data) => { return data }, shareReplay(1))
   }
-  
-  loginNav(){
+
+  loginNav() {
     this.router.navigateByUrl('/login')
   }
 
-  registerNav(){
+  registerNav() {
     this.router.navigateByUrl('/register')
   }
 }

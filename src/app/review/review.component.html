@@ -1,5 +1,8 @@
 <div class="main-container">
     <div class="middle-container">
-        
+        <div *ngIf="product$ | async as prod">
+            <span>{{prod.title}}</span>
+            <span>{{prod.details}}</span>
+        </div>
     </div>
 </div>
