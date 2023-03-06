@@ -1,8 +1,8 @@
 <div class="whole-section">
   <div class="header-section">
     <div class="hamburger-button">  
-        <button  type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="(isHandset$ | async)">
+        <button  type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggle()"
+        *ngIf="(isHandset$ | async) && (test$ | async) === true">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
     </div>
@@ -22,8 +22,8 @@
   </div>
   <div class="content-section">
     <mat-sidenav-container>   
-      <mat-sidenav #drawer mode="side" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+      <mat-sidenav #drawer mode="side" *ngIf="(test$ | async) === true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false && (test$ | async) === true" >
         <div class="post-button">
           <button mat-flat-button style="font-weight:500; background-color:#8BE57D; color:white">Post article</button>
         </div>

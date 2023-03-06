@@ -23,13 +23,15 @@ export class ReviewComponent implements OnInit, OnDestroy {
   }),
   shareReplay(1))
 
-  constructor(private sidebarService: SidebarService, private route: ActivatedRoute, private articleService:ArticlesService){}
+  constructor(private sidebarService: SidebarService, private route: ActivatedRoute, private articleService:ArticlesService){
+    this.sidebarService.disable();
+  }
 
   ngOnDestroy(): void {
     this.sidebarService.enable();
   }
   ngOnInit(): void {
-    this.sidebarService.disable();
+    
   }
 
 }

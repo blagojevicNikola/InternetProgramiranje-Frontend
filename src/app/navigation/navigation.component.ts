@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -6,6 +6,7 @@ import { CategoryService } from '../share/services/category.service';
 import { Router } from '@angular/router';
 import { Category } from '../share/models/category';
 import { SidebarService } from '../share/services/sidebar/sidebar.service';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-navigation',
@@ -22,6 +23,8 @@ export class NavigationComponent implements OnInit {
       shareReplay()
     );
 
+  @ViewChild('drawer') matDrawer!: MatSidenav;
+
   test$: Observable<boolean> = this.sidebarService.get()
 
   categories$!: Observable<Category[]> | null
@@ -37,5 +40,10 @@ export class NavigationComponent implements OnInit {
 
   registerNav() {
     this.router.navigateByUrl('/register')
+  }
+
+  toggle()
+  {
+    this.matDrawer.toggle();
   }
 }
