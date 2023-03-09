@@ -10,7 +10,7 @@ import { SpinnerInterceptor } from './share/interceptors/spinner/spinner.interce
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},
-  {path: "register", component:RegisterComponent},
+  {path: "register", component: RegisterComponent},
   {path: '', component: NavigationComponent, children: [
     {path:'', component:ArticlesOvereviewComponent},
     {path: 'category', component: NavigationComponent},

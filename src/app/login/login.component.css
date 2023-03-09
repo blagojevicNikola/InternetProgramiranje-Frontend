@@ -55,3 +55,7 @@
     cursor:pointer;
     display:flex
 }
+
+form > mat-form-field{
+    display: inline;
+}

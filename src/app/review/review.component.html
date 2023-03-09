@@ -3,14 +3,18 @@
         <div *ngIf="product$ | async as prod">
             <h1 class="title-style">{{prod.title}}</h1>
         </div>
-        <div class="image-container">
-            <img src="assets/laptop.jpg" class="image-style">
-        </div>
-        <div class="image-list-container">
-            <div *ngFor="let num of [1,2,3,4,5,6,7]">
-                <div>
-                    <img src="assets/laptop.jpg" style="height: 100px;">
-                </div>
+        <div class="images-section">
+            <div class="image-container">
+                <img src="assets/laptop.jpg" class="image-style">
+            </div>
+            <div class="images-list-container">
+                <mat-list>
+                    <mat-list-item *ngFor="let num of [1,2,3,4,5,7,32,4,2]">
+                        <div >
+                            <img src="assets/laptop.jpg" style="width: 100%;">
+                        </div>
+                    </mat-list-item>
+                </mat-list>
             </div>
         </div>
         <h2 class="attributes-style">Osobine</h2>

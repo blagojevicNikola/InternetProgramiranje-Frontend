@@ -1,19 +1,21 @@
 <div class="main-container">
     <div class="left-container">
         <mat-card class="login-card">
-            <mat-form-field appearance="outline">
-                <mat-label>Korisničko ime</mat-label>
-                <input matInput>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Lozinka</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
-            <button class="login-button" mat-flat-button color="primary">Prijavi se</button>
+            <form [formGroup]="loginForm">
+                <mat-form-field appearance="outline">
+                    <mat-label>Korisničko ime</mat-label>
+                    <input [(ngModel)]="usernameValue" matInput formControlName="username">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Lozinka</mat-label>
+                    <input [(ngModel)]="passwordValue" matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </form>
+            <button class="login-button" mat-flat-button color="primary" (click)="onSubmit()">Prijavi se</button>
             <div [routerLink]="['/register']" class="register-link">Nisi registrovan?</div>
         </mat-card>
     </div>

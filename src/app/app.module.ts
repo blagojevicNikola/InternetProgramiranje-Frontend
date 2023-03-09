@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { NavigationModule } from './navigation/navigation.module';
 import { RegisterComponent } from './register/register.component';
 import { ReviewComponent } from './review/review.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { ReviewComponent } from './review/review.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

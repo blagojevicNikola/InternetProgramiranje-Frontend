@@ -15,6 +15,7 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     max-width: 68%;
+    width: 68%;
     background-color: rgb(243, 243, 243);
     box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
@@ -29,12 +30,11 @@
 
 .image-container {
     align-self: center;
-    width: 60%;
+    flex:1
 
 }
 
 .image-style {
-    margin-top: 20px;
     border-width: 2px;
     border-style: solid;
     border-color: rgb(131, 131, 131);
@@ -53,6 +53,7 @@
     border-style: solid;
     overflow: auto;
     white-space: nowrap;
+    align-items: center;
 }
 .image-list-container div{
     padding:3px;
@@ -83,4 +84,37 @@
     margin-left: 30px;
     font-weight: 100;
     margin-bottom:20px;
+}
+
+.images-section
+{
+    max-height: 400px;
+    align-self: center;
+    display: flex;
+    flex:1;
+    flex-direction: row;
+}
+
+.images-list-container
+{
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(199, 199, 199);
+    border-radius: 7px;
+    width:20%;
+    overflow: auto;
+    padding-top:5px;
+    padding-bottom:5px;
+    margin-left: 30px;
+    max-height: 350px;
+}
+
+@media(max-width:700px)
+{
+    .middle-container{
+        margin-top:0px;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0px;
+    }
 }
