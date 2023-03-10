@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Category } from '../share/models/category';
 import { SidebarService } from '../share/services/sidebar/sidebar.service';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from '../share/services/auth/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -29,7 +30,8 @@ export class NavigationComponent implements OnInit {
 
   categories$!: Observable<Category[]> | null
 
-  constructor(private breakpointObserver: BreakpointObserver, private categoryService: CategoryService, private router: Router, public sidebarService: SidebarService) { }
+  constructor(private breakpointObserver: BreakpointObserver, private categoryService: CategoryService, private router: Router,
+    public sidebarService: SidebarService, public authService: AuthService) { }
   ngOnInit(): void {
     this.categories$ = this.categoryService.getCategories$.pipe((data) => { return data }, shareReplay(1))
   }
@@ -42,8 +44,7 @@ export class NavigationComponent implements OnInit {
     this.router.navigateByUrl('/register')
   }
 
-  toggle()
-  {
+  toggle() {
     this.matDrawer.toggle();
   }
 }

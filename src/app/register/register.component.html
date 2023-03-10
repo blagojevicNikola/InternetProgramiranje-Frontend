@@ -47,7 +47,7 @@
                     <mat-error *ngIf="this.registerForm.controls['password'].invalid">{{showPasswordErrorMessage()}}</mat-error>
                 </mat-form-field>
             </form>
-            <button class="login-button" mat-flat-button color="primary">Registruj se</button>
+            <button [disabled]="disabledButton" class="login-button" (click)="onSubmit()" mat-flat-button color="primary">Registruj se</button>
         </mat-card>
     </div>
     <div class="right-container">

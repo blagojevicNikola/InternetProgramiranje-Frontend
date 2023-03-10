@@ -15,7 +15,7 @@
                     </button>
                 </mat-form-field>
             </form>
-            <button class="login-button" mat-flat-button color="primary" (click)="onSubmit()">Prijavi se</button>
+            <button [disabled]="disabledButton" class="login-button" mat-flat-button color="primary" (click)="onSubmit()">Prijavi se</button>
             <div [routerLink]="['/register']" class="register-link">Nisi registrovan?</div>
         </mat-card>
     </div>

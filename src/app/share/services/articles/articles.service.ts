@@ -19,7 +19,7 @@ export class ArticlesService {
 
   getAllArticles()
   {
-    return this.http.get<Article[] | null>(`api/articles`);
+    return this.http.get<Article[] | null>(`api/articles/all`);
   }
 
   getArticleInfo(id: number)

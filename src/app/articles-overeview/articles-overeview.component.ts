@@ -19,7 +19,7 @@ export class ArticlesOvereviewComponent implements OnInit{
   name$ : Observable<ParamMap> = this.route.paramMap
   product$: Observable<Article[] | null> = this.name$.pipe(switchMap((params)=> {
     let name = params.get('name');
-    if(name === '')
+    if(name === null)
     {
       return this.articleService.getAllArticles();
     }

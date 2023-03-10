@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap, } from '@angular/router';
 import { Observable, shareReplay, switchMap } from 'rxjs';
 import { ArticlesService } from '../share/services/articles/articles.service';
 import { SidebarService } from '../share/services/sidebar/sidebar.service';
+import { SpinnerService } from '../share/services/spinner/spinner.service';
 import { ArticleInfo } from './models/article-info';
 
 @Component({
@@ -23,7 +24,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
   }),
   shareReplay(1))
 
-  constructor(private sidebarService: SidebarService, private route: ActivatedRoute, private articleService:ArticlesService){
+  constructor(private sidebarService: SidebarService, private route: ActivatedRoute, private articleService:ArticlesService, public spinnerService:SpinnerService){
     this.sidebarService.disable();
   }
 

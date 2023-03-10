@@ -4,6 +4,7 @@ export interface RegisterRequest
     surname:string;
     password:string;
     email:string;
-    city:string;
+    cityName:string;
     username:string;
+    avatar:number | null;
 }

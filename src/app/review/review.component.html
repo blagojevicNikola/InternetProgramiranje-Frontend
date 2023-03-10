@@ -1,5 +1,5 @@
 <div class="main-container">
-    <div class="middle-container">
+    <div class="middle-container" *ngIf="(this.spinnerService.visibility | async) === false; else loading">
         <div *ngIf="product$ | async as prod">
             <h1 class="title-style">{{prod.title}}</h1>
         </div>
@@ -24,3 +24,9 @@
         <h2 class="attributes-style">Komentari</h2>
     </div>
 </div>
+
+<ng-template #loading>
+    <div class="spinner-container">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

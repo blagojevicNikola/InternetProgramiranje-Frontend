@@ -15,7 +15,7 @@
         <input matInput fxFlex placeholder="Ex. Golf 5" value="">
       </mat-form-field>
     </div>
-    <div class="options-section">     
+    <div class="options-section" *ngIf="this.authService.isAuthenticated()===false else profileMenu"> 
       <button mat-flat-button style="background-color:#F09000; color:white" (click)="loginNav()">Login</button>
       <button mat-stroked-button style="color:#F09000; outline-color: #F09000;" (click)="registerNav()">Register</button>
     </div>
@@ -35,3 +35,26 @@
     </mat-sidenav-container>
   </div>
 </div>
+
+
+<ng-template #profileMenu>
+  <div class="options-section" style="justify-content:center; flex:0">
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>dialpad</mat-icon>
+      <span>Redial</span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>voicemail</mat-icon>
+      <span>Check voice mail</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications_off</mat-icon>
+      <span>Disable alerts</span>
+    </button>
+  </mat-menu>  
+</div>
+</ng-template>
