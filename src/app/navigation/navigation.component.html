@@ -39,21 +39,21 @@
 
 <ng-template #profileMenu>
   <div class="options-section" style="justify-content:center; flex:0">
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-    <mat-icon>more_vert</mat-icon>
+  <button  color="primary" mat-fab [matMenuTriggerFor]="menu" aria-label="Profile">
+    <mat-icon class="profile-icon">person</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>dialpad</mat-icon>
-      <span>Redial</span>
-    </button>
-    <button mat-menu-item disabled>
-      <mat-icon>voicemail</mat-icon>
-      <span>Check voice mail</span>
+    <button mat-menu-item routerLink="profile/nikola">
+      <mat-icon>person_outline</mat-icon>
+      <span>Moj profil</span>
     </button>
     <button mat-menu-item>
-      <mat-icon>notifications_off</mat-icon>
-      <span>Disable alerts</span>
+      <mat-icon>contact_support</mat-icon>
+      <span>Prijavi problem</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Odjavi se</span>
     </button>
   </mat-menu>  
 </div>

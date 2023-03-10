@@ -105,6 +105,13 @@
   align-items: center;
 }
 
+.profile-icon
+{
+  font-size:30px;
+  height: 30px;
+  width: 30px;
+}
+
 mat-sidenav {
   width: 200px;
   background-color: #EDEDED;

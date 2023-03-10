@@ -23,7 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ReviewComponent
+    ReviewComponent,
   ],
   imports: [
     BrowserModule,
