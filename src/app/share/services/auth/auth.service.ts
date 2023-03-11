@@ -41,4 +41,9 @@ export class AuthService {
   register(req: RegisterRequest) {
     return this.http.post<any>('/api/auth/register-user', req);
   }
+
+  logout()
+  {
+    localStorage.removeItem('token');
+  }
 }

@@ -47,4 +47,10 @@ export class NavigationComponent implements OnInit {
   toggle() {
     this.matDrawer.toggle();
   }
+
+  logOut()
+  {
+    this.authService.logout();
+    this.router.navigateByUrl('');
+  }
 }

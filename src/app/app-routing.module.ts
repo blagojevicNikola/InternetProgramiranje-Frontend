@@ -16,9 +16,10 @@ const routes: Routes = [
     {path:'', component:ArticlesOvereviewComponent},
     {path: 'category', component: NavigationComponent},
     {path:'category/:name', component: ArticlesOvereviewComponent},
-    {path:":id", component: ReviewComponent}
+    {path:":id", component: ReviewComponent},
+    {path: "profile/:name", component: ProfileComponent}
   ]},
-  {path: "profile/:name", component: ProfileComponent}
+  
 ];
 
 @NgModule({

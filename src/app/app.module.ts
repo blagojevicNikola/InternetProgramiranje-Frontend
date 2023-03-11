@@ -17,6 +17,7 @@ import { NavigationModule } from './navigation/navigation.module';
 import { RegisterComponent } from './register/register.component';
 import { ReviewComponent } from './review/review.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     ReviewComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
