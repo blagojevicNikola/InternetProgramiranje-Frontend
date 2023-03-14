@@ -1,29 +1,42 @@
 <div class="whole-section">
   <div class="header-section">
-    <div class="hamburger-button">  
-        <button  type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggle()"
+    <div class="hamburger-button">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggle()"
         *ngIf="(isHandset$ | async) && (test$ | async) === true">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
     </div>
     <div class="logo-section">
-      <span>Logo</span>
+      <div style="height: 50px; width:50px; border-radius:50%; background-color:#D3AC2B"></div>
     </div>
     <div class="search-section">
-      <mat-form-field class="form">
+      <!-- <mat-form-field class="form">
         <mat-label>Search article</mat-label>
         <input matInput fxFlex placeholder="Ex. Golf 5" value="">
-      </mat-form-field>
+      </mat-form-field> -->
+      <form class="searchForm">
+        <input type="text" class="searchTerm" placeholder="Pretrazi">
+        <button class="searchButton">
+          <mat-icon style="color:white">search</mat-icon>
+        </button>
+      </form>
+      <!-- <button type="submit" class="searchButton">
+        <mat-icon style="width:20px; height:20px">search</mat-icon>
+     </button> -->
     </div>
-    <div class="options-section" *ngIf="this.authService.isAuthenticated()===false else profileMenu"> 
-      <button mat-flat-button style="background-color:#F09000; color:white" (click)="loginNav()">Login</button>
-      <button mat-stroked-button style="color:#F09000; outline-color: #F09000;" (click)="registerNav()">Register</button>
+    <div class="options-section" *ngIf="this.authService.isAuthenticated()===false else profileMenu">
+      <!-- <button mat-flat-button style="background-color:#D3AC2B; color:white" (click)="loginNav()">Login</button> -->
+      <button class="login-button" (click)="loginNav()">Prijavi se</button>
+      <button class="register-button" (click)="registerNav()">Registruj se</button>
+      <!-- <button mat-stroked-button style="color:#D3AC2B; outline-color: #D3AC2B;"
+        (click)="registerNav()">Register</button> -->
     </div>
   </div>
   <div class="content-section">
-    <mat-sidenav-container>   
-      <mat-sidenav #drawer mode="side" *ngIf="(test$ | async) === true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false && (test$ | async) === true" >
+    <mat-sidenav-container>
+      <mat-sidenav #drawer mode="side" *ngIf="(test$ | async) === true"
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false && (test$ | async) === true">
         <div class="post-button">
           <button mat-flat-button style="font-weight:500; background-color:#8BE57D; color:white">Post article</button>
         </div>
@@ -39,22 +52,22 @@
 
 <ng-template #profileMenu>
   <div class="options-section" style="justify-content:center; flex:0">
-  <button  color="primary" mat-fab [matMenuTriggerFor]="menu" aria-label="Profile">
-    <mat-icon class="profile-icon">person</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item routerLink="profile/nikola">
-      <mat-icon>person_outline</mat-icon>
-      <span>Moj profil</span>
+    <button style="background-color:#D3AC2B" mat-fab [matMenuTriggerFor]="menu" aria-label="Profile">
+      <mat-icon class="profile-icon">person</mat-icon>
     </button>
-    <button mat-menu-item>
-      <mat-icon>contact_support</mat-icon>
-      <span>Prijavi problem</span>
-    </button>
-    <button mat-menu-item (click)="logOut()">
-      <mat-icon>exit_to_app</mat-icon>
-      <span>Odjavi se</span>
-    </button>
-  </mat-menu>  
-</div>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="profile/nikola">
+        <mat-icon>person_outline</mat-icon>
+        <span>Moj profil</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>contact_support</mat-icon>
+        <span>Prijavi problem</span>
+      </button>
+      <button mat-menu-item (click)="logOut()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Odjavi se</span>
+      </button>
+    </mat-menu>
+  </div>
 </ng-template>

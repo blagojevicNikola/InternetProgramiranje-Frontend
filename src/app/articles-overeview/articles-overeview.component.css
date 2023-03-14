@@ -3,6 +3,8 @@
     flex:1;
     flex-direction: column;
     height: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .upper-section
@@ -10,6 +12,8 @@
     margin-top:10px;
     margin-bottom:10px;
     height: 50px;
+    display:flex;
+    flex-direction: column;
 }
 
 .divider-section{

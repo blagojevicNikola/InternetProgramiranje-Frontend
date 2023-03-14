@@ -1,11 +1,16 @@
 <section class="lower-section">
     <mat-card  *ngFor="let a of articles" [routerLink]="['/', a.id]">
         <img class="img-style" mat-card-image src="./assets/laptop.jpg">
-        <mat-card-header>
-           {{a.title}}
-        </mat-card-header>
-        <mat-card-content>
-           {{a.description}}
-        </mat-card-content>
+        <div class="card-header">
+            <a class="header">{{a.title}}</a>
+            <button mat-icon-button>
+                <mat-icon class="buy">shopping_cart</mat-icon>
+            </button>
+        </div>
+        <mat-divider style="margin-top:10px; margin-bottom:10px; margin-right:4px; margin-left:4px;"></mat-divider>
+        <div class="card-content">
+            <div class="price">{{a.price}}KM</div>
+            <div class="date">12.12.2021</div>
+        </div>
     </mat-card>
 </section>
