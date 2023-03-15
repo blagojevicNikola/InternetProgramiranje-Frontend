@@ -17,6 +17,6 @@ import { ArticlesListComponent } from '../articles-overeview/components/articles
     CommonModule,
     NavigationRoutingModule,
   ],
-  exports: [NavigationComponent, ArticlesOvereviewComponent]
+  exports: [NavigationComponent, ArticlesOvereviewComponent, ArticlesListComponent]
 })
 export class NavigationModule { }

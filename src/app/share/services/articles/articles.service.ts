@@ -26,4 +26,14 @@ export class ArticlesService {
   {
     return this.http.get<ArticleInfo>(`api/articles/info/${id}`)
   }
+
+  getAllActiveArticlesByUsername(name: string | null)
+  {
+    return this.http.get<Article[] | null> (`api/articles/active/user/${name}`);
+  }
+
+  getAllSoldArticlesByUsername(name: string | null)
+  {
+    return this.http.get<Article[] | null> (`api/articles/sold/user/${name}`);
+  }
 }

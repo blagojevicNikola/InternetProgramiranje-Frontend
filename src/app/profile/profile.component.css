@@ -64,3 +64,20 @@
     height: 40px;
     width:40px;
 }
+
+.username{
+    font-size: 18px;
+    font-weight: 700;
+    color:#323232
+}
+
+.city{
+    font-size: 16px;
+    font-weight: lighter;
+    color:#444444
+}
+
+mat-divider{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

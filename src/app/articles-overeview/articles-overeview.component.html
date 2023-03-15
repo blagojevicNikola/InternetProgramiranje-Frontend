@@ -1,4 +1,4 @@
-<div class="container" *ngIf="product$ | async; let prod">
+<div class="container" >
     <div class="upper-section">
         <button mat-icon-button style="align-self: end;">
             <mat-icon>settings</mat-icon>
@@ -11,6 +11,8 @@
     <div class="spinner-container" *ngIf="this.spinnerService.visibility | async; else loading">
         <mat-spinner></mat-spinner>
     </div>
-    <ng-template #loading><app-articles-list [articles]="prod"></app-articles-list>
+    <ng-template #loading><div *ngIf="product$ | async; let prod else empty"><app-articles-list [articles]="prod"></app-articles-list></div>
     </ng-template>
 </div>
+
+<ng-template #empty>Prazna lista</ng-template>

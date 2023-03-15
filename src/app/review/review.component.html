@@ -1,8 +1,21 @@
 <div class="main-container">
-    <div class="middle-container" *ngIf="(this.spinnerService.visibility | async) === false; else loading">
-        <div *ngIf="product$ | async as prod">
+    <div class="middle-container" *ngIf="(this.spinnerService.visibility | async) === true; else content">
+        <div class="spinner-container">
+            <mat-spinner></mat-spinner>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    
+</ng-template>
+
+<ng-template #content>
+    <div class="middle-container" *ngIf="product$ | async as prod; else empty">
+        <div>
             <h1 class="title-style">{{prod.title}}</h1>
         </div>
+        <mat-divider></mat-divider>
         <div class="images-section">
             <div class="image-container">
                 <img src="assets/laptop.jpg" class="image-style">
@@ -10,7 +23,7 @@
             <div class="images-list-container">
                 <mat-list>
                     <mat-list-item *ngFor="let num of [1,2,3,4,5,7,32,4,2]">
-                        <div >
+                        <div>
                             <img src="assets/laptop.jpg" style="width: 100%;">
                         </div>
                     </mat-list-item>
@@ -20,13 +33,11 @@
         <h2 class="attributes-style">Osobine</h2>
         <div class="attributes-container"></div>
         <h2 class="attributes-style">Detalji</h2>
-        <a class="details">Ovo je samo neki tekst koji presdstavlja detalje nekog proizvoda.</a>
+        <a class="details">{{prod.details}}</a>
         <h2 class="attributes-style">Komentari</h2>
     </div>
-</div>
+</ng-template>
 
-<ng-template #loading>
-    <div class="spinner-container">
-        <mat-spinner></mat-spinner>
-    </div>
+<ng-template #empty>
+    <a> EMPTY </a>
 </ng-template>

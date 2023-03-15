@@ -1,5 +1,5 @@
 <div class="main-container">
-    <div class="profile-container">
+    <div class="profile-container" *ngIf="user$ | async as user">
         <div class="upper-container">
             <div class="avatar-container">
                 <img src="assets/laptop.jpg" class="avatar-image">
@@ -8,14 +8,18 @@
                 <mat-icon>home</mat-icon>
             </button>
         </div>
-        <a>Username</a>
-        <a>City</a>
+        <a class="username">{{user.username}}</a>
+        <a class="city">{{user.locationName}}</a>
     </div>
     <mat-divider [vertical]="true"></mat-divider>
     <div class="articles-container">
         <mat-tab-group>
-            <mat-tab label="Aktivno">Content1</mat-tab>
-            <mat-tab label="Zavrseno">Content2</mat-tab>
+            <mat-tab label="Aktivno">
+                <app-articles-list *ngIf="activeProducts$ | async as activeProd"[articles]="activeProd"></app-articles-list>
+            </mat-tab>
+            <mat-tab label="Zavrseno">
+                <app-articles-list *ngIf="soldProducts$ | async as soldProd"[articles]="soldProd"></app-articles-list>
+            </mat-tab>
             <mat-tab label="Kupljeno">Content3</mat-tab>
         </mat-tab-group>
     </div>

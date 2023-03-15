@@ -1,5 +1,5 @@
-<section class="lower-section">
-    <mat-card  *ngFor="let a of articles" [routerLink]="['/', a.id]">
+<section class="lower-section" *ngIf="articles.length>0; else nodata">
+    <mat-card *ngFor="let a of articles" [routerLink]="['/', a.id]">
         <img class="img-style" mat-card-image src="./assets/laptop.jpg">
         <div class="card-header">
             <a class="header">{{a.title}}</a>
@@ -11,6 +11,8 @@
         <div class="card-content">
             <div class="price">{{a.price}}KM</div>
             <div class="date">12.12.2021</div>
-        </div>
+       </div>
     </mat-card>
 </section>
+
+<ng-template #nodata><a>Nema sadrzaja</a></ng-template>
