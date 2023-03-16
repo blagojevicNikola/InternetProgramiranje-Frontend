@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, } from '@angular/router';
 import { Observable, shareReplay, switchMap } from 'rxjs';
@@ -24,7 +25,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
   }),
   shareReplay(1))
 
-  constructor(private sidebarService: SidebarService, private route: ActivatedRoute, private articleService:ArticlesService, public spinnerService:SpinnerService){
+  constructor(private scroller:ViewportScroller, private sidebarService: SidebarService, private route: ActivatedRoute, private articleService:ArticlesService, public spinnerService:SpinnerService){
     this.sidebarService.disable();
   }
 
@@ -34,5 +35,9 @@ export class ReviewComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     
   }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({behavior: 'smooth'});
+}
 
 }

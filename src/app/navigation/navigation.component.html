@@ -56,7 +56,7 @@
       <mat-icon class="profile-icon">person</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="profile/nikola">
+      <button mat-menu-item (click)="profileNav()">
         <mat-icon>person_outline</mat-icon>
         <span>Moj profil</span>
       </button>

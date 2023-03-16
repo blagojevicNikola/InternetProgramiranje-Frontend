@@ -44,6 +44,10 @@ export class NavigationComponent implements OnInit {
     this.router.navigateByUrl('/register')
   }
 
+  profileNav(){
+    this.router.navigateByUrl(`/profile/${this.authService.getUsername()}`)
+  }
+
   toggle() {
     this.matDrawer.toggle();
   }

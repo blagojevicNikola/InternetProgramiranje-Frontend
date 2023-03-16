@@ -3,7 +3,7 @@
     flex: 1;
     background-color: #F4F3EA;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     min-height:100%
 }
 
@@ -39,7 +39,7 @@
     border-radius: 10px;
     max-width: 100%;
     height: auto;
-    max-height: 100%;
+    object-fit:contain;
 }
 
 .image-list-container {
@@ -88,8 +88,8 @@
 
 .images-section
 {
-    min-height: 400px;
-    max-height: 400px;
+    min-height: 200px;
+    max-height: 600px;
     display: flex;
     flex:1;
     flex-direction: row;
@@ -106,6 +106,74 @@
     padding-top:5px;
     padding-bottom:5px;
     margin-left: 30px;
+}
+
+.post-comment-container{
+    display:flex;
+    flex:1;
+    flex-direction: column;
+}
+
+.post-comment-container > mat-form-field{
+    margin-left: 50px;
+    margin-right:50px;
+}
+
+.post-comment-container > button {
+    margin-right:50px;
+    align-self:flex-end;
+    background-color: #333D51;
+    color:#F4F3EA
+}
+
+.side-container{
+    width:200px;
+    display:flex;
+    flex-direction: column;
+    align-self: flex-start;
+    position:sticky;
+    margin-top:90px;
+    margin-left:20px;
+    top:0px;
+}
+
+.overeview-nav-container{
+    display:flex;
+    flex:1;
+    flex-direction:column;
+    padding:10px;
+    align-items: flex-start;
+}
+
+.scroll-nav-button{
+    font-size: 14px;
+    margin-bottom:5px;
+    background-color: transparent;
+    color:#D3AC2B;
+    border: none;
+    cursor:pointer;
+}
+
+.username{
+    font-weight: bolder;
+    font-size: medium;
+    color:#333D51
+}
+
+.city{
+    font-weight: lighter;
+    font-size: 14px;
+    color:rgb(106, 106, 106)
+}
+
+.user-info-container{
+    background-color: white;
+    display:flex;
+    flex-direction: column;
+    flex:1;
+    margin-right:10px;
+    margin-left:10px;
+    padding:5px;
 }
 
 .spinner-container
