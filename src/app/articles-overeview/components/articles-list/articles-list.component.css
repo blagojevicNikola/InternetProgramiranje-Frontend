@@ -54,6 +54,11 @@ mat-card {
     padding: 8px;
     flex: 1;
     background-color: rgb(243, 243, 243);
+    transition:0.07s;
+}
+
+mat-card:hover{
+    border:solid 2px #D3AC2B
 }
 
 .header {
