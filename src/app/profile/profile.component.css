@@ -81,3 +81,47 @@ mat-divider{
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.spinner-container{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-self:center;
+    align-items: center;
+    flex-direction: column;
+    width:100%
+}
+
+.content{
+    display:flex;
+    flex:1;
+    flex-direction: row;
+}
+
+.button-section{
+    margin-top:30px;
+    margin-left:10px;
+    margin-right:10px;
+    display:flex;
+    flex-direction: column;
+}
+
+.button-section > button{
+    background-color: #efefef;
+    color:#333D51;
+    margin-bottom:10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.paginator-container{
+    display: flex;
+    flex:1;
+    justify-self: flex-end;
+    align-self: flex-end;
+}
+
+.paginator-container > mat-paginator{
+    align-self:end;
+    background-color: #F4F3EA;
+}
+

@@ -25,9 +25,18 @@ export class AuthService {
     return null;
   }
 
+  private tokenExpired(token: string | null) {
+    if(token===null)
+    {
+      return false;
+    }
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+  }
+
   public isAuthenticated()
   {
-    if(this.getUsername())
+    if(this.getUsername() && !this.tokenExpired(this.loadToken()))
     {
       return true;
     }

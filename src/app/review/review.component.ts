@@ -1,8 +1,9 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, } from '@angular/router';
-import { Observable, shareReplay, switchMap } from 'rxjs';
+import { map, Observable, shareReplay, switchMap, tap } from 'rxjs';
 import { ArticlesService } from '../share/services/articles/articles.service';
+import { AuthService } from '../share/services/auth/auth.service';
 import { SidebarService } from '../share/services/sidebar/sidebar.service';
 import { SpinnerService } from '../share/services/spinner/spinner.service';
 import { ArticleInfo } from './models/article-info';
@@ -14,18 +15,19 @@ import { ArticleInfo } from './models/article-info';
 })
 export class ReviewComponent implements OnInit, OnDestroy {
 
+  articleInfo!:ArticleInfo | null;
   name$ : Observable<ParamMap> = this.route.paramMap
   product$: Observable<ArticleInfo | null> = this.name$.pipe(switchMap((params)=> {
     let id = params.get('id');
     if(id)
     {
-      return this.articleService.getArticleInfo(+id);
+      return this.articleService.getArticleInfo(+id).pipe(tap(data => this.articleInfo=data));
     }
     return new Observable<null>
   }),
   shareReplay(1))
 
-  constructor(private scroller:ViewportScroller, private sidebarService: SidebarService, private route: ActivatedRoute, private articleService:ArticlesService, public spinnerService:SpinnerService){
+  constructor(private scroller:ViewportScroller, private authService:AuthService, private sidebarService: SidebarService, private route: ActivatedRoute, private articleService:ArticlesService, public spinnerService:SpinnerService){
     this.sidebarService.disable();
   }
 
@@ -38,6 +40,19 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
   scroll(el: HTMLElement) {
     el.scrollIntoView({behavior: 'smooth'});
-}
+  }
+
+  isAuthenticatedUser()
+  {
+    if(this.articleInfo===null)
+    {
+      return false;
+    }
+    if(this.authService.isAuthenticated() && this.articleInfo.user.username===this.authService.getUsername())
+    {
+      return true;
+    }
+      return false;
+  }
 
 }

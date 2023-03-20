@@ -67,11 +67,36 @@
                 </mat-form-field>
                 <button mat-flat-button>Postavi</button>
             </div>
+            <div class="comments-section">
+                <div class="comment" *ngFor="let num of [1,2,3,4,5]">
+                    <a>-Korisnik-</a>
+                    <a>Ovo je neki tekst koji predstavlja komentar postavljen od strane nekog korisnika</a>
+                </div>
+            </div>
         </div>
         <div class="side-container">
             <div class="user-info-container">
-                <a class="username">{{prod.user.username}}</a>
-                <a class="city">{{prod.user.locationName}}</a>
+                <div class="info-section">
+                    <a class="username">{{prod.user.username}}</a>
+                    <a class="city">{{prod.user.locationName}}</a>
+                </div>
+                <button [matMenuTriggerFor]="moreOptionsMenu" mat-icon-button>
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #moreOptionsMenu="matMenu">
+                    <button mat-menu-item *ngIf="this.isAuthenticatedUser()">
+                        <mat-icon>delete_outline</mat-icon>
+                        <a>Obrisi</a>
+                    </button>
+                    <button mat-menu-item *ngIf="this.isAuthenticatedUser()">
+                        <mat-icon>edit</mat-icon>
+                        <a>Izmjeni</a>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>person</mat-icon>
+                        <a>Otvori profil</a>
+                    </button>
+                  </mat-menu>
             </div>
             <div class="overeview-nav-container">
                 <button (click)="scroll(slike)" class="scroll-nav-button">Slike</button>

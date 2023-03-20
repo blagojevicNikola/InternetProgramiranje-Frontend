@@ -13,6 +13,9 @@
     </div>
     <ng-template #loading><div *ngIf="product$ | async; let prod else empty"><app-articles-list [articles]="prod"></app-articles-list></div>
     </ng-template>
+    <div class="paginator-container">
+        <mat-paginator [length]="(product$ | async)!.length"></mat-paginator>
+    </div>
 </div>
 
 <ng-template #empty>Prazna lista</ng-template>

@@ -29,3 +29,15 @@
     flex:1;
     flex-direction: column;
 }
+
+.paginator-container{
+    display: flex;
+    flex:1;
+    justify-self: flex-end;
+    align-self: flex-end;
+}
+
+.paginator-container > mat-paginator{
+    align-self:end;
+    background-color: #F4F3EA;
+}
