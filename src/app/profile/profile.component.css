@@ -116,12 +116,17 @@ mat-divider{
 .paginator-container{
     display: flex;
     flex:1;
+    flex-direction: column;
     justify-self: flex-end;
     align-self: flex-end;
+    justify-content: flex-end;
 }
 
 .paginator-container > mat-paginator{
-    align-self:end;
+   
     background-color: #F4F3EA;
 }
 
+::ng-deep .mat-mdc-tab-body-wrapper {
+    flex: 1 1 100%;
+  }

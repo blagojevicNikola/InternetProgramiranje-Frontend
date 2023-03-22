@@ -37,9 +37,9 @@
       <mat-sidenav #drawer mode="side" *ngIf="(test$ | async) === true"
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
         [opened]="(isHandset$ | async) === false && (test$ | async) === true">
-        <div class="post-button">
+        <!-- <div class="post-button">
           <button mat-flat-button style="font-weight:500; background-color:#8BE57D; color:white">Post article</button>
-        </div>
+        </div> -->
         <app-side-nav [categories]="categories$ | async"></app-side-nav>
       </mat-sidenav>
       <mat-sidenav-content>

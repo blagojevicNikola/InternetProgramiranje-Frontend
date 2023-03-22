@@ -18,12 +18,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   name$: Observable<ParamMap> = this.route.paramMap
 
-  activeProducts$: Observable<Article[] | null> = this.name$.pipe(switchMap((params) => {
+  activeProducts$: Observable<any | null> = this.name$.pipe(switchMap((params) => {
     return this.articlesService.getAllActiveArticlesByUsername(params.get('name'))
   }),
     shareReplay(1))
 
-  soldProducts$: Observable<Article[] | null> = this.name$.pipe(switchMap((params) => {
+  soldProducts$: Observable<any | null> = this.name$.pipe(switchMap((params) => {
     return this.articlesService.getAllSoldArticlesByUsername(params.get('name'))
   }),
     shareReplay(1))
@@ -52,7 +52,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
     else
     {
-      console.log(this.name$);
       return false;
     }
   }

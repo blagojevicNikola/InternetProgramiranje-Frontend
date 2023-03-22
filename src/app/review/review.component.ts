@@ -1,6 +1,6 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
 import { map, Observable, shareReplay, switchMap, tap } from 'rxjs';
 import { ArticlesService } from '../share/services/articles/articles.service';
 import { AuthService } from '../share/services/auth/auth.service';
@@ -27,7 +27,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
   }),
   shareReplay(1))
 
-  constructor(private scroller:ViewportScroller, private authService:AuthService, private sidebarService: SidebarService, private route: ActivatedRoute, private articleService:ArticlesService, public spinnerService:SpinnerService){
+  constructor(private scroller:ViewportScroller, private authService:AuthService, private sidebarService: SidebarService, private route: ActivatedRoute, private articleService:ArticlesService,private router:Router, public spinnerService:SpinnerService){
     this.sidebarService.disable();
   }
 
@@ -55,4 +55,8 @@ export class ReviewComponent implements OnInit, OnDestroy {
       return false;
   }
 
+  openProfile()
+  {
+    this.router.navigateByUrl(`profile/${this.articleInfo?.user.username}`)
+  }
 }

@@ -10,25 +10,35 @@
             <a class="city">{{user.locationName}}</a>
             <div class="button-section">
                 <button mat-button *ngIf="this.isAuthenticatedUser()">Izmjeni profil</button>
-                <button mat-button *ngIf="this.isAuthenticatedUser()"></button>
+                <button mat-button>Prikazi kontakt</button>
             </div>
         </div>
         <mat-divider [vertical]="true"></mat-divider>
         <div class="articles-container">
-            <mat-tab-group dynamicHeight="true">
+            <mat-tab-group style="display:flex; flex:1; height:100%">
                 <mat-tab label="Aktivno">
-                    <div style="display:flex; height:100%; flex-direction:column">
-                        <app-articles-list *ngIf="activeProducts$ | async as activeProd" [articles]="activeProd"></app-articles-list>
+                    <div style="display:flex; flex:1; height:100%; flex-direction:column">
+                        <app-articles-list *ngIf="activeProducts$ | async as activeProd"
+                            [articles]="activeProd.content"></app-articles-list>
+                        <div class="paginator-container">
+                            <mat-paginator [hidePageSize]="true"
+                                [length]="(activeProducts$ | async).numberOfElements"></mat-paginator>
+                        </div>
                     </div>
                 </mat-tab>
                 <mat-tab label="Zavrseno">
-                    <app-articles-list *ngIf="soldProducts$ | async as soldProd"[articles]="soldProd"></app-articles-list>
+                    <div style="display:flex; flex:1; height:100%; flex-direction:column">
+                        <app-articles-list *ngIf="soldProducts$ | async as soldProd"
+                            [articles]="soldProd.content"></app-articles-list>
+                        <div class="paginator-container">
+                            <mat-paginator [hidePageSize]="true"
+                                [length]="(soldProducts$ | async).numberOfElements"></mat-paginator>
+                        </div>
+                    </div>
                 </mat-tab>
-                <mat-tab  *ngIf="this.isAuthenticatedUser()" label="Kupljeno">Content3</mat-tab>
+                <mat-tab *ngIf="this.isAuthenticatedUser()" label="Kupljeno">Content3</mat-tab>
             </mat-tab-group>
-            <div class="paginator-container">
-                <mat-paginator></mat-paginator>
-            </div>
+
         </div>
     </div>
 </div>

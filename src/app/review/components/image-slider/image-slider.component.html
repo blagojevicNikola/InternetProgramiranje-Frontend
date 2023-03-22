@@ -1,0 +1,15 @@
+<div>
+    <div class="images-section" [ngStyle]="{'background-image':getCurrentUrl()}">
+        <div class="base-container" >
+            <img *ngFor="let im of images; let i = index" 
+            [src]="im"
+            [ngClass]="{'image-active': currentIndex === i}" 
+            class="image-style">
+            <div *ngIf="indicators" class="dot-container">
+                <span *ngFor="let dot of images; let i = index"
+                [ngClass]="{'active': currentIndex === i}"
+                class="dot"></span>
+            </div>
+        </div>
+    </div>
+</div>

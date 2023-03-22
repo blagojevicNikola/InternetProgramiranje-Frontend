@@ -18,6 +18,7 @@ import { RegisterComponent } from './register/register.component';
 import { ReviewComponent } from './review/review.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
+import { ImageSliderComponent } from './review/components/image-slider/image-slider.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ProfileComponent } from './profile/profile.component';
     RegisterComponent,
     ReviewComponent,
     ProfileComponent,
+    ImageSliderComponent,
   ],
   imports: [
     BrowserModule,

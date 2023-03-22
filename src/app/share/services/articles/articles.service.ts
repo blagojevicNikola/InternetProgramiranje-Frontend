@@ -14,12 +14,12 @@ export class ArticlesService {
 
   getArticlesByType(name: string | null)
   {
-    return this.http.get<Article[] | null>(`api/articles/type/${name}`);
+    return this.http.get<any | null>(`api/articles/type/${name}`);
   }
 
   getAllArticles()
   {
-    return this.http.get<Article[] | null>(`api/articles/all`);
+    return this.http.get<any | null>(`api/articles/all`);
   }
 
   getArticleInfo(id: number)
@@ -29,11 +29,11 @@ export class ArticlesService {
 
   getAllActiveArticlesByUsername(name: string | null)
   {
-    return this.http.get<Article[] | null> (`api/articles/active/user/${name}`);
+    return this.http.get<any | null> (`api/articles/active/user/${name}`);
   }
 
   getAllSoldArticlesByUsername(name: string | null)
   {
-    return this.http.get<Article[] | null> (`api/articles/sold/user/${name}`);
+    return this.http.get<any | null> (`api/articles/sold/user/${name}`);
   }
 }
