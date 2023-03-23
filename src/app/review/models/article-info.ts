@@ -1,4 +1,6 @@
 import { Attributes } from "./attributes";
+import { Comment } from "./comment";
+import { Photo } from "./photo";
 import { User } from "./user";
 
 export interface ArticleInfo
@@ -11,4 +13,5 @@ export interface ArticleInfo
     user: User;
     comments: Comment[];
     attributes:Attributes[];
+    photos:Photo[];
 }

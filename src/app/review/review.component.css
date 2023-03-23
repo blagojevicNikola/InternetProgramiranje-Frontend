@@ -79,43 +79,6 @@
     align-self: center;
 }
 
-.image-container {
-    align-items: center;
-    display:flex;
-    flex:1;
-    justify-content: center;
-    margin-left:10px;
-}
-
-.image-style {
-    border-width: 2px;
-    border-style: solid;
-    border-color: rgb(131, 131, 131);
-    border-radius: 10px;
-    max-width: 100%;
-    height: auto;
-    object-fit:contain;
-    flex:1;
-}
-
-.image-list-container {
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    border-width: 1px;
-    border-radius: 2px;
-    border-color: rgb(64, 74, 174);
-    border-style: solid;
-    overflow: auto;
-    white-space: nowrap;
-    align-items: center;
-}
-.image-list-container div{
-    padding:3px;
-    display: inline-block;
-    align-self: center;
-}
 
 .attributes-style{
     margin:10px;
@@ -163,29 +126,6 @@
     margin-top:20px;
 }
 
-.images-section
-{
-    min-height: 200px;
-    max-height: 600px;
-    display: flex;
-    flex:1;
-    flex-direction: row;
-    padding:20px;
-}
-
-.images-list-container
-{
-    border-width: 2px;
-    border-style: solid;
-    border-color: rgb(199, 199, 199);
-    border-radius: 7px;
-    width:120px;
-    overflow: auto;
-    padding-top:5px;
-    padding-bottom:5px;
-    margin-left: 30px;
-}
-
 .post-comment-container{
     display:flex;
     flex:1;
@@ -228,8 +168,12 @@
     align-items: flex-start;
 }
 
+.comment .header{
+    display:flex; flex:1; justify-content:space-between; margin-bottom:20px;
+}
+
 .comments-section{
-    margin-top:20px;
+    margin-top:30px;
     display:flex;
     flex:1;
     flex-direction:column;
@@ -253,8 +197,23 @@
     flex:1;
     flex-direction: column;
     background-color:rgb(232, 232, 232);
-    border-radius:5px;
+    border-radius:3px;
     border:1px solid #333D51;
+}
+
+.comment .com-username{
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.comment .com-date{
+    font-weight:200;
+    font-size:16px;
+}
+
+.comment .com-content{
+    font-weight: 300;
+    font-size: 18px;
 }
 
 .username{

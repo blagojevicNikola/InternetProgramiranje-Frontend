@@ -4,9 +4,12 @@
     max-height: 400px;
     display: flex;
     flex:1;
-    flex-direction: row;
+    flex-direction: column;
     padding:20px;
-    height: 100%;
+    flex-grow: 0;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
 }
 
 .images-list-container
@@ -40,24 +43,40 @@
 }
 
 .left-arrow{
-    position: relative;
-    top:50%;
-    left:5%;
-    margin-left: 100px;
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    color:#aeaeae;
+    border-radius: 50%;
 }
 
 .right-arrow{
-    position: relative;
-    top:50%;
-    right:5%;
-    margin-right: 100px;
+    position: absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    color:#aeaeae;
+    border-radius: 50%;
 }
 
 .base-container{
+    position: relative;
+    margin-right: 20px;
+    margin-left: 20px;
     flex:1;
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-grow:1;
+    max-height: 400px;
 }
 
 .base-container img{
@@ -65,7 +84,7 @@
 }
 
 .base-container img.image-active{
-    display:block;
+    display:flex;
     max-width: 100%;
     height: auto;
     object-fit:contain;
@@ -76,23 +95,32 @@
 
 .dot-container{
     position: relative;
+    margin: 10px;
     right:0;
     left:0;
     bottom:0;
     display:flex;
     justify-content: center;
     padding:0;
-    margin-bottom: 1 rem;
+    margin-bottom: 1rem;
 }
 
 .dot{
     cursor:pointer;
-    height: 13px;
-    width:13px;
+    height: 11px;
+    width:11px;
     margin: 0 5px;
-    background-color: #fff;
+    background-color: #5a5a5a;
     border-radius: 50%;
     display: inline-block;
     transition: opacity 0.6s ease;
     opacity:0.5;
+}
+
+.active, .dot:hover{
+    background-color: #c7c7c7;
+}
+
+button{
+    background-color: #5a5a5a;
 }

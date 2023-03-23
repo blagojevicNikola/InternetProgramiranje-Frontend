@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Photo } from '../../models/photo';
 
 @Component({
   selector: 'app-image-slider',
@@ -7,12 +8,26 @@ import { Component, Input } from '@angular/core';
 })
 export class ImageSliderComponent {
 
-  @Input() images:string[] = ["assets/laptop.jpg", "assets/laptop.jpg","assets/laptop.jpg","assets/laptop.jpg"]
+  @Input() images:Photo[] = []
   @Input() indicators = true;
   currentIndex:number = 0;
 
-  getCurrentUrl():string{
-    return this.images[this.currentIndex];
+  selectImage(index:number) : void{
+    this.currentIndex=index;
+  }
+
+  nextImage():void{
+    if(this.currentIndex<this.images.length-1)
+    {
+      this.currentIndex+=1;
+    }
+  }
+
+  prevImage():void{
+    if(this.currentIndex>0)
+    {
+      this.currentIndex-=1;
+    }
   }
 
 }

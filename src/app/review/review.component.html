@@ -41,7 +41,7 @@
                     </mat-list>
                 </div>
             </div> -->
-            <app-image-slider></app-image-slider>
+            <app-image-slider [images]="prod.photos"></app-image-slider>
             <h2 #osobine class="attributes-style">Osobine</h2>
             <div class="attributes-container">
                 <div class="single-attribute-container" *ngFor="let att of prod.attributes">
@@ -68,10 +68,13 @@
                 </mat-form-field>
                 <button mat-flat-button>Postavi</button>
             </div>
-            <div class="comments-section">
-                <div class="comment" *ngFor="let num of [1,2,3,4,5]">
-                    <a>-Korisnik-</a>
-                    <a>Ovo je neki tekst koji predstavlja komentar postavljen od strane nekog korisnika</a>
+            <div class="comments-section" *ngIf="prod.comments && prod.comments.length>0; else nocomments">
+                <div class="comment" *ngFor="let com of prod.comments">
+                    <div class="header">
+                        <a class="com-username">{{com.username}}</a>
+                        <a class="com-date">{{com.dateTime}}</a>
+                    </div>
+                    <a class="com-content">{{com.content}}</a>
                 </div>
             </div>
         </div>
@@ -97,7 +100,7 @@
                         <mat-icon>person</mat-icon>
                         <a>Otvori profil</a>
                     </button>
-                  </mat-menu>
+                </mat-menu>
             </div>
             <div class="overeview-nav-container">
                 <button (click)="scroll(slike)" class="scroll-nav-button">Slike</button>
@@ -111,4 +114,10 @@
 
 <ng-template #empty>
     <a> EMPTY </a>
+</ng-template>
+
+<ng-template #nocomments>
+    <div style="display:flex; flex:1; justify-content: center; align-items: center; margin:30px;">
+        <a> Nema komentara! </a>
+    </div>
 </ng-template>
