@@ -48,6 +48,10 @@ export class NavigationComponent implements OnInit {
     this.router.navigateByUrl(`/profile/${this.authService.getUsername()}`)
   }
 
+  addNav():void{
+    this.router.navigateByUrl('/article/new');
+  }
+
   toggle() {
     this.matDrawer.toggle();
   }

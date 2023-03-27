@@ -1,0 +1,15 @@
+<div class="dialog-contianer">
+    <form [formGroup]="attributeFormGroup">
+        <ng-container formArrayName="atts">
+
+
+            <mat-form-field appearance="outline" *ngFor="let att of attributes; let i = index">
+                <mat-label>
+                    {{att.name}}
+                </mat-label>
+                <input matInput formControlName="{{i}}">
+            </mat-form-field>
+        </ng-container>
+    </form>
+    <button mat-flat-button (click)="onNoClick()">Potvrdi</button>
+</div>

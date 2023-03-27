@@ -1,0 +1,76 @@
+.container{
+    display:flex;
+    flex:1;
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container{
+    width:63%;
+    margin-top:20px;
+    display: flex;
+    flex:1;
+    flex-direction: column;
+}
+
+.header{
+    font-weight: 400;
+    font-size: 24px;
+    color:#333D51;
+    margin-bottom: 40px;
+    margin-left:50px
+}
+
+.attributes-title{
+    font-weight: 300;
+    font-size:20px;
+    color: #333D51;
+    margin-right:10px;
+}
+
+.attributes-header{
+    margin-left: 100px;
+    margin-bottom:20px;
+    margin-top:30px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.attributes-container{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.attribute-list
+{
+    flex:1;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+    margin-left:100px;
+    margin-right:100px;
+}
+
+.attribute-list > .attr{
+    display: flex;
+    flex:1;
+    justify-content: space-between;
+}
+mat-form-field{
+    display: flex;
+    margin-bottom:20px;
+    margin-right:100px;
+    margin-left: 100px;
+}
+
+mat-radio-group{
+    margin-right: 100px;
+    margin-left:100px;
+}
+
+mat-radio-group > mat-radio-button{
+    margin-right:10px;
+}

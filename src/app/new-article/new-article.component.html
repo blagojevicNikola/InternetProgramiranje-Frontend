@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="main-container">
+        <a class="header">Novi artikal</a>
+        <form [formGroup]="tFormGroup">
+            <mat-form-field appearance="outline">
+                <mat-label>Naslov</mat-label>
+                <input matInput>
+            </mat-form-field>
+            <div style="display:flex; flex:1; flex-direction:row">
+                <mat-form-field style="flex:1; margin-right:10px" appearance="outline">
+                    <mat-label>Kategorija</mat-label>
+                    <mat-select formControlName="cat" [(value)]="selectedCategory" (selectionChange)="test()">
+                        <mat-option *ngFor="let cat of categories$|async" value="{{cat.id}}">{{cat.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field style="flex:1; margin-left:10px;" appearance="outline">
+                    <mat-label>Cijena</mat-label>
+                    <input matInput>
+                    <span matTextSuffix>KM</span>
+                </mat-form-field>
+            </div>
+            <mat-form-field appearance="outline">
+                <mat-label>Detalji</mat-label>
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"></textarea>
+            </mat-form-field>
+            <mat-radio-group>
+                <mat-radio-button value="new">Novo</mat-radio-button>
+                <mat-radio-button value="used">Korišteno</mat-radio-button>
+            </mat-radio-group>
+        </form>
+        <div class="attributes-header">
+            <a class="attributes-title">Osobine</a>
+            <button mat-icon-button (click)="openDialog()">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </div>
+        <div *ngIf="dialogResult && dialogResult.attributes" class="attribute-list">
+            <div *ngFor="let a of dialogResult.attributes" class="attr">
+                <a>{{a.name}}</a>
+                <a>{{a.value}}</a>
+            </div>
+        </div>
+
+    </div>
+</div>

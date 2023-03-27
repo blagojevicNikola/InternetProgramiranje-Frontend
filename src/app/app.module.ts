@@ -19,6 +19,9 @@ import { ReviewComponent } from './review/review.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { ImageSliderComponent } from './review/components/image-slider/image-slider.component';
+import { NewArticleComponent } from './new-article/new-article.component';
+import { AttributesDialogComponent } from './new-article/components/attributes-dialog/attributes-dialog.component';
+import { WarningDialogComponent } from './new-article/components/warning-dialog/warning-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { ImageSliderComponent } from './review/components/image-slider/image-sli
     ReviewComponent,
     ProfileComponent,
     ImageSliderComponent,
+    NewArticleComponent,
+    AttributesDialogComponent,
+    WarningDialogComponent,
   ],
   imports: [
     BrowserModule,
