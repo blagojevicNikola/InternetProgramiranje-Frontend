@@ -1,0 +1,24 @@
+.dialog-container {
+    display: flex;
+}
+
+.message-content {
+    font-weight: lighter;
+    font-size: 18px;
+    color: rgb(66, 66, 66);
+    margin: 30px
+}
+
+.message-container {
+    margin: 30px;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-container>a {
+    font-weight: lighter;
+    font-size: 18px;
+    color: rgb(66, 66, 66);
+}

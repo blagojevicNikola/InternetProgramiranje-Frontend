@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Attribute } from 'src/app/share/models/attribute';
 import { AttributeStructure } from 'src/app/share/models/attribute-structure';
 import { AttributesService } from 'src/app/share/services/attributes/attributes.service';
+import { SpinnerService } from 'src/app/share/services/spinner/spinner.service';
 import { DialogData } from '../../models/dialog-data.model';
 import { DialogResult } from '../../models/dialog-result.model';
 
@@ -22,7 +23,7 @@ export class AttributesDialogComponent implements OnInit{
   })
 
   constructor(private attributesService:AttributesService, 
-    private formBuilder: FormBuilder,
+    public spinnerService: SpinnerService,
     public dialogRef: MatDialogRef<AttributesDialogComponent>,
    @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) {

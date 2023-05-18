@@ -36,4 +36,9 @@ export class ArticlesService {
   {
     return this.http.get<any | null> (`api/articles/sold/user/${name}`);
   }
+
+  createArticle(data: FormData)
+  {
+    return this.http.get<any | null> (`api/articles/create`);
+  }
 }

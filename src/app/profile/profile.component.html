@@ -1,6 +1,6 @@
 <div class="main-container">
-    <div class="content" *ngIf="(this.spinner.visibility | async) === false; else loading">
-        <div class="profile-container" *ngIf="user$ | async as user">
+    <div class="content" *ngIf="(this.spinnerService.getLoadingStatus() | async) === false; else loading">
+        <div class="profile-container" *ngIf="user!=null">
             <div class="upper-container">
                 <div class="avatar-container">
                     <img src="assets/laptop.jpg" class="avatar-image">
@@ -17,22 +17,22 @@
         <div class="articles-container">
             <mat-tab-group style="display:flex; flex:1; height:100%">
                 <mat-tab label="Aktivno">
-                    <div style="display:flex; flex:1; height:100%; flex-direction:column">
-                        <app-articles-list *ngIf="activeProducts$ | async as activeProd"
-                            [articles]="activeProd.content"></app-articles-list>
+                    <div style="display:flex; flex:1; height:100%; flex-direction:column"  *ngIf="activeProducts!=null">
+                        <app-articles-list
+                            [articles]="activeProducts.content"></app-articles-list>
                         <div class="paginator-container">
                             <mat-paginator [hidePageSize]="true"
-                                [length]="(activeProducts$ | async).numberOfElements"></mat-paginator>
+                                [length]="activeProducts.numberOfElements"></mat-paginator>
                         </div>
                     </div>
                 </mat-tab>
                 <mat-tab label="Zavrseno">
-                    <div style="display:flex; flex:1; height:100%; flex-direction:column">
-                        <app-articles-list *ngIf="soldProducts$ | async as soldProd"
-                            [articles]="soldProd.content"></app-articles-list>
+                    <div style="display:flex; flex:1; height:100%; flex-direction:column" *ngIf="soldProducts!=null">
+                        <app-articles-list 
+                            [articles]="soldProducts.content"></app-articles-list>
                         <div class="paginator-container">
                             <mat-paginator [hidePageSize]="true"
-                                [length]="(soldProducts$ | async).numberOfElements"></mat-paginator>
+                                [length]="soldProducts.numberOfElements"></mat-paginator>
                         </div>
                     </div>
                 </mat-tab>

@@ -2,7 +2,7 @@
   <div class="header-section">
     <div class="hamburger-button">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggle()"
-        *ngIf="(isHandset$ | async) && (test$ | async) === true">
+        *ngIf="(isHandset$ | async) && showSidenav === true">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
     </div>
@@ -34,13 +34,13 @@
   </div>
   <div class="content-section">
     <mat-sidenav-container>
-      <mat-sidenav #drawer mode="side" *ngIf="(test$ | async) === true"
+      <mat-sidenav #drawer mode="side" *ngIf="showSidenav === true"
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="(isHandset$ | async) === false && (test$ | async) === true">
+        [opened]="(isHandset$ | async) === false && showSidenav === true">
         <!-- <div class="post-button">
           <button mat-flat-button style="font-weight:500; background-color:#8BE57D; color:white">Post article</button>
         </div> -->
-        <app-side-nav [categories]="categories$ | async"></app-side-nav>
+        <app-side-nav [categories]="categories"></app-side-nav>
       </mat-sidenav>
       <mat-sidenav-content>
         <router-outlet></router-outlet>
@@ -52,7 +52,7 @@
 
 <ng-template #profileMenu>
   <div class="options-section" style="justify-content:center; flex:0">
-    <button style="background-color:#D3AC2B" mat-fab [matMenuTriggerFor]="menu" aria-label="Profile">
+    <button style="background-color:#D3AC2B; height: 50px; width: 50px;" mat-fab [matMenuTriggerFor]="menu" aria-label="Profile">
       <mat-icon class="profile-icon">person</mat-icon>
     </button>
     <mat-menu #menu="matMenu">

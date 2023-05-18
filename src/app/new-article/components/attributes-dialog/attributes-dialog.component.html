@@ -1,15 +1,26 @@
-<div class="dialog-contianer">
-    <form [formGroup]="attributeFormGroup">
-        <ng-container formArrayName="atts">
-
-
-            <mat-form-field appearance="outline" *ngFor="let att of attributes; let i = index">
-                <mat-label>
-                    {{att.name}}
-                </mat-label>
-                <input matInput formControlName="{{i}}">
-            </mat-form-field>
-        </ng-container>
-    </form>
-    <button mat-flat-button (click)="onNoClick()">Potvrdi</button>
+<div class="spinner-container" *ngIf="this.spinnerService.getLoadingStatus()|async; else content">
+    <mat-spinner></mat-spinner>
 </div>
+
+<ng-template #content>
+    <div class="dialog-contianer" *ngIf="attributes.length>0; else empty">
+        <form [formGroup]="attributeFormGroup">
+            <ng-container formArrayName="atts">
+                <mat-form-field appearance="outline" *ngFor="let att of attributes; let i = index">
+                    <mat-label>
+                        {{att.name}}
+                    </mat-label>
+                    <input matInput formControlName="{{i}}">
+                </mat-form-field>
+            </ng-container>
+        </form>
+        <button mat-flat-button (click)="onNoClick()">Potvrdi</button>
+    </div>
+</ng-template>
+
+<ng-template #empty>
+    <div class="dialog-contianer">
+        <a class="message">Nema definisanih osobina za ovu kategoriju!</a>
+        <button mat-flat-button (click)="onNoClick()">Izadji</button>
+    </div>
+</ng-template>

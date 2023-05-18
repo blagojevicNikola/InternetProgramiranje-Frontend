@@ -1,7 +1,11 @@
 <div class="dialog-contianer">
-    <mat-dialog-content>{{data.message}}</mat-dialog-content>
-    <mat-dialog-actions>
-        <button (click)="onNoClick()">Izadji</button>
-        <Button (click)="onYesClick()">Potvrdi</Button>
+    <div class="message-container">
+        <a>
+            {{data.message}}
+        </a>
+    </div>
+    <mat-dialog-actions style="display:flex">
+        <button mat-flat-button (click)="onNoClick()">Izadji</button>
+        <button mat-flat-button (click)="onYesClick()">Nastavi</button>
     </mat-dialog-actions>
 </div>

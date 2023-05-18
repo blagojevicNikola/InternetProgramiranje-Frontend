@@ -1,4 +1,4 @@
-<div class="container" >
+<div class="container">
     <div class="upper-section">
         <button mat-icon-button style="align-self: end;">
             <mat-icon>settings</mat-icon>
@@ -8,14 +8,20 @@
     <div class="divider-section">
         <mat-divider></mat-divider>
     </div>
-    <div class="spinner-container" *ngIf="this.spinnerService.visibility | async; else loading">
+    <div class="spinner-container" *ngIf="(this.spinnerService.getLoadingStatus() | async)==true; else loading">
         <mat-spinner></mat-spinner>
     </div>
 </div>
 
-<ng-template #loading><div *ngIf="product$ | async; let prod else empty"><app-articles-list [articles]="prod.content"></app-articles-list></div>
-    <div class="paginator-container">
-        <mat-paginator [hidePageSize]="true" [pageSize]="(product$ | async).size" [length]="(product$ | async)!.numberOfElements"></mat-paginator>
+<ng-template #loading>
+    <div style="display:flex; flex-direction:column; height: 100%;" *ngIf="page!=null; else empty">
+        <div>
+            <app-articles-list [articles]="page.content"></app-articles-list>
+        </div>
+        <div class="paginator-container">
+            <mat-paginator [hidePageSize]="true" [pageSize]="page.size"
+                [length]="page.numberOfElements"></mat-paginator>
+        </div>
     </div>
 </ng-template>
 

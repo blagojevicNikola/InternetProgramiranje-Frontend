@@ -11,3 +11,22 @@ form{
     grid-template-columns: 1fr 1fr;
     column-gap: 20px;
 }
+
+.spinner-container{
+    height: 300px;
+    width: 200px;
+    min-height: 100px;
+    min-width: 100px;
+    flex:1;
+    min-width: 50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;;
+}
+
+.message{
+    font-weight: lighter;
+    font-size:18px;
+    margin: 30px;
+    color:rgb(47, 47, 47)
+}

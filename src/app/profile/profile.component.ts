@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable, shareReplay, switchMap } from 'rxjs';
+import { Observable, Subscription, shareReplay, switchMap } from 'rxjs';
 import { User } from '../review/models/user';
 import { Article } from '../share/models/article';
 import { ArticlesService } from '../share/services/articles/articles.service';
@@ -16,31 +16,58 @@ import { UsersService } from '../share/services/users/users.service';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
+  private activeProdSub!: Subscription;
+  private soldProdSub!: Subscription;
+  private userSub!:Subscription;
+
+  activeProducts:any|null;
+  soldProducts:any|null;
+  user:User|null = null;
   name$: Observable<ParamMap> = this.route.paramMap
 
-  activeProducts$: Observable<any | null> = this.name$.pipe(switchMap((params) => {
-    return this.articlesService.getAllActiveArticlesByUsername(params.get('name'))
-  }),
-    shareReplay(1))
+  // activeProducts$: Observable<any | null> = this.name$.pipe(switchMap((params) => {
+  //   return this.articlesService.getAllActiveArticlesByUsername(params.get('name'))
+  // }),
+  //   shareReplay(1))
 
-  soldProducts$: Observable<any | null> = this.name$.pipe(switchMap((params) => {
-    return this.articlesService.getAllSoldArticlesByUsername(params.get('name'))
-  }),
-    shareReplay(1))
+  // soldProducts$: Observable<any | null> = this.name$.pipe(switchMap((params) => {
+  //   return this.articlesService.getAllSoldArticlesByUsername(params.get('name'))
+  // }),
+  //   shareReplay(1))
 
-  user$: Observable<User | null> = this.name$.pipe(switchMap((params) => {
-    return this.usersService.getUserInfoByUsername(params.get('name'))
-  }),
-    shareReplay(1))
+  // user$: Observable<User | null> = this.name$.pipe(switchMap((params) => {
+  //   return this.usersService.getUserInfoByUsername(params.get('name'))
+  // }),
+  //   shareReplay(1))
 
-  constructor(private sidebarService: SidebarService, private authService:AuthService, public spinner: SpinnerService, private route: ActivatedRoute, private articlesService: ArticlesService, private usersService: UsersService) {
+  constructor(private sidebarService: SidebarService, private authService:AuthService, public spinnerService: SpinnerService, private route: ActivatedRoute, private articlesService: ArticlesService, private usersService: UsersService) {
     this.sidebarService.disable();
   }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((param)=>{
+      const name = param.get('name');
+      this.activeProdSub = this.articlesService.getAllActiveArticlesByUsername(name).subscribe((data)=>{this.activeProducts = data});
+
+      this.soldProdSub = this.articlesService.getAllSoldArticlesByUsername(name).subscribe((data)=>{this.soldProducts = data});
+
+      this.userSub = this.usersService.getUserInfoByUsername(name).subscribe((data)=>{this.user = data});
+    })
   }
 
   ngOnDestroy(): void {
+    if(this.activeProdSub)
+    {
+      this.activeProdSub.unsubscribe();
+    }
+    if(this.soldProdSub)
+    {
+      this.soldProdSub.unsubscribe();
+    }
+    if(this.userSub)
+    {
+      this.userSub.unsubscribe();
+    }
     this.sidebarService.enable()
   }
 

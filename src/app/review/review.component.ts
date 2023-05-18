@@ -1,7 +1,7 @@
 import { ViewportScroller } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, } from '@angular/router';
-import { map, Observable, shareReplay, switchMap, tap } from 'rxjs';
+import { map, Observable, shareReplay, Subscription, switchMap, tap } from 'rxjs';
 import { ArticlesService } from '../share/services/articles/articles.service';
 import { AuthService } from '../share/services/auth/auth.service';
 import { SidebarService } from '../share/services/sidebar/sidebar.service';
@@ -16,26 +16,38 @@ import { ArticleInfo } from './models/article-info';
 export class ReviewComponent implements OnInit, OnDestroy {
 
   articleInfo!:ArticleInfo | null;
-  name$ : Observable<ParamMap> = this.route.paramMap
-  product$: Observable<ArticleInfo | null> = this.name$.pipe(switchMap((params)=> {
-    let id = params.get('id');
-    if(id)
-    {
-      return this.articleService.getArticleInfo(+id).pipe(tap(data => this.articleInfo=data));
-    }
-    return new Observable<null>
-  }),
-  shareReplay(1))
+  articleInfoSub!: Subscription;
+
+  // name$ : Observable<ParamMap> = this.route.paramMap
+  // product$: Observable<ArticleInfo | null> = this.name$.pipe(switchMap((params)=> {
+  //   let id = params.get('id');
+  //   if(id)
+  //   {
+  //     return this.articleService.getArticleInfo(+id).pipe(tap(data => this.articleInfo=data));
+  //   }
+  //   return new Observable<null>
+  // }),
+  // shareReplay(1))
 
   constructor(private scroller:ViewportScroller, private authService:AuthService, private sidebarService: SidebarService, private route: ActivatedRoute, private articleService:ArticlesService,private router:Router, public spinnerService:SpinnerService){
     this.sidebarService.disable();
   }
 
   ngOnDestroy(): void {
+    if(this.articleInfoSub)
+    {
+      this.articleInfoSub.unsubscribe();
+    }
     this.sidebarService.enable();
   }
   ngOnInit(): void {
-    
+    this.route.paramMap.subscribe((param)=>{
+      let id = param.get('id');
+      if(id)
+      {
+        this.articleInfoSub = this.articleService.getArticleInfo(+id).subscribe((data)=>{this.articleInfo = data});
+      }
+    })
   }
 
   scroll(el: HTMLElement) {

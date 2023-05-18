@@ -6,23 +6,26 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class SidebarService {
 
-  visibility!: BehaviorSubject<boolean>;
-
-  visible$: Observable<boolean> = this.visibility
+  // visibility!: BehaviorSubject<boolean>;
+  vis: boolean = true;;
+  //visible$: Observable<boolean> = this.visibility
   constructor() {
-    this.visibility = new BehaviorSubject(true);
+    //this.visibility = new BehaviorSubject(true);
    }
 
   enable() {
-    this.visibility.next(true);
+    //this.visibility.next(true);
+    this.vis = true;
   }
 
   disable() {
-    this.visibility.next(false);
+    //this.visibility.next(false);
+    this.vis = false;
   }
 
   get()
   {
-    return this.visibility;
+    //return this.visibility;
+    return this.vis;
   }
 }

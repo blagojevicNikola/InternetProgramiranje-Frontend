@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpinnerService {
-  visibility!: BehaviorSubject<boolean>;
+  private visibility!: BehaviorSubject<boolean>;
   count = 0;
   constructor() {
     this.visibility = new BehaviorSubject(false);
@@ -17,5 +17,9 @@ export class SpinnerService {
 
   hide() {
     this.visibility.next(false);
+  }
+
+  getLoadingStatus() : Observable<boolean>{
+    return this.visibility.asObservable();
   }
 }
