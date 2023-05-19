@@ -5,7 +5,7 @@ export interface NewArticleReq
     title: string;
     price: number;
     details: string;
-    new: boolean;
-    category:number;
+    isNew: boolean;
+    categoryId:number;
     attributes: Attribute[]
 }

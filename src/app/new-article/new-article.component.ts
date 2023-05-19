@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Observable, pairwise } from 'rxjs';
+import { Observable, Subscription, pairwise } from 'rxjs';
 import { Attribute } from '../share/models/attribute';
 import { Category } from '../share/models/category';
 import { ArticlesService } from '../share/services/articles/articles.service';
@@ -12,6 +12,7 @@ import { AttributesDialogComponent } from './components/attributes-dialog/attrib
 import { WarningDialogComponent } from './components/warning-dialog/warning-dialog.component';
 import { DialogResult } from './models/dialog-result.model';
 import { NewArticleReq } from './models/new-article-req';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-new-article',
@@ -33,8 +34,9 @@ export class NewArticleComponent implements OnDestroy, OnInit {
   prevSelected: number | null = null;
   preview: string[] = [];
   allImages: Map<string, File> = new Map<string, File>;
-
-  constructor(private sidebarService: SidebarService, private categoryService: CategoryService, private dialog: MatDialog) {
+  createSub!: Subscription;
+  constructor(private sidebarService: SidebarService, private categoryService: CategoryService, private articleService: ArticlesService,
+     private dialog: MatDialog, private snackBar: MatSnackBar) {
     sidebarService.disable();
   }
 
@@ -43,6 +45,10 @@ export class NewArticleComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy(): void {
+    if(this.createSub)
+    {
+      this.createSub.unsubscribe();
+    }
     this.sidebarService.enable();
   }
 
@@ -119,20 +125,39 @@ export class NewArticleComponent implements OnDestroy, OnInit {
   submit(): void {
     if (this.tFormGroup.valid) {
       let data = new FormData();
-      data.append('title', this.tFormGroup.controls['title'].value!);
-      data.append('price', this.tFormGroup.controls['price'].value!.toString());
-      data.append('details', this.tFormGroup.controls['details'].value!);
-      data.append('categoryId', this.selectedCategory!.toString());
-      data.append('isNew', String(this.tFormGroup.controls['newArticle'].value!));
-      this.dialogResult?.attributes.forEach((a, index) => {
-        data.append(`objects[${index}].name`,a.name);
-        data.append(`objects[${index}].value`, a.value);
+      let newArt : NewArticleReq = {
+        title:  this.tFormGroup.controls['title'].value!,
+        price: this.tFormGroup.controls['price'].value!,
+        details: this.tFormGroup.controls['details'].value!,
+        categoryId:  this.selectedCategory!,
+        isNew: this.tFormGroup.controls['newArticle'].value!,
+        attributes: this.dialogResult?.attributes!
+      };
+      const blob = new Blob([JSON.stringify(newArt)], {
+        type: 'application/json'
       });
+      data.append('newArticle', blob);
+      // data.append('title', this.tFormGroup.controls['title'].value!);
+      // data.append('price', this.tFormGroup.controls['price'].value!.toString());
+      // data.append('details', this.tFormGroup.controls['details'].value!);
+      // data.append('categoryId', this.selectedCategory!.toString());
+      // data.append('isNew', String(this.tFormGroup.controls['newArticle'].value!));
+      // this.dialogResult?.attributes.forEach((a, index) => {
+      //   data.append(`attributes[${index}].name`,a.name);
+      //   data.append(`attributes[${index}].value`, a.value);
+      // });
       [...this.allImages.entries()].forEach(([key, file], index) => {
-        data.append(`photos[${index}].key`, key);
-        data.append(`photos[${index}].file`, file);
+        data.append(`photos`, file);
       });
-      
+      this.createSub = this.articleService.createArticle(data).subscribe({
+        next: (v) =>{
+          this.snackBar.open("Artikal uspjesno dodan!", "U redu", {duration: 3000});
+        },
+        error: (err) =>{
+          this.snackBar.open("Greska pri dodavanju artikla!", "U redu", {duration: 3000});
+        }
+      }
+      )
     }
   }
 }

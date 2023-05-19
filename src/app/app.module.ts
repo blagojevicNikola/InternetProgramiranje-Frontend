@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { NavigationModule } from './navigation/navigation.module';
 import { RegisterComponent } from './register/register.component';
@@ -22,6 +22,7 @@ import { ImageSliderComponent } from './review/components/image-slider/image-sli
 import { NewArticleComponent } from './new-article/new-article.component';
 import { AttributesDialogComponent } from './new-article/components/attributes-dialog/attributes-dialog.component';
 import { WarningDialogComponent } from './new-article/components/warning-dialog/warning-dialog.component';
+import { TokenInterceptorInterceptor } from './share/interceptors/token/token-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,9 @@ import { WarningDialogComponent } from './new-article/components/warning-dialog/
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

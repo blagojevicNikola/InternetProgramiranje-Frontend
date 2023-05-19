@@ -43,6 +43,11 @@ export class AuthService {
     return false;
   }
 
+  getToken()
+  {
+    return this.loadToken();
+  }
+
   login(username: string, password: string) {
     return this.http.post<any>('/api/auth/authenticate', { username, password });
   }

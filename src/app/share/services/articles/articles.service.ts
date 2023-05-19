@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ArticleInfo } from 'src/app/review/models/article-info';
 import { Article } from '../../models/article';
@@ -39,6 +39,11 @@ export class ArticlesService {
 
   createArticle(data: FormData)
   {
-    return this.http.get<any | null> (`api/articles/create`);
+    const headers = new HttpHeaders({
+      'Content-Type': 'multipart/form-data' // Set the content type to 'multipart/form-data'
+    });
+    const options = { headers: headers };
+
+    return this.http.post(`api/articles/create`, data);
   }
 }
