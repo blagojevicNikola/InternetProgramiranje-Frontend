@@ -91,7 +91,7 @@
     margin-right: 50px;
     margin-left: 30px;
     margin-bottom:25px;
-    min-height: 60px;
+    min-height: 30px;
     display: grid;
     flex:1;
     grid-template-columns: 1fr 1fr;
@@ -264,6 +264,18 @@
 
 mat-divider{
     margin-bottom:10px;
+}
+
+.no-images{
+    height: 100px;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-images > a{
+    color:gray;
 }
 
 @media(max-width:700px)

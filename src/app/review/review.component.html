@@ -41,7 +41,7 @@
                     </mat-list>
                 </div>
             </div> -->
-            <app-image-slider [images]="articleInfo.photos"></app-image-slider>
+            <app-image-slider *ngIf="articleInfo.photos.length>0 else noimages" [images]="articleInfo.photos"></app-image-slider>
             <h2 #osobine class="attributes-style">Osobine</h2>
             <div class="attributes-container">
                 <div class="single-attribute-container" *ngFor="let att of articleInfo.attributes">
@@ -114,6 +114,14 @@
 
 <ng-template #empty>
     <a> EMPTY </a>
+</ng-template>
+
+<ng-template #noimages>
+    <div class="no-images">
+        <a>
+            No images.
+        </a>
+    </div>
 </ng-template>
 
 <ng-template #nocomments>

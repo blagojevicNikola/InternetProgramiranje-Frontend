@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Photo } from '../../models/photo';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-image-slider',
@@ -11,6 +12,8 @@ export class ImageSliderComponent {
   @Input() images:Photo[] = []
   @Input() indicators = true;
   currentIndex:number = 0;
+
+  constructor(private sanitizer:DomSanitizer){}
 
   selectImage(index:number) : void{
     this.currentIndex=index;
@@ -29,5 +32,4 @@ export class ImageSliderComponent {
       this.currentIndex-=1;
     }
   }
-
 }

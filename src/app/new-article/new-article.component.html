@@ -21,7 +21,7 @@
             </div>
             <mat-form-field appearance="outline">
                 <mat-label>Detalji</mat-label>
-                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                <textarea matInput formControlName="details" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
                 cdkAutosizeMaxRows="5"></textarea>
             </mat-form-field>
             <mat-radio-group formControlName="newArticle">

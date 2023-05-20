@@ -1,18 +1,27 @@
 <section class="lower-section" *ngIf="articles.length>0; else nodata">
     <mat-card *ngFor="let a of articles" [routerLink]="['/', a.id]">
-        <img class="img-style" mat-card-image src="./assets/laptop.jpg">
-        <div class="card-header">
-            <a class="header">{{a.title}}</a>
-            <button mat-icon-button>
-                <mat-icon class="buy">shopping_cart</mat-icon>
-            </button>
+        <div>
+            <div *ngIf="a.photoUrl!=null else noimage" class="image-container">
+                <img class="img-style" mat-card-image src={{a.photoUrl}} onerror="this.src='./assets/default.jpg';">
+            </div>
+            <div class="card-header">
+                <a class="header">{{a.title}}</a>
+                <button mat-icon-button>
+                    <mat-icon class="buy">shopping_cart</mat-icon>
+                </button>
+            </div>
+            <!-- <mat-divider style="margin-top:10px; margin-bottom:10px; margin-right:4px; margin-left:4px;"></mat-divider> -->
+            <div class="card-content">
+                <div class="price">{{a.price}}KM</div>
+                <div class="date">12.12.2021</div>
+           </div>
         </div>
-        <mat-divider style="margin-top:10px; margin-bottom:10px; margin-right:4px; margin-left:4px;"></mat-divider>
-        <div class="card-content">
-            <div class="price">{{a.price}}KM</div>
-            <div class="date">12.12.2021</div>
-       </div>
     </mat-card>
 </section>
 
 <ng-template #nodata><a>Nema sadrzaja</a></ng-template>
+<ng-template #noimage>
+    <div class="image-container">
+        <img class="img-style" mat-card-image src="./assets/default.jpg">
+    </div>
+</ng-template>

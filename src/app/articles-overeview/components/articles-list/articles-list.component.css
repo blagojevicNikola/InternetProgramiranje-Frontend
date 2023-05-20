@@ -1,7 +1,13 @@
 .img-style {
-    width: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    height:160px;
+    width:100%;
+    object-fit: cover;
+}
+
+.image-container{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 100%;
 }
 
 .lower-section {
@@ -42,7 +48,7 @@
 
 .card-header {
     display: flex;
-    min-height: 100px;
+    height:100%;
     flex-direction: row;
     justify-content: space-between;
     margin: 5px;
@@ -51,14 +57,23 @@
 
 mat-card {
     cursor: pointer;
+    display:flex;
     padding: 8px;
     flex: 1;
     background-color: rgb(243, 243, 243);
-    transition:0.07s;
+    transition:0.1s ease;
+}
+
+mat-card > div {
+    flex:1;
+    display: grid;
+    grid-template-rows: 1fr 0.5fr 0.1fr; /* Adjust the row heights */
+    grid-gap: 10px; /* Adjust the gap between sections */
 }
 
 mat-card:hover{
-    border:solid 2px #D3AC2B
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0.8;
 }
 
 .header {
