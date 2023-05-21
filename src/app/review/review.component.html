@@ -88,7 +88,7 @@
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #moreOptionsMenu="matMenu">
-                    <button mat-menu-item *ngIf="this.isAuthenticatedUser()">
+                    <button mat-menu-item (click)="onDeleteArticle()" *ngIf="this.isAuthenticatedUser()">
                         <mat-icon>delete_outline</mat-icon>
                         <a>Obrisi</a>
                     </button>

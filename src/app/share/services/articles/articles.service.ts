@@ -46,4 +46,9 @@ export class ArticlesService {
 
     return this.http.post(`api/articles/create`, data);
   }
+
+  deleteArticle(id:number)
+  {
+    return this.http.delete(`api/articles/delete/${id}`);
+  }
 }

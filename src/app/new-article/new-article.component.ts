@@ -35,8 +35,10 @@ export class NewArticleComponent implements OnDestroy, OnInit {
   preview: string[] = [];
   allImages: Map<string, File> = new Map<string, File>;
   createSub!: Subscription;
+  sending: boolean = false;
+
   constructor(private sidebarService: SidebarService, private categoryService: CategoryService, private articleService: ArticlesService,
-     private dialog: MatDialog, private snackBar: MatSnackBar) {
+    private dialog: MatDialog, private snackBar: MatSnackBar) {
     sidebarService.disable();
   }
 
@@ -45,8 +47,7 @@ export class NewArticleComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy(): void {
-    if(this.createSub)
-    {
+    if (this.createSub) {
       this.createSub.unsubscribe();
     }
     this.sidebarService.enable();
@@ -112,24 +113,24 @@ export class NewArticleComponent implements OnDestroy, OnInit {
           this.allImages.set(e.target.result, file);
         }
         reader.readAsDataURL(file);
-        
+
       }
     }
   }
 
-  removeImage(item: string):void{
+  removeImage(item: string): void {
     this.allImages.delete(item);
-    this.preview = this.preview.filter(s => s!=item);
+    this.preview = this.preview.filter(s => s != item);
   }
 
   submit(): void {
     if (this.tFormGroup.valid) {
       let data = new FormData();
-      let newArt : NewArticleReq = {
-        title:  this.tFormGroup.controls['title'].value!,
+      let newArt: NewArticleReq = {
+        title: this.tFormGroup.controls['title'].value!,
         price: this.tFormGroup.controls['price'].value!,
         details: this.tFormGroup.controls['details'].value!,
-        categoryId:  this.selectedCategory!,
+        categoryId: this.selectedCategory!,
         isNew: this.tFormGroup.controls['newArticle'].value!,
         attributes: this.dialogResult?.attributes!
       };
@@ -137,25 +138,19 @@ export class NewArticleComponent implements OnDestroy, OnInit {
         type: 'application/json'
       });
       data.append('newArticle', blob);
-      // data.append('title', this.tFormGroup.controls['title'].value!);
-      // data.append('price', this.tFormGroup.controls['price'].value!.toString());
-      // data.append('details', this.tFormGroup.controls['details'].value!);
-      // data.append('categoryId', this.selectedCategory!.toString());
-      // data.append('isNew', String(this.tFormGroup.controls['newArticle'].value!));
-      // this.dialogResult?.attributes.forEach((a, index) => {
-      //   data.append(`attributes[${index}].name`,a.name);
-      //   data.append(`attributes[${index}].value`, a.value);
-      // });
       [...this.allImages.entries()].forEach(([key, file], index) => {
         data.append(`photos`, file);
       });
+      this.sending = true;
       this.createSub = this.articleService.createArticle(data).subscribe({
-        next: (v) =>{
-          this.snackBar.open("Artikal uspjesno dodan!", "U redu", {duration: 3000});
+        next: (v) => {
+          this.snackBar.open("Artikal uspjesno dodan!", "U redu", { duration: 3000 });
         },
-        error: (err) =>{
-          this.snackBar.open("Greska pri dodavanju artikla!", "U redu", {duration: 3000});
-        }
+        error: (err) => {
+          this.sending = false;
+          this.snackBar.open("Greska pri dodavanju artikla!", "U redu", { duration: 3000 });
+        },
+        complete: () => { this.sending = false; }
       }
       )
     }
