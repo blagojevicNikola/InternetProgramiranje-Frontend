@@ -10,6 +10,9 @@ export interface ArticleInfo
     details: string;
     price: number;
     date:Date;
+    articleTypeId:number;
+    articleTypeName:string;
+    isNew:boolean;
     user: User;
     comments: Comment[];
     attributes:Attributes[];

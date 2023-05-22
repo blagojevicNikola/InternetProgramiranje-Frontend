@@ -1,0 +1,149 @@
+.container {
+    display: flex;
+    flex: 1;
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner-container
+{
+    display: flex;
+    flex-direction:column;
+    flex:1;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container {
+    width: 63%;
+    margin-top: 20px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.header {
+    font-weight: 400;
+    font-size: 24px;
+    color: #333D51;
+    margin-bottom: 40px;
+    margin-left: 50px
+}
+
+.attributes-title {
+    font-weight: 300;
+    font-size: 20px;
+    color: #333D51;
+    margin-right: 10px;
+}
+
+.attributes-header {
+    margin-left: 100px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.attributes-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.attribute-list {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.attribute-list>.attr {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px
+}
+
+.message-container>a {
+    color: rgb(118, 118, 118);
+    font-size: 16px;
+    font-weight: lighter;
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    margin-right: 30px;
+}
+
+.image-list-container {
+    margin-left: 100px;
+    margin-right: 100px;
+    max-height: 200px;
+    min-height: 200px;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    margin-bottom: 20px;
+    column-gap: 10px;
+}
+
+.image-container {
+    height: 180px;
+    width: 250px;
+    min-height: 180px;
+    min-width: 250px;
+    border: solid 1px #c8c8c8;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.remove-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 22px;
+    width: 22px;
+    font-size: 22px;
+}
+
+.value-text {
+    font-weight: 600;
+}
+
+.submit-button {
+    background-color: #333D51;
+    align-self: flex-end;
+    margin-right: 100px;
+    color: white;
+    margin-top: 20px
+}
+
+mat-form-field {
+    display: flex;
+    margin-bottom: 20px;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+mat-radio-group {
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+mat-radio-group>mat-radio-button {
+    margin-right: 10px;
+}

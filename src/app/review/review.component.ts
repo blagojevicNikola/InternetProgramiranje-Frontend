@@ -102,4 +102,9 @@ export class ReviewComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  onUpdateArticle()
+  {
+    this.router.navigateByUrl(`update/${this.idOfArticle}`);
+  }
 }

@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ReviewComponent } from './review/review.component';
 import { SpinnerInterceptor } from './share/interceptors/spinner/spinner.interceptor';
+import { UpdateArticleComponent } from './update-article/update-article.component';
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
     {path:'category/:name', component: ArticlesOvereviewComponent},
     {path:":id", component: ReviewComponent},
     {path: "profile/:name", component: ProfileComponent},
-    {path: 'article/new', component: NewArticleComponent}
+    {path: 'article/new', component: NewArticleComponent},
+    {path: 'update/:id', component: UpdateArticleComponent}
   ]},
 ];
 
