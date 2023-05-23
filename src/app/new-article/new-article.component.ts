@@ -91,7 +91,7 @@ export class NewArticleComponent implements OnDestroy, OnInit {
   openDialog(): void {
     if (this.selectedCategory) {
       const dialogRef = this.dialog.open(AttributesDialogComponent, {
-        data: { categoryId: this.selectedCategory },
+        data: { categoryId: this.selectedCategory, existingAttributes: this.dialogResult === null ? [] : this.dialogResult.attributes},
         disableClose: false
       });
 

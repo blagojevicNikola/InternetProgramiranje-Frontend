@@ -1,6 +1,6 @@
 <div class="container">
     <div class="main-container">
-        <a class="header">Novi artikal</a>
+        <a class="header">Azuriranje artikla</a>
         <form [formGroup]="tFormGroup">
             <mat-form-field appearance="outline">
                 <mat-label>Naslov</mat-label>
@@ -43,11 +43,19 @@
         </div>
         <div class="attributes-header">
             <a class="attributes-title">Slike</a>
+        </div>
+        <div class="existing-images-list-container" *ngIf="existingPhotos.length > 0; else photo_message">
+            <div class="existing-image-container"  *ngFor="let im of existingPhotos; let i = index">
+                <button (click)="removeExistingImage(im)" mat-mini-fab class="remove-image"><mat-icon style="font-size:17px; height:17px; width:17px">remove_circle_outline</mat-icon></button>
+                <img  [src]="im" style=" width: 100%; max-height: 100%; object-fit: contain;">
+            </div>
+        </div>
+        <div class="attributes-header">
+            <a class="attributes-title">Dodaj slike</a>
             <button mat-icon-button (click)="fileinput.click()">
                 <mat-icon style="color:#333D51">add</mat-icon>
                 <input #fileinput accept="image/png,image/jpg" (change)="selectFile($event)" type="file" style="display:none">
             </button>
-            
         </div>
         <div class="image-list-container" *ngIf="preview.length > 0; else photo_message">
             <div class="image-container"  *ngFor="let im of preview; let i = index">

@@ -19,7 +19,6 @@ export class AttributesDialogComponent implements OnInit{
   attributes: AttributeStructure[] = [];
   dialogResult: DialogResult = {attributes: [], accepted: false}
   attributeFormGroup = new FormGroup({
-    atts: new FormArray<FormControl>([])
   })
 
   constructor(private attributesService:AttributesService, 
@@ -34,20 +33,27 @@ export class AttributesDialogComponent implements OnInit{
     this.attributesService.getAttributeStructuresByArticleTypeId(this.data.categoryId).subscribe((data)=>{this.attributes=data
     for(let a of this.attributes)
     {
-      this.attributeFormGroup.controls['atts'].push(new FormControl(null));
+      let tmpValue = this.data.existingAttributes.find(value => value.name===a.name)?.value;
+      this.attributeFormGroup.addControl(a.name, new FormControl(tmpValue===undefined ? "" : tmpValue));
     }
     });
   }
 
   onNoClick(): void {
-    for(let i=0; i < this.attributes.length; i++)
-    {
-      const val:string = this.attributes[i].name;
-      if(this.attributeFormGroup.controls['atts'].controls[i].value)
+    Object.keys(this.attributeFormGroup.controls).forEach(c =>{
+      if(this.attributeFormGroup.get(c)?.value.length>0)
       {
-        this.dialogResult.attributes.push({name: val, value: this.attributeFormGroup.controls['atts'].controls[i].value})
+        let attTmp = this.dialogResult.attributes.find(f => f.name===c);
+        if(attTmp===undefined)
+        {
+          this.dialogResult.attributes.push({id: null, name:c, value: this.attributeFormGroup.get(c)?.value});
+        }
+        else
+        {
+          attTmp.value=this.attributeFormGroup.get(c)?.value;
+        }
       }
-    }
+    });
     this.dialogResult.accepted = true;
     this.dialogRef.close(this.dialogResult);
   }

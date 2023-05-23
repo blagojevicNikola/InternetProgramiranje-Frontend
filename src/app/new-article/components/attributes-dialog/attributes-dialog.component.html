@@ -5,14 +5,12 @@
 <ng-template #content>
     <div class="dialog-contianer" *ngIf="attributes.length>0; else empty">
         <form [formGroup]="attributeFormGroup">
-            <ng-container formArrayName="atts">
                 <mat-form-field appearance="outline" *ngFor="let att of attributes; let i = index">
                     <mat-label>
                         {{att.name}}
                     </mat-label>
-                    <input matInput formControlName="{{i}}">
+                    <input matInput formControlName="{{att.name}}">
                 </mat-form-field>
-            </ng-container>
         </form>
         <button mat-flat-button (click)="onNoClick()">Potvrdi</button>
     </div>

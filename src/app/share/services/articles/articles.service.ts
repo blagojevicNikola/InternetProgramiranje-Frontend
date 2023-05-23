@@ -39,16 +39,16 @@ export class ArticlesService {
 
   createArticle(data: FormData)
   {
-    const headers = new HttpHeaders({
-      'Content-Type': 'multipart/form-data' // Set the content type to 'multipart/form-data'
-    });
-    const options = { headers: headers };
-
     return this.http.post(`api/articles/create`, data);
   }
 
   deleteArticle(id:number)
   {
     return this.http.delete(`api/articles/delete/${id}`);
+  }
+
+  updateArticle(id:number, data: FormData)
+  {
+    return this.http.put(`api/articles/update/${id}`, data);
   }
 }

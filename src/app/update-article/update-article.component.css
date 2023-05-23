@@ -111,6 +111,32 @@
     position: relative;
 }
 
+.existing-images-list-container {
+    margin-left: 100px;
+    margin-right: 100px;
+    max-height: 150px;
+    min-height: 150px;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.existing-image-container{
+    height: 120px;
+    width: 180px;
+    min-height: 120px;
+    min-width: 180px;
+    border: solid 1px #c8c8c8;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
 .remove-image {
     position: absolute;
     top: 0;
