@@ -27,7 +27,7 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
   public articleInfo: ArticleInfo | null = null;
   existingPhotos: string[] = [];
   cates: Category[] = [];
-  dialogResult: DialogResult | null = null;
+  dialogResult: DialogResult ={accepted:false, attributes:[]}
   tFormGroup = new FormGroup({
     cat: new FormControl<number>(0),
     title: new FormControl('', [Validators.required]),
@@ -69,7 +69,7 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
                 newArticle: value.isNew
               });
               this.existingPhotos = value.photos.map(s => { return s.url });
-              this.dialogResult = { accepted: true, attributes: value.attributes }
+              this.dialogResult.attributes = value.attributes
             }
           });
         }
@@ -116,7 +116,7 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
   openDialog(): void {
     if (this.selectedCategory) {
       const dialogRef = this.dialog.open(AttributesDialogComponent, {
-        data: { categoryId: this.selectedCategory, existingAttributes: this.dialogResult === null ? [] : this.dialogResult.attributes},
+        data: { categoryId: this.selectedCategory, existingAttributes: this.dialogResult.attributes},
         disableClose: false
       });
 
@@ -189,7 +189,7 @@ export class UpdateArticleComponent implements OnInit, OnDestroy {
           this.snackBar.open("Artikal uspjesno azuriran!", "U redu", {duration: 3000});
         },
         error:() => {
-          this.snackBar.open("Greska prilikom azuriranja artikla!", "U redu", {duration:300});
+          this.snackBar.open("Greska prilikom azuriranja artikla!", "U redu", {duration:3000});
         }
       });
       

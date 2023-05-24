@@ -12,14 +12,14 @@ export class ArticlesService {
 
   articlesByType$ = this.http.get<Article>('api/articles/type/')
 
-  getArticlesByType(name: string | null)
+  getArticlesByType(name: string | null, pageNo:number)
   {
-    return this.http.get<any | null>(`api/articles/type/${name}`);
+    return this.http.get<any | null>(`api/articles/type/${name}?pageNo=${pageNo}`);
   }
 
-  getAllArticles()
+  getAllArticles(pageNo:number)
   {
-    return this.http.get<any | null>(`api/articles/all`);
+    return this.http.get<any | null>(`api/articles/all?pageNo=${pageNo}`);
   }
 
   getArticleInfo(id: number)

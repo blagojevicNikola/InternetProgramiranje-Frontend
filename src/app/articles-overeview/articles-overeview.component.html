@@ -20,7 +20,8 @@
         </div>
         <div class="paginator-container">
             <mat-paginator [hidePageSize]="true" [pageSize]="page.size"
-                [length]="page.numberOfElements"></mat-paginator>
+            [pageIndex]="currentPage"
+                [length]="page.totalElements" (page)="onPageChange($event)"></mat-paginator>
         </div>
     </div>
 </ng-template>

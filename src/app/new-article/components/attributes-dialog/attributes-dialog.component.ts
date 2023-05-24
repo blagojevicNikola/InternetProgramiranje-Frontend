@@ -14,47 +14,46 @@ import { DialogResult } from '../../models/dialog-result.model';
   templateUrl: './attributes-dialog.component.html',
   styleUrls: ['./attributes-dialog.component.css']
 })
-export class AttributesDialogComponent implements OnInit{
+export class AttributesDialogComponent implements OnInit {
 
   attributes: AttributeStructure[] = [];
-  dialogResult: DialogResult = {attributes: [], accepted: false}
+  dialogResult: DialogResult = { attributes: [], accepted: false }
   attributeFormGroup = new FormGroup({
   })
 
-  constructor(private attributesService:AttributesService, 
+  constructor(private attributesService: AttributesService,
     public spinnerService: SpinnerService,
     public dialogRef: MatDialogRef<AttributesDialogComponent>,
-   @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) {
   }
 
 
   ngOnInit(): void {
-    this.attributesService.getAttributeStructuresByArticleTypeId(this.data.categoryId).subscribe((data)=>{this.attributes=data
-    for(let a of this.attributes)
-    {
-      let tmpValue = this.data.existingAttributes.find(value => value.name===a.name)?.value;
-      this.attributeFormGroup.addControl(a.name, new FormControl(tmpValue===undefined ? "" : tmpValue));
-    }
+    this.dialogResult.attributes = this.data.existingAttributes;
+    this.dialogResult.attributes.forEach(a => console.log(a.id + " " + a.name + " " + a.value));
+    this.attributesService.getAttributeStructuresByArticleTypeId(this.data.categoryId).subscribe((data) => {
+      this.attributes = data
+      for (let a of this.attributes) {
+        let tmpValue = this.data.existingAttributes.find(value => value.name === a.name)?.value;
+        this.attributeFormGroup.addControl(a.name, new FormControl(tmpValue === undefined ? '' : tmpValue));
+      }
     });
   }
 
   onNoClick(): void {
-    Object.keys(this.attributeFormGroup.controls).forEach(c =>{
-      if(this.attributeFormGroup.get(c)?.value.length>0)
-      {
-        let attTmp = this.dialogResult.attributes.find(f => f.name===c);
-        if(attTmp===undefined)
-        {
-          this.dialogResult.attributes.push({id: null, name:c, value: this.attributeFormGroup.get(c)?.value});
-        }
-        else
-        {
-          attTmp.value=this.attributeFormGroup.get(c)?.value;
-        }
+    Object.keys(this.attributeFormGroup.controls).forEach(c => {
+      let attTmp = this.dialogResult.attributes.find(f => f.name === c);
+      if (attTmp === undefined) {
+        this.dialogResult.attributes.push({ id: null, name: c, value: this.attributeFormGroup.get(c)?.value });
+      }
+      else {
+        attTmp.value = this.attributeFormGroup.get(c)?.value;
       }
     });
+    this.dialogResult.attributes = this.dialogResult.attributes.filter(s => s.value !== '');
     this.dialogResult.accepted = true;
+    this.dialogResult.attributes.forEach(a => console.log(a.id + " " + a.name + " " + a.value));
     this.dialogRef.close(this.dialogResult);
   }
 }
