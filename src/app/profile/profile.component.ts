@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, Subscription, shareReplay, switchMap } from 'rxjs';
 import { User } from '../review/models/user';
 import { Article } from '../share/models/article';
@@ -40,7 +40,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   // }),
   //   shareReplay(1))
 
-  constructor(private sidebarService: SidebarService, private authService:AuthService, public spinnerService: SpinnerService, private route: ActivatedRoute, private articlesService: ArticlesService, private usersService: UsersService) {
+  constructor(private sidebarService: SidebarService, private authService:AuthService, public spinnerService: SpinnerService,
+     private route: ActivatedRoute, private articlesService: ArticlesService, 
+     private router: Router, private usersService: UsersService) {
     this.sidebarService.disable();
   }
 
@@ -51,7 +53,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
       this.soldProdSub = this.articlesService.getAllSoldArticlesByUsername(name).subscribe((data)=>{this.soldProducts = data});
 
-      this.userSub = this.usersService.getUserInfoByUsername(name).subscribe((data)=>{this.user = data});
+      this.userSub = this.usersService.getUserPreviewByUsername(name).subscribe((data)=>{this.user = data});
     })
   }
 
@@ -80,6 +82,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
     else
     {
       return false;
+    }
+  }
+
+  onEditProfile()
+  {
+    let username = this.authService.getUsername();
+    if(username!==undefined && username!==null)
+    {
+      this.router.navigateByUrl(`/profile/edit/${username}`);
     }
   }
 

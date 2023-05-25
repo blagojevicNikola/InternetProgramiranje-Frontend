@@ -10,6 +10,8 @@ import { RegisterComponent } from './register/register.component';
 import { ReviewComponent } from './review/review.component';
 import { SpinnerInterceptor } from './share/interceptors/spinner/spinner.interceptor';
 import { UpdateArticleComponent } from './update-article/update-article.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { SupportChatComponent } from './support-chat/support-chat.component';
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},
@@ -21,7 +23,9 @@ const routes: Routes = [
     {path:":id", component: ReviewComponent},
     {path: "profile/:name", component: ProfileComponent},
     {path: 'article/new', component: NewArticleComponent},
-    {path: 'update/:id', component: UpdateArticleComponent}
+    {path: 'update/:id', component: UpdateArticleComponent},
+    {path: 'profile/edit/:username', component: EditProfileComponent},
+    {path: 'support/chat', component: SupportChatComponent},
   ]},
 ];
 

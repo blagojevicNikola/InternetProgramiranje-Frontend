@@ -9,7 +9,7 @@
             <a class="username">{{user.username}}</a>
             <a class="city">{{user.locationName}}</a>
             <div class="button-section">
-                <button mat-button *ngIf="this.isAuthenticatedUser()">Izmjeni profil</button>
+                <button mat-button (click)="onEditProfile()" *ngIf="this.isAuthenticatedUser()">Izmjeni profil</button>
                 <button mat-button>Prikazi kontakt</button>
             </div>
         </div>

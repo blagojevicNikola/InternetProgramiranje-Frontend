@@ -25,6 +25,8 @@ import { WarningDialogComponent } from './new-article/components/warning-dialog/
 import { TokenInterceptorInterceptor } from './share/interceptors/token/token-interceptor.interceptor';
 import { ApproveDialogComponent } from './review/components/approve-dialog/approve-dialog.component';
 import { UpdateArticleComponent } from './update-article/update-article.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { SupportChatComponent } from './support-chat/support-chat.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { UpdateArticleComponent } from './update-article/update-article.componen
     WarningDialogComponent,
     ApproveDialogComponent,
     UpdateArticleComponent,
+    EditProfileComponent,
+    SupportChatComponent,
   ],
   imports: [
     BrowserModule,

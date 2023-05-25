@@ -22,7 +22,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class NewArticleComponent implements OnDestroy, OnInit {
 
   categories$: Observable<Category[]> = this.categoryService.getCategories$
-  dialogResult: DialogResult | null = null;
+  dialogResult: DialogResult = {accepted:false, attributes: []};
   tFormGroup = new FormGroup({
     cat: new FormControl<number>(0, [Validators.required]),
     title: new FormControl('', [Validators.required]),

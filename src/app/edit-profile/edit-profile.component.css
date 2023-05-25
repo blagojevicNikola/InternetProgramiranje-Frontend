@@ -1,0 +1,29 @@
+.main-container{
+    display:flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.middle-container{
+    margin-top:50px;
+    display:flex;
+    flex:0.5;
+    flex-direction: column;
+}
+
+.grid-container{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+}
+
+.middle-container mat-form-field{
+    width:100%;
+}
+
+@media screen and (max-width: 600px){
+    .middle-container{
+        flex:0.9;
+    }
+}

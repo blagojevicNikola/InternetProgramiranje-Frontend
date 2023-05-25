@@ -1,0 +1,30 @@
+<div class="main-container">
+    <div class="middle-container">
+        <form [formGroup]="formGroup">
+            <mat-form-field >
+                <mat-label>Korisnicko ime</mat-label>
+                <input matInput formControlName="username" #input>
+            </mat-form-field>
+            <div class="grid-container">
+                <mat-form-field >
+                    <mat-label>Ime</mat-label>
+                    <input matInput formControlName="name" #input>
+                </mat-form-field>
+                <mat-form-field >
+                    <mat-label>Prezime</mat-label>
+                    <input matInput formControlName="surname" #input>
+                </mat-form-field>
+                <mat-form-field >
+                    <mat-label>Broj telefona</mat-label>
+                    <input matInput formControlName="phoneNumber" #input>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Lokacija</mat-label>
+                    <mat-select formControlName="location">
+                        <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+</div>

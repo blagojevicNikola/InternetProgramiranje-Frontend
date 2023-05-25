@@ -64,6 +64,10 @@ export class NavigationComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/article/new');
   }
 
+  supportNav(){
+    this.router.navigateByUrl('/support/chat');
+  }
+
   toggle() {
     this.matDrawer.toggle();
   }
