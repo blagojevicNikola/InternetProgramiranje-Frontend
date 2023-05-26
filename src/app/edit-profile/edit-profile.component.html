@@ -1,20 +1,25 @@
 <div class="main-container">
     <div class="middle-container">
-        <form [formGroup]="formGroup">
-            <mat-form-field >
+        <div class="title">
+            <a>
+                User info
+            </a>
+        </div>
+        <form [formGroup]="formGroupInfo">
+            <mat-form-field>
                 <mat-label>Korisnicko ime</mat-label>
                 <input matInput formControlName="username" #input>
             </mat-form-field>
             <div class="grid-container">
-                <mat-form-field >
+                <mat-form-field>
                     <mat-label>Ime</mat-label>
                     <input matInput formControlName="name" #input>
                 </mat-form-field>
-                <mat-form-field >
+                <mat-form-field>
                     <mat-label>Prezime</mat-label>
                     <input matInput formControlName="surname" #input>
                 </mat-form-field>
-                <mat-form-field >
+                <mat-form-field>
                     <mat-label>Broj telefona</mat-label>
                     <input matInput formControlName="phoneNumber" #input>
                 </mat-form-field>
@@ -24,6 +29,37 @@
                         <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
+            </div>
+            <div class="button-container" color="accent">
+                <button mat-flat-button [disabled]="disableInfoButton" (click)="submitInfo()">Update</button>
+            </div>
+        </form>
+        <div class="title">
+            <a>
+                Password
+            </a>
+        </div>
+        <form [formGroup]="formGroupPassword">
+            <div class="grid-container">
+                <mat-form-field>
+                    <mat-label>Current password</mat-label>
+                    <input formControlName="currPass" matInput [type]="hideCurrentPassword ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hideCurrentPassword = !hideCurrentPassword"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideCurrentPassword">
+                        <mat-icon>{{hideCurrentPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>New password</mat-label>
+                    <input formControlName="newPass" matInput [type]="hideNewPassword ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hideNewPassword = !hideNewPassword"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideNewPassword">
+                        <mat-icon>{{hideNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <div class="button-container">
+                <button mat-flat-button [disabled]="disablePassButton" (click)="submitPassword()">Update</button>
             </div>
         </form>
     </div>

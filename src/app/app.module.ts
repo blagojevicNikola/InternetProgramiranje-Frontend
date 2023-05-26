@@ -27,6 +27,7 @@ import { ApproveDialogComponent } from './review/components/approve-dialog/appro
 import { UpdateArticleComponent } from './update-article/update-article.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { SupportChatComponent } from './support-chat/support-chat.component';
+import { MessagesListComponent } from './support-chat/components/messages-list/messages-list.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SupportChatComponent } from './support-chat/support-chat.component';
     UpdateArticleComponent,
     EditProfileComponent,
     SupportChatComponent,
+    MessagesListComponent,
   ],
   imports: [
     BrowserModule,

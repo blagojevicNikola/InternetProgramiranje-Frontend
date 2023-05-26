@@ -24,4 +24,9 @@ export class UsersService {
   {
     return this.http.put(`api/users/update`,data);
   }
+
+  updateUserPassword(data: {currentPassword:string, newPassword:string})
+  {
+    return this.http.put(`api/users/update/password`, data);
+  }
 }

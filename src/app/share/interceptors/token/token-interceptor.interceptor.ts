@@ -14,7 +14,8 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if(request.url.endsWith('articles/create') || request.url.includes('articles/delete/') || request.url.includes('articles/update/'))
+    if(request.url.endsWith('articles/create') || request.url.includes('articles/delete/') || request.url.includes('articles/update/') ||
+    request.url.includes('users/update'))
     {
       request = request.clone({
         setHeaders: {
