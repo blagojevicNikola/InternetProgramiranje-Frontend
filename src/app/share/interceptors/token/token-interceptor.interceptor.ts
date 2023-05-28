@@ -15,7 +15,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if(request.url.endsWith('articles/create') || request.url.includes('articles/delete/') || request.url.includes('articles/update/') ||
-    request.url.includes('users/update'))
+    request.url.includes('users/update') || request.url.includes('messages/'))
     {
       request = request.clone({
         setHeaders: {

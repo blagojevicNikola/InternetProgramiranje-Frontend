@@ -1,8 +1,9 @@
 .main-container{
     display:flex;
     height:100%;
-    width:100%;
     justify-content: center;
+    padding-left:10px;
+    padding-right:10px;
 }
 
 .middle-container{
@@ -31,8 +32,27 @@
     align-items: center;
 }
 
+.send-container input{
+    word-wrap: normal;
+    flex-wrap: wrap;
+}
+
+.send-container form{
+    display:flex;
+    flex:1;
+    width:100%;
+    align-items: center;
+}
+
 .send-container button{
     margin-left:10px;
+}
+
+app-messages-list{
+    display:flex;
+    flex:1;
+    height: 100%;
+    width: 100%;
 }
 
 .chat-textarea{
@@ -50,4 +70,19 @@
 .chat-textarea:focus{
     border: solid 2px purple;
     color:grey
+}
+
+.spinner-container{
+    display:flex;
+    flex:1;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 800px){
+    .middle-container{
+        flex:1;
+    }
 }

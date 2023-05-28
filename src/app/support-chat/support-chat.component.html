@@ -1,13 +1,21 @@
 <div class="main-container">
-    <div class="middle-container">
+    <div class="middle-container" *ngIf="(spinnerService.getLoadingStatus()|async)===false; else spinner">
         <div class="messages-container">
-
+            <app-messages-list [messages]="messages"></app-messages-list>
         </div>
         <div class="send-container">
-            <input placeholder="Message..." class="chat-textarea">
-            <button mat-mini-fab>
+            <form [formGroup]="formGroupMsg">
+            <textarea formControlName="msg" rows="3" placeholder="Message..." class="chat-textarea"></textarea>
+            <button [disabled]="formGroupMsg.valid===false" (click)="sendMessage()" mat-mini-fab>
                 <mat-icon>send</mat-icon>
               </button>
+            </form>
         </div>
     </div>
 </div>
+
+<ng-template #spinner>
+    <div class="spinner-container">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

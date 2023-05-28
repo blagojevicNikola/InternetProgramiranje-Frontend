@@ -28,6 +28,7 @@ import { UpdateArticleComponent } from './update-article/update-article.componen
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { SupportChatComponent } from './support-chat/support-chat.component';
 import { MessagesListComponent } from './support-chat/components/messages-list/messages-list.component';
+import { FilterDialogComponent } from './articles-overeview/components/filter-dialog/filter-dialog/filter-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MessagesListComponent } from './support-chat/components/messages-list/m
     EditProfileComponent,
     SupportChatComponent,
     MessagesListComponent,
+    FilterDialogComponent,
   ],
   imports: [
     BrowserModule,

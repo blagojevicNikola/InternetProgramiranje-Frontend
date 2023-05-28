@@ -1,7 +1,26 @@
 <div class="main-container">
-    <div class="messages-container">
-        <div class="message">
-            
-        </div>
+    <div class="messages-list" *ngIf="messages.length>0; else nomessages">
+            <div *ngFor="let msg of messages" class="message">
+                <div class="header">
+                    <a class="user">{{msg.userPersonUsername}}</a>
+                    <a class="date">{{msg.dateTime | date: 'short'}}</a>
+                </div>
+                <div class="content">
+                    <a>{{msg.content}}</a>
+                </div>
+                <div class="icon-container">
+                    <mat-icon matTooltip="Sent" *ngIf="msg.seen===false; else seen">check_circle_outline</mat-icon>
+                </div>
+            </div>
     </div>
 </div>
+
+<ng-template #nomessages>
+    <div class="alert">
+        <a>No messages!</a>
+    </div>
+</ng-template>
+
+<ng-template #seen>
+    <mat-icon matTooltip="Seen">check_circle</mat-icon>
+</ng-template>

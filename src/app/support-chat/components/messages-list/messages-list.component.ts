@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Message } from 'src/app/share/models/message';
 
 @Component({
   selector: 'app-messages-list',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class MessagesListComponent {
 
+  constructor(){}
+
+  @Input() messages:Message[] = []
 }
