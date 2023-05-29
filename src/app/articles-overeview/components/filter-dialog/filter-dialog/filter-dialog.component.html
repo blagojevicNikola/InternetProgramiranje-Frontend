@@ -1,24 +1,28 @@
 <div class="main-container">
     <div class="sort-controls-container">
-        <mat-chip-listbox>
-            <mat-chip-option>By date</mat-chip-option>
-            <mat-chip-option>By price</mat-chip-option>
+        <mat-chip-listbox [(ngModel)]="orderBy">
+            <mat-chip-option selected="true" value="date">By date</mat-chip-option>
+            <mat-chip-option value="price">By price</mat-chip-option>
         </mat-chip-listbox>
+        <mat-button-toggle-group [(value)]="choosenDesc">
+            <mat-button-toggle [value]="true" matTooltip="Descending"><mat-icon>keyboard_arrow_down</mat-icon></mat-button-toggle>
+            <mat-button-toggle [value]="false" matTooltip="Ascending"><mat-icon>keyboard_arrow_up</mat-icon></mat-button-toggle>
+        </mat-button-toggle-group>
     </div>
-    <form>
+    <form [formGroup]="formFilters">
         <div class="title-container">
             <a>Price</a>
         </div>
         <div class="controls-container">
             <mat-form-field>
-                <input matInput placeholder="From">
+                <input formControlName="priceFrom" matInput placeholder="From">
             </mat-form-field>
             <mat-form-field>
-                <input matInput placeholder="To">
+                <input matInput formControlName="priceTo" placeholder="To">
             </mat-form-field>
         </div>
         <div class="filter-button-container">
-            <button mat-flat-button>Filter</button>
+            <button (click)="submit()" mat-flat-button>Filter</button>
         </div>
     </form>
 </div>

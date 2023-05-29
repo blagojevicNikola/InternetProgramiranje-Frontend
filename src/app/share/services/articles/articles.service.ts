@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ArticleInfo } from 'src/app/review/models/article-info';
 import { Article } from '../../models/article';
@@ -12,14 +12,24 @@ export class ArticlesService {
 
   articlesByType$ = this.http.get<Article>('api/articles/type/')
 
-  getArticlesByType(name: string | null, pageNo:number)
+  getArticlesByType(name: string | null, params: {[key:string]:string})
   {
-    return this.http.get<any | null>(`api/articles/type/${name}?pageNo=${pageNo}`);
+    let queryParams = new HttpParams();
+    for(const key in params)
+    {
+      queryParams = queryParams.append(key,params[key]);
+    }
+    return this.http.get<any | null>(`api/articles/type/${name}`,{params: queryParams});
   }
 
-  getAllArticles(pageNo:number)
+  getAllArticles(params: {[key:string]:string})
   {
-    return this.http.get<any | null>(`api/articles/all?pageNo=${pageNo}`);
+    let queryParams = new HttpParams();
+    for(const key in params)
+    {
+      queryParams = queryParams.append(key,params[key]);
+    }
+    return this.http.get<any | null>(`api/articles/all`,{params: queryParams});
   }
 
   getArticleInfo(id: number)

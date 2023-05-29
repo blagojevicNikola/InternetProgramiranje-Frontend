@@ -11,12 +11,17 @@
     padding-right:30px;
 }
 
+mat-button-toggle-group{
+    height:30px;
+    align-items: center;
+}
 
 .sort-controls-container{
     display:flex;
     flex:1;
     width:100%;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom:20px;
 }
 

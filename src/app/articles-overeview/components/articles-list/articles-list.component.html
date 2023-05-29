@@ -10,7 +10,7 @@
             <!-- <mat-divider style="margin-top:10px; margin-bottom:10px; margin-right:4px; margin-left:4px;"></mat-divider> -->
             <div class="card-content">
                 <div class="price">{{a.price}}KM</div>
-                <div class="date">12.12.2021</div>
+                <div class="date">{{a.date | date:'d/M/yy'}}</div>
            </div>
         </div>
     </mat-card>

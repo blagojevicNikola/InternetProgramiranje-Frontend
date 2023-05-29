@@ -5,4 +5,5 @@ export interface Article
     description:string;
     price:number;
     photoUrl:string;
+    date:string;
 }
