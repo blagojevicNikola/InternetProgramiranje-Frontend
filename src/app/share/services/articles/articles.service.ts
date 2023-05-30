@@ -12,24 +12,14 @@ export class ArticlesService {
 
   articlesByType$ = this.http.get<Article>('api/articles/type/')
 
-  getArticlesByType(name: string | null, params: {[key:string]:string})
+  getArticlesByType(name: string | null, params: HttpParams)
   {
-    let queryParams = new HttpParams();
-    for(const key in params)
-    {
-      queryParams = queryParams.append(key,params[key]);
-    }
-    return this.http.get<any | null>(`api/articles/type/${name}`,{params: queryParams});
+    return this.http.get<any | null>(`api/articles/type/${name}`,{params: params});
   }
 
-  getAllArticles(params: {[key:string]:string})
+  getAllArticles(params: HttpParams)
   {
-    let queryParams = new HttpParams();
-    for(const key in params)
-    {
-      queryParams = queryParams.append(key,params[key]);
-    }
-    return this.http.get<any | null>(`api/articles/all`,{params: queryParams});
+    return this.http.get<any | null>(`api/articles/all`,{params: params});
   }
 
   getArticleInfo(id: number)

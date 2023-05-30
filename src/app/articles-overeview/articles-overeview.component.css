@@ -13,7 +13,15 @@
     margin-bottom:10px;
     height: 50px;
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
+}
+
+.selected-filters-container{
+    display:flex;
+    flex:1;
+    flex-direction: row;
+    background-color: red;
+    align-items: center;
 }
 
 .divider-section{

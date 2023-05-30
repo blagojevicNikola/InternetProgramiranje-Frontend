@@ -1,5 +1,8 @@
 <div class="container">
     <div class="upper-section">
+        <div class="selected-filters-container">
+            <mat-chip *ngFor="let selected of this.filterService.getSelectedFilters()">{{selected.name}}:{{selected.value}}</mat-chip>
+        </div>
         <button (click)="onFilter()" mat-icon-button style="align-self: end;">
             <mat-icon>settings</mat-icon>
         </button>
@@ -20,7 +23,7 @@
         </div>
         <div class="paginator-container">
             <mat-paginator [hidePageSize]="true" [pageSize]="page.size"
-            [pageIndex]="currentPage"
+            [pageIndex]="this.filterService.getPageNo()"
                 [length]="page.totalElements" (page)="onPageChange($event)"></mat-paginator>
         </div>
     </div>

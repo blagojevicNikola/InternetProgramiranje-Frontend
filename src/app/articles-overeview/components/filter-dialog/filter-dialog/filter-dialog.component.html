@@ -21,8 +21,20 @@
                 <input matInput formControlName="priceTo" placeholder="To">
             </mat-form-field>
         </div>
-        <div class="filter-button-container">
-            <button (click)="submit()" mat-flat-button>Filter</button>
+    </form>
+    <form [formGroup]="attFormGroup">
+        <div class="controls-container">
+            <mat-form-field *ngFor="let cat of filterService.attrState">
+                <mat-label>{{cat.viewName}}</mat-label>
+                <mat-select formControlName="{{cat.queryName}}">
+                    <mat-option *ngFor="let o of cat.content" value="{{o}}">
+                        {{o}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
     </form>
+    <div class="filter-button-container">
+        <button (click)="submit()" mat-flat-button>Filter</button>
+    </div>
 </div>
