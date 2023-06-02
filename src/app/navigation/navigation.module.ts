@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { NavigationRoutingModule } from './navigation-routing.module';
 import { NavigationComponent } from './navigation.component';
 import { MaterialModule } from '../material/material.module';
@@ -16,6 +16,7 @@ import { ArticlesListComponent } from '../articles-overeview/components/articles
     MaterialModule,
     CommonModule,
     NavigationRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [NavigationComponent, ArticlesOvereviewComponent, ArticlesListComponent]
 })

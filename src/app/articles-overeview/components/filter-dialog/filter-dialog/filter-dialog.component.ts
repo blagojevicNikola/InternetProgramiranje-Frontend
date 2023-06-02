@@ -1,8 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { TransitionCheckState } from '@angular/material/checkbox';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CategoryState } from 'src/app/articles-overeview/models/category-state';
+import { MatDialogRef } from '@angular/material/dialog';
 import { FilterService } from 'src/app/share/services/filter/filter.service';
 
 @Component({
@@ -40,14 +38,8 @@ export class FilterDialogComponent implements OnInit {
 
 
   submit() {
-
-
-    if (this.formFilters.get('priceFrom')?.value != null || this.formFilters.get('priceFrom')?.value !='') {
-      this.filterService.priceFromState.value = this.formFilters.get('priceFrom')?.value
-    }
-    if (this.formFilters.get('priceTo')?.value != null || this.formFilters.get('priceTo')?.value !='') {
-      this.filterService.priceToState.value = this.formFilters.get('priceTo')?.value
-    }
+    this.filterService.priceFromState.value = this.formFilters.get('priceFrom')?.value
+    this.filterService.priceToState.value = this.formFilters.get('priceTo')?.value
     this.filterService.sortState.sort = this.orderBy;
     if (this.choosenDesc === true) {
       this.filterService.sortState.direction = "desc";
@@ -55,7 +47,6 @@ export class FilterDialogComponent implements OnInit {
     else {
       this.filterService.sortState.direction = "asc"
     }
-    let resultState:CategoryState[] = []
     Object.keys(this.attFormGroup.controls).forEach((cont)=>{
       if(this.attFormGroup.get(cont)?.value !=null)
       {
@@ -67,6 +58,18 @@ export class FilterDialogComponent implements OnInit {
       }
     })
     this.dialogRef.close(true);
+  }
+
+  reset()
+  {
+    this.orderBy='date'
+    this.choosenDesc=true;
+    Object.keys(this.attFormGroup.controls).forEach((c)=>{
+      this.attFormGroup.get(c)?.setValue(undefined);
+    })
+    Object.keys(this.formFilters.controls).forEach((c)=>{
+      this.formFilters.get(c)?.setValue(undefined);
+    })
   }
 
 }

@@ -8,6 +8,7 @@ import { CategoryState } from 'src/app/articles-overeview/models/category-state'
 })
 export class FilterService {
 
+  search:string=''
   priceFromState: CategoryState = { viewName: 'Price[min]', queryName: 'priceFrom', multivalue: false, content: [], value: undefined }
   priceToState: CategoryState = { viewName: 'Price[max]', queryName: 'priceTo', multivalue: false, content: [], value: undefined }
   sortState: { sort: string, direction: string } = { sort: "date", direction: "desc" };
@@ -17,6 +18,11 @@ export class FilterService {
 
 
   public setParam(params: Params) {
+    if(params['q'] != null && params['q']!=='')
+    {
+      console.log('Before restart ->>' + this.search)
+      this.search = params['q'];
+    }
     if (params['pageNo'] != null) {
       this.pageNo = +params['pageNo'];
     }
@@ -34,7 +40,7 @@ export class FilterService {
     }
     Object.keys(params).forEach((key) => {
       let tmp = this.attrState.find(a => a.queryName === key)
-      if (params[key] === null && tmp !== undefined) {
+      if (params[key] != null && tmp !== undefined) {
         tmp.value = params[key];
       }
     })
@@ -62,10 +68,10 @@ export class FilterService {
     if (!(this.sortState.sort === 'date' && this.sortState.direction === 'desc')) {
       result.push({ name: 'Sort', value: this.sortState.sort + '(' + this.sortState.direction + ')' });
     }
-    if (this.priceFromState.value !== undefined) {
+    if (this.priceFromState.value !== undefined && this.priceFromState.value !== '') {
       result.push({ name: this.priceFromState.viewName, value: this.priceFromState.value })
     }
-    if (this.priceToState.value !== undefined) {
+    if (this.priceToState.value !== undefined && this.priceToState.value !== '') {
       result.push({ name: this.priceToState.viewName, value: this.priceToState.value })
     }
     for (const key of this.attrState) {
@@ -82,7 +88,7 @@ export class FilterService {
 
   public restartPriceStates() {
     this.priceFromState = { viewName: 'Price[min]', queryName: 'priceFrom', multivalue: false, content: [], value: undefined }
-    this.priceToState = { viewName: 'Price[min]', queryName: 'priceTo', multivalue: false, content: [], value: undefined }
+    this.priceToState = { viewName: 'Price[max]', queryName: 'priceTo', multivalue: false, content: [], value: undefined }
   }
 
   public restartState() {
@@ -90,18 +96,28 @@ export class FilterService {
     this.restartPriceStates();
     this.attrState = [];
     this.pageNo = 0;
-    console.log("ispis")
+  }
+
+  public restartSearch()
+  {
+    this.search = '';
   }
 
   public getUrlQuery(): { [key: string]: string } {
     let result: { [key: string]: string } = {}
+    if(this.search!=='')
+    {
+      console.log("search-->" + this.search)
+
+      result['q'] = this.search;
+    }
     if (!(this.sortState.sort === 'date' && this.sortState.direction === 'desc')) {
       result['sort'] = this.sortState.sort + ',' + this.sortState.direction;
     }
-    if (this.priceFromState.value !== undefined) {
+    if (this.priceFromState.value !== undefined && this.priceFromState.value !== '') {
       result[this.priceFromState.queryName] = this.priceFromState.value;
     }
-    if (this.priceToState.value !== undefined) {
+    if (this.priceToState.value !== undefined && this.priceToState.value !== '') {
       result[this.priceToState.queryName] = this.priceToState.value;
     }
     if(this.pageNo!==0)
@@ -118,13 +134,18 @@ export class FilterService {
 
   public getHttpParam(): HttpParams {
     let result = new HttpParams();
+    if(this.search!=='')
+    {      console.log("HTTP search-->" + this.search)
+
+      result = result.append('q', this.search);
+    }
     if (!(this.sortState.sort === 'date' && this.sortState.direction === 'desc')) {
       result = result.append('sort', this.sortState.sort + ',' + this.sortState.direction);
     }
-    if (this.priceFromState.value !== undefined) {
+    if (this.priceFromState.value !== undefined && this.priceFromState.value !== '') {
       result = result.append(this.priceFromState.queryName, this.priceFromState.value);
     }
-    if (this.priceToState.value !== undefined) {
+    if (this.priceToState.value !== undefined && this.priceToState.value !== '') {
       result = result.append(this.priceToState.queryName, this.priceToState.value);
     }
     if (this.pageNo !== 0) {

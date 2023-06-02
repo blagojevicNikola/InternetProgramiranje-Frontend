@@ -14,12 +14,13 @@
         <mat-label>Search article</mat-label>
         <input matInput fxFlex placeholder="Ex. Golf 5" value="">
       </mat-form-field> -->
-      <form class="searchForm">
-        <input type="text" class="searchTerm" placeholder="Pretrazi">
-        <button class="searchButton">
+      <form [formGroup]="searchGroup" (ngSubmit)="search()" class="searchForm">
+        <input formControlName="search" type="text" class="searchTerm" placeholder="Search">
+        <button  class="searchButton" type="submit">
           <mat-icon style="color:white">search</mat-icon>
         </button>
       </form>
+      
       <!-- <button type="submit" class="searchButton">
         <mat-icon style="width:20px; height:20px">search</mat-icon>
      </button> -->

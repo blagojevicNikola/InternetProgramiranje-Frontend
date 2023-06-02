@@ -42,11 +42,11 @@ mat-button-toggle-group{
     width:100%;
 }
 
-.filter-button-container
+.buttons-container
 {
     display:flex;
     width:100%;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .filter-button-container button{
