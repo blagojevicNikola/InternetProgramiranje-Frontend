@@ -27,7 +27,17 @@ export class LoginComponent {
     }
     this.disabledButton = true;
     this.authService.login(this.usernameValue, this.passwordValue).subscribe({
-      next: (data) => { localStorage.setItem('token', data.token); this.router.navigateByUrl('') },
+      next: (data) => { 
+        if(data.activated===true)
+        {
+          localStorage.setItem('token', data.token); 
+          this.router.navigateByUrl('');
+        }else
+        {
+          this.authService.usernameForActivation=this.usernameValue;
+          this.router.navigateByUrl('activate');
+        }
+      },
       error: (e) => {
         this.disabledButton = false;
         if (e.status === 400) {

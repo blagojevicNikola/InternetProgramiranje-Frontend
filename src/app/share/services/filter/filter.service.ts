@@ -1,4 +1,5 @@
 import { HttpParams } from '@angular/common/http';
+import { ThisReceiver } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { CategoryState } from 'src/app/articles-overeview/models/category-state';
@@ -9,6 +10,7 @@ import { CategoryState } from 'src/app/articles-overeview/models/category-state'
 export class FilterService {
 
   search:string=''
+  category:string|undefined = undefined;
   priceFromState: CategoryState = { viewName: 'Price[min]', queryName: 'priceFrom', multivalue: false, content: [], value: undefined }
   priceToState: CategoryState = { viewName: 'Price[max]', queryName: 'priceTo', multivalue: false, content: [], value: undefined }
   sortState: { sort: string, direction: string } = { sort: "date", direction: "desc" };
@@ -20,7 +22,6 @@ export class FilterService {
   public setParam(params: Params) {
     if(params['q'] != null && params['q']!=='')
     {
-      console.log('Before restart ->>' + this.search)
       this.search = params['q'];
     }
     if (params['pageNo'] != null) {
@@ -44,6 +45,11 @@ export class FilterService {
         tmp.value = params[key];
       }
     })
+  }
+
+  public setCategory(cat:string)
+  {
+    this.category = cat;
   }
 
   public setState(options:CategoryState[])
@@ -96,6 +102,7 @@ export class FilterService {
     this.restartPriceStates();
     this.attrState = [];
     this.pageNo = 0;
+    this.category=undefined;
   }
 
   public restartSearch()
@@ -107,8 +114,6 @@ export class FilterService {
     let result: { [key: string]: string } = {}
     if(this.search!=='')
     {
-      console.log("search-->" + this.search)
-
       result['q'] = this.search;
     }
     if (!(this.sortState.sort === 'date' && this.sortState.direction === 'desc')) {
@@ -123,6 +128,10 @@ export class FilterService {
     if(this.pageNo!==0)
     {
       result['pageNo']=this.pageNo.toString()
+    }
+    if(this.category!=null)
+    {
+      result['category'] = this.category;
     }
     for (const key of this.attrState) {
       if (key.value !== undefined) {
@@ -150,6 +159,10 @@ export class FilterService {
     }
     if (this.pageNo !== 0) {
       result = result.append('pageNo', this.pageNo.toString());
+    }
+    if(this.category != null)
+    {
+      result = result.append('category', this.category);
     }
     for (const key of this.attrState) {
       if (key.value !== undefined) {

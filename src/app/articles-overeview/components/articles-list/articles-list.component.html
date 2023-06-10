@@ -1,5 +1,5 @@
 <section class="lower-section" *ngIf="articles.length>0; else nodata">
-    <mat-card *ngFor="let a of articles" [routerLink]="['/', a.id]">
+    <mat-card *ngFor="let a of articles" [routerLink]="['/article/', a.id]">
         <div>
             <div *ngIf="a.photoUrl!=null else noimage" class="image-container">
                 <img class="img-style" mat-card-image src={{a.photoUrl}} onerror="this.src='./assets/default.jpg';">

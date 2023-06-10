@@ -12,20 +12,26 @@ import { SpinnerInterceptor } from './share/interceptors/spinner/spinner.interce
 import { UpdateArticleComponent } from './update-article/update-article.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { SupportChatComponent } from './support-chat/support-chat.component';
+import { ArticlesMainPageComponent } from './articles-main-page/articles-main-page.component';
+import { ArticlesSearchPageComponent } from './articles-search-page/articles-search-page.component';
+import { PaymentComponent } from './payment/payment.component';
+import { ActivateProfileComponent } from './activate-profile/activate-profile.component';
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
+  {path:"activate", component:ActivateProfileComponent},
   {path: '', component: NavigationComponent, children: [
-    {path:'', component:ArticlesOvereviewComponent},
-    {path: 'category', component: NavigationComponent},
-    {path:'category/:name', component: ArticlesOvereviewComponent},
-    {path:":id", component: ReviewComponent},
-    {path: "profile/:name", component: ProfileComponent},
+    {path:'', component:ArticlesMainPageComponent},
+    {path:'search', component: ArticlesSearchPageComponent},
+    {path:':name', component: ArticlesOvereviewComponent},
     {path: 'article/new', component: NewArticleComponent},
+    {path:"article/:id", component: ReviewComponent},
+    {path: "profile/:name", component: ProfileComponent},
     {path: 'update/:id', component: UpdateArticleComponent},
     {path: 'profile/edit/:username', component: EditProfileComponent},
     {path: 'support/chat', component: SupportChatComponent},
+    {path: 'buy/:id', component: PaymentComponent}
   ]},
 ];
 

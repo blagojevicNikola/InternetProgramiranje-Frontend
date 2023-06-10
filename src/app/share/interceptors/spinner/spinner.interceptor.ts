@@ -15,6 +15,10 @@ export class SpinnerInterceptor implements HttpInterceptor {
   constructor(private service: SpinnerService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if(request.url.includes('/comments/add/'))
+    {
+      return next.handle(request);
+    }
     this.service.count++;
     this.service.show();
     //this.cdr.detectChanges();

@@ -12,14 +12,19 @@ export class ArticlesService {
 
   articlesByType$ = this.http.get<Article>('api/articles/type/')
 
-  getArticlesByType(name: string | null, params: HttpParams)
+  getArticlesByType(name: string | null)
   {
-    return this.http.get<any | null>(`api/articles/type/${name}`,{params: params});
+    return this.http.get<any | null>(`api/articles/type/${name}`);
   }
 
-  getAllArticles(params: HttpParams)
+  getArticlesByQuery(params:HttpParams)
   {
-    return this.http.get<any | null>(`api/articles/all`,{params: params});
+    return this.http.get<any|null>(`api/articles/search`, {params:params});
+  }
+
+  getAllArticles()
+  {
+    return this.http.get<any | null>(`api/articles/all`);
   }
 
   getArticleInfo(id: number)
@@ -50,5 +55,10 @@ export class ArticlesService {
   updateArticle(id:number, data: FormData)
   {
     return this.http.put(`api/articles/update/${id}`, data);
+  }
+
+  buyAnArticle(articleId:number)
+  {
+    return this.http.put(`/api/articles/buy/${articleId}`,null);
   }
 }

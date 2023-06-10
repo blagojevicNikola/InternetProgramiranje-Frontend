@@ -22,7 +22,7 @@
                 </div>
                 <div class="price-container">
                     <a>{{articleInfo.price}}KM</a>
-                    <button>Kupi</button>
+                    <button *ngIf="canBuy()" (click)="onBuyNav()">Kupi</button>
                 </div>
             </div>
             <mat-divider></mat-divider>
@@ -41,7 +41,8 @@
                     </mat-list>
                 </div>
             </div> -->
-            <app-image-slider *ngIf="articleInfo.photos.length>0 else noimages" [images]="articleInfo.photos"></app-image-slider>
+            <app-image-slider *ngIf="articleInfo.photos.length>0 else noimages"
+                [images]="articleInfo.photos"></app-image-slider>
             <h2 #osobine class="attributes-style">Osobine</h2>
             <div class="attributes-container" *ngIf="articleInfo.attributes.length>0; else noattributes">
                 <div class="single-attribute-container" *ngFor="let att of articleInfo.attributes">
@@ -60,19 +61,22 @@
             <h2 #detalji class="attributes-style">Detalji</h2>
             <a class="details">{{articleInfo.details}}</a>
             <h2 #komentari class="attributes-style">Komentari</h2>
-            <div class="post-comment-container">
-                <mat-form-field appearance="outline">
-                    <mat-label>Komentar</mat-label>
-                    <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-                        cdkAutosizeMaxRows="5"></textarea>
-                </mat-form-field>
-                <button mat-flat-button>Postavi</button>
+            <div *ngIf="authService.isAuthenticated()" class="post-comment-container">
+                <form [formGroup]="commentGroup" (submit)="postComment()">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Komentar</mat-label>
+                        <textarea formControlName="comment" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                            cdkAutosizeMaxRows="5"></textarea>
+                    </mat-form-field>
+                    <button [disabled]="postCommentDisabled" mat-flat-button>Post</button>
+                </form>
             </div>
-            <div class="comments-section" *ngIf="articleInfo.comments && articleInfo.comments.length>0; else nocomments">
+            <div class="comments-section"
+                *ngIf="articleInfo.comments && articleInfo.comments.length>0; else nocomments">
                 <div class="comment" *ngFor="let com of articleInfo.comments">
                     <div class="header">
-                        <a class="com-username">{{com.username}}</a>
-                        <a class="com-date">{{com.dateTime}}</a>
+                        <a class="com-username">{{com.userPersonUsername}}</a>
+                        <a class="com-date">{{com.dateTime | date: 'dd-MM-yyyy'}}</a>
                     </div>
                     <a class="com-content">{{com.content}}</a>
                 </div>

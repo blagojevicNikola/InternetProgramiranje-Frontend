@@ -40,7 +40,10 @@ export class RegisterComponent {
       avatar: null,
       cityName: this.registerForm.controls['city'].value!
     }).subscribe({
-      next: (v) => { localStorage.setItem('token', v.token); this.router.navigateByUrl('') },
+      next: (v) => { 
+        this.matSnackBar.open("You successfully registered!", "Okay", )
+        this.router.navigateByUrl('/login') 
+      },
       error: (e) => {
         this.disabledButton = false;
         if (e.status === 400) {

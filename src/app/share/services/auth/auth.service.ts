@@ -7,6 +7,8 @@ import { RegisterRequest } from '../../models/register-request';
 })
 export class AuthService {
 
+  public usernameForActivation:string|null = null;
+
   constructor(private http: HttpClient) { }
 
   private loadToken() {
@@ -54,6 +56,11 @@ export class AuthService {
 
   register(req: RegisterRequest) {
     return this.http.post<any>('/api/auth/register-user', req);
+  }
+
+  activate(username:string, pin:number)
+  {
+    return this.http.post<any>('/api/auth/activate', {username, pin});
   }
 
   logout()

@@ -1,0 +1,36 @@
+.main-container{
+    display:flex;
+    height:100%;
+    width:100%;
+    justify-content:center;
+    align-items:center;
+}
+
+mat-card{
+    display:flex;
+    flex:1;
+    flex-direction:column;
+    max-width: 430px;
+    padding-bottom:20px;
+    padding-right:30px;
+    padding-left:30px;
+}
+
+mat-card > form{
+    display:flex;
+    flex:1;
+    flex-direction:column;
+}
+
+
+mat-card > p{
+    font-weight:200;
+    font-size: 17px;
+    color:rgb(32, 32, 32);
+    margin-bottom:30px;
+}
+
+mat-card > mat-form-field{
+    display:flex;
+    flex:1;
+}

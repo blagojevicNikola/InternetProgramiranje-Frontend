@@ -1,4 +1,4 @@
 <mat-nav-list>
-    <div class="category-container" *ngFor="let cat of categories" [routerLink]="['/category', cat.name | lowercase]" routerLinkActive="category-active" [routerLinkActiveOptions]="{exact:
+    <div class="category-container" *ngFor="let cat of categories" [routerLink]="[cat.name | lowercase]" routerLinkActive="category-active" [routerLinkActiveOptions]="{exact:
         false}">{{cat.name}}</div>
 </mat-nav-list>

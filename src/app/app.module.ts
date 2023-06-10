@@ -29,6 +29,10 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { SupportChatComponent } from './support-chat/support-chat.component';
 import { MessagesListComponent } from './support-chat/components/messages-list/messages-list.component';
 import { FilterDialogComponent } from './articles-overeview/components/filter-dialog/filter-dialog/filter-dialog.component';
+import { ArticlesMainPageComponent } from './articles-main-page/articles-main-page.component';
+import { ArticlesSearchPageComponent } from './articles-search-page/articles-search-page.component';
+import { PaymentComponent } from './payment/payment.component';
+import { ActivateProfileComponent } from './activate-profile/activate-profile.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +51,10 @@ import { FilterDialogComponent } from './articles-overeview/components/filter-di
     SupportChatComponent,
     MessagesListComponent,
     FilterDialogComponent,
+    ArticlesMainPageComponent,
+    ArticlesSearchPageComponent,
+    PaymentComponent,
+    ActivateProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,9 @@ import { ArticleInfo } from './models/article-info';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ApproveDialogComponent } from './components/approve-dialog/approve-dialog.component';
+import { FormControl, FormGroup } from '@angular/forms';
+import { CommentService } from '../share/services/comments/comment.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-review',
@@ -20,8 +23,13 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
   articleInfo!:ArticleInfo | null;
   articleInfoSub!: Subscription;
+  postCommentSub:Subscription|null = null;
   private idOfArticle: number | null = null;
   private deleteSub: Subscription | null = null;
+  postCommentDisabled:boolean = false;
+  commentGroup:FormGroup = new FormGroup({
+    comment: new FormControl<string>('')
+  })
   // name$ : Observable<ParamMap> = this.route.paramMap
   // product$: Observable<ArticleInfo | null> = this.name$.pipe(switchMap((params)=> {
   //   let id = params.get('id');
@@ -33,9 +41,10 @@ export class ReviewComponent implements OnInit, OnDestroy {
   // }),
   // shareReplay(1))
 
-  constructor(private authService:AuthService, private sidebarService: SidebarService,
+  constructor(public authService:AuthService, private sidebarService: SidebarService,
     private route: ActivatedRoute, private articleService:ArticlesService,
     private router:Router, public spinnerService:SpinnerService, 
+    private commentService:CommentService,
     private snackBar:MatSnackBar, private dialog:MatDialog){
     this.sidebarService.disable();
   }
@@ -80,6 +89,19 @@ export class ReviewComponent implements OnInit, OnDestroy {
       return false;
   }
 
+  canBuy()
+  {
+    if(this.articleInfo==null)
+    {
+      return false;
+    }
+    if(this.authService.isAuthenticated() && this.articleInfo.user.username!=this.authService.getUsername())
+    {
+      return true;
+    }
+    return false;
+  }
+
   openProfile()
   {
     this.router.navigateByUrl(`profile/${this.articleInfo?.user.username}`)
@@ -101,6 +123,42 @@ export class ReviewComponent implements OnInit, OnDestroy {
         })
       }
     });
+  }
+
+  postComment()
+  {
+    if(this.commentGroup.get('comment')?.value != '')
+    {
+      this.postCommentDisabled=true;
+      this.postCommentSub = this.commentService.postComment(this.articleInfo?.id!, this.commentGroup.get('comment')?.value).subscribe({
+        next:(response)=>{
+          if(response!=null)
+          {
+            this.articleInfo?.comments.push(response);
+          }
+          this.postCommentDisabled=false;
+          this.snackBar.open('Comment posted successfully!', 'Okay', {duration:3000});
+        },
+       error: (err:HttpErrorResponse)=>{
+          if(err.status===409)
+          {
+            this.snackBar.open('Comment couldn\'t be posted', 'Okay', {duration:3000});
+          }else
+          {
+            this.snackBar.open('Error!', 'Okay', {duration:3000});
+          }
+          this.postCommentDisabled=false;
+       }
+      });
+    }
+  }
+
+  onBuyNav()
+  {
+    if(this.articleInfo)
+    {
+      this.router.navigateByUrl(`/buy/${this.articleInfo.id!}`);
+    }
   }
 
   onUpdateArticle()

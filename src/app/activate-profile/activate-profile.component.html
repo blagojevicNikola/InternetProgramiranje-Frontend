@@ -1,0 +1,15 @@
+<div class="main-container">
+    <mat-card>
+        <mat-card-header>
+            <h3>Activate with PIN</h3>
+        </mat-card-header>
+        <p>The PIN code has been sent to your email! Write it in the field below to activate your account!</p>
+        <form (submit)="onActivate()" [formGroup]="pinGroup">
+            <mat-form-field appearance="outline">
+                <mat-label>Enter your PIN</mat-label>
+                <input matInput formControlName="pin" placeholder="_ _ _ _">
+            </mat-form-field>
+            <button mat-flat-button color="primary">Send</button>
+        </form>
+    </mat-card>
+</div>

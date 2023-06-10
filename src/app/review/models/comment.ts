@@ -1,6 +1,5 @@
 export interface Comment{
-    id: number;
-    username:string;
+    userPersonUsername:string;
     content: string;
     dateTime: Date;
 }
