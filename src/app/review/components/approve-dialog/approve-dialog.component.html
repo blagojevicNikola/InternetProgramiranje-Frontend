@@ -4,8 +4,8 @@
             {{data.message}}
         </a>
     </div>
-    <mat-dialog-actions style="display:flex">
-        <button mat-flat-button (click)="onNoClick()">Izadji</button>
-        <button mat-flat-button (click)="onYesClick()">Nastavi</button>
+    <mat-dialog-actions style="display:flex; justify-content: center;">
+        <button mat-stroked-button color="primary" (click)="onNoClick()">Izadji</button>
+        <button  mat-flat-button color="primary" (click)="onYesClick()">Nastavi</button>
     </mat-dialog-actions>
 </div>

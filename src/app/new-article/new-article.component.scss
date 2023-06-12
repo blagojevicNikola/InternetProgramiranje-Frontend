@@ -1,3 +1,5 @@
+@import '../../_variables.scss';
+
 .container {
     display: flex;
     flex: 1;
@@ -18,7 +20,7 @@
 .header {
     font-weight: 400;
     font-size: 24px;
-    color: #333D51;
+    color: map-get($md-dark-blue,500);
     margin-bottom: 40px;
     margin-left: 50px
 }
@@ -26,7 +28,7 @@
 .attributes-title {
     font-weight: 300;
     font-size: 20px;
-    color: #333D51;
+    color: map-get($md-light-blue,700);
     margin-right: 10px;
 }
 

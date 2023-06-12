@@ -12,7 +12,7 @@ import { SpinnerService } from '../share/services/spinner/spinner.service';
 @Component({
   selector: 'app-support-chat',
   templateUrl: './support-chat.component.html',
-  styleUrls: ['./support-chat.component.css']
+  styleUrls: ['./support-chat.component.scss']
 })
 export class SupportChatComponent implements OnInit, OnDestroy {
 

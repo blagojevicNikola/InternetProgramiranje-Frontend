@@ -7,10 +7,11 @@ import { MaterialModule } from '../material/material.module';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { ArticlesOvereviewComponent } from '../articles-overeview/articles-overeview.component';
 import { ArticlesListComponent } from '../articles-overeview/components/articles-list/articles-list.component';
+import { AttributesDialogComponent } from '../new-article/components/attributes-dialog/attributes-dialog.component';
 
 
 @NgModule({
-  declarations: [NavigationComponent, SideNavComponent, ArticlesOvereviewComponent,
+  declarations: [NavigationComponent, SideNavComponent, ArticlesOvereviewComponent, AttributesDialogComponent,
     ArticlesListComponent],
   imports: [
     MaterialModule,

@@ -20,7 +20,7 @@
     display:flex;
     flex:1;
     flex-direction: row;
-    background-color: red;
+    background-color: transparent;
     align-items: center;
 }
 
@@ -47,7 +47,7 @@
 
 .paginator-container > mat-paginator{
     align-self:end;
-    background-color: #F4F3EA;
+    background-color: #e7e7e7;
 }
 
 

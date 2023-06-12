@@ -8,13 +8,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-activate-profile',
   templateUrl: './activate-profile.component.html',
-  styleUrls: ['./activate-profile.component.css']
+  styleUrls: ['./activate-profile.component.scss']
 })
 export class ActivateProfileComponent implements OnInit, OnDestroy{
 
   private activateSub:Subscription|null = null;
   pinGroup:FormGroup = new FormGroup({
-    pin: new FormControl<number|undefined>(undefined, [Validators.required])
+    pin: new FormControl<number|undefined>(undefined, [Validators.required, Validators.maxLength(4), Validators.minLength(4), Validators.pattern('^[0-9]+$')])
   })
 
   constructor(private authService:AuthService, private router:Router, private snackBar:MatSnackBar){

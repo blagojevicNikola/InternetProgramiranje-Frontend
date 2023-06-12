@@ -6,4 +6,5 @@ export interface Article
     price:number;
     photoUrl:string;
     date:string;
+    isNew:boolean;
 }

@@ -1,7 +1,8 @@
+import { CategoryState } from "src/app/articles-overeview/models/category-state";
 import { Attribute } from "src/app/share/models/attribute";
 
-export interface DialogResult
+export interface DialogReult
 {
-    attributes: Attribute[]
+    attributes: CategoryState[]
     accepted:boolean;
 }

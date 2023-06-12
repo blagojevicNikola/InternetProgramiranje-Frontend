@@ -2,9 +2,9 @@
     <img *ngFor="let im of images; let i = index" [src]="im.url" [ngClass]="{'image-active': currentIndex === i}"
         class="image-style">
     <div class="right-arrow">
-        <button  mat-mini-fab (click)="nextImage()"><mat-icon>keyboard_arrow_right</mat-icon></button>
+        <button  mat-icon-button color="primary" (click)="nextImage()"><mat-icon>keyboard_arrow_right</mat-icon></button>
     </div>
-    <div class="left-arrow"><button mat-mini-fab (click)="prevImage()"><mat-icon>keyboard_arrow_left</mat-icon></button></div>
+    <div class="left-arrow"><button mat-icon-button color="primary" (click)="prevImage()"><mat-icon>keyboard_arrow_left</mat-icon></button></div>
 </div>
 <div *ngIf="indicators" class="dot-container">
     <span *ngFor="let dot of images; let i = index" [ngClass]="{'active': currentIndex === i}" 

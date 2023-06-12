@@ -10,7 +10,7 @@
                 <mat-form-field style="flex:1; margin-right:10px" appearance="outline">
                     <mat-label>Kategorija</mat-label>
                     <mat-select (opened)="test()" formControlName="cat" [(value)]="selectedCategory" (selectionChange)="onChanged()">
-                        <mat-option *ngFor="let cat of categories$|async" value="{{cat.id}}">{{cat.name}}</mat-option>
+                        <mat-option *ngFor="let cat of categories" value="{{cat.name}}">{{cat.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field style="flex:1; margin-left:10px;" appearance="outline">
@@ -24,7 +24,7 @@
                 <textarea matInput formControlName="details" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
                 cdkAutosizeMaxRows="5"></textarea>
             </mat-form-field>
-            <mat-radio-group formControlName="newArticle">
+            <mat-radio-group color="primary" formControlName="newArticle">
                 <mat-radio-button checked="true"  [value]="true">Novo</mat-radio-button>
                 <mat-radio-button [value]="false">Korišteno</mat-radio-button>
             </mat-radio-group>
@@ -35,9 +35,9 @@
                 <mat-icon style="color:#333D51">edit</mat-icon>
             </button>
         </div>
-        <div *ngIf="dialogResult && dialogResult.attributes.length > 0; else attribute_message" class="attribute-list">
-            <div *ngFor="let a of dialogResult.attributes" class="attr">
-                <a>{{a.name}}</a>
+        <div *ngIf="validAttributes().length > 0; else attribute_message" class="attribute-list">
+            <div *ngFor="let a of validAttributes()" class="attr">
+                <a>{{a.viewName}}</a>
                 <a class="value-text">{{a.value}}</a>
             </div>
         </div>
@@ -55,7 +55,7 @@
                 <img  [src]="preview[i]" style=" width: 100%; max-height: 100%; object-fit: contain;">
             </div>
         </div>
-        <button mat-flat-button class="submit-button" [disabled]="sending" (click)="submit()">Objavi</button>
+        <button mat-flat-button color="primary" class="submit-button" [disabled]="sending" (click)="submit()">Create</button>
     </div>
 </div>
 

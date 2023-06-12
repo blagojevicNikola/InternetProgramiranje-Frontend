@@ -1,3 +1,5 @@
+@import '../../_variables.scss';
+
 .main-container
 {
     display:flex;
@@ -9,14 +11,14 @@
 .right-container
 {
     flex:1;
-    background-color: rgb(193, 193, 193);
+    background-color:map-get($md-silver-gray,200);
 }
 
 .left-container
 {   
     display: flex;
     flex:1;
-    background-color: rgb(244, 244, 244);
+    background-color: map-get($md-light-blue,200);
     justify-content: center;
     align-items: center;
 }
@@ -34,7 +36,7 @@
     margin-right: 20px;
     margin-top: 10px;
     margin-top: 10px;
-    border-radius: 20px;
+    border-radius: 5px;
     max-height: 800px;
     max-width: 450px;
     max-width: 450px;

@@ -9,7 +9,7 @@
                     <a>{{msg.content}}</a>
                 </div>
                 <div class="icon-container">
-                    <mat-icon matTooltip="Sent" *ngIf="msg.seen===false; else seen">check_circle_outline</mat-icon>
+                    <mat-icon color="accent" matTooltip="Sent" *ngIf="msg.seen===false; else seen">check_circle_outline</mat-icon>
                 </div>
             </div>
     </div>
@@ -22,5 +22,5 @@
 </ng-template>
 
 <ng-template #seen>
-    <mat-icon matTooltip="Seen">check_circle</mat-icon>
+    <mat-icon color="accent" matTooltip="Seen">check_circle</mat-icon>
 </ng-template>

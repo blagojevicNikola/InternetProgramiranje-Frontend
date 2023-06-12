@@ -1,3 +1,5 @@
+@import '../../../../_variables.scss';
+
 .img-style {
     height:160px;
     width:100%;
@@ -34,15 +36,21 @@
     }
 }
 
-@media (min-width: 751px) and (max-width: 999px) {
+@media (min-width: 751px) and (max-width: 900px) {
     .lower-section {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
-@media (min-width:1000px) {
+@media (min-width:900px) and (max-width: 1050px) {
     .lower-section {
         grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media (min-width:1050px) {
+    .lower-section {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
 }
 
@@ -61,7 +69,7 @@ mat-card {
     padding: 8px;
     flex: 1;
     background-color: rgb(243, 243, 243);
-    transition:0.1s ease;
+    transition:0.15s ease;
 }
 
 mat-card > div {
@@ -73,12 +81,12 @@ mat-card > div {
 
 mat-card:hover{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .header {
     font-size: larger;
-    color: #333D51;
+    color: map-get($md-dark-blue,500);
     font-weight: 600;
     font-size: 20px;
     word-wrap: normal;
@@ -96,7 +104,7 @@ mat-card:hover{
     flex:1;
     font-weight: 600;
     font-size: medium;
-    color: #232323;
+    color: map-get($md-light-blue,700);
     align-self:flex-start;
 }
 
@@ -112,4 +120,8 @@ mat-card:hover{
 
 .buy {
     color: #D3AC2B;
+}
+
+.new-icon{
+    color: map-get($map: $md-gold-yellow, $key: 900);
 }

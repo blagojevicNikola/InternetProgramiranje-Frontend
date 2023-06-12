@@ -44,7 +44,9 @@ export class ArticlesService {
 
   createArticle(data: FormData)
   {
-    return this.http.post(`api/articles/create`, data);
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    return this.http.post(`api/articles/create`, data, {headers:headers});
   }
 
   deleteArticle(id:number)
@@ -54,7 +56,9 @@ export class ArticlesService {
 
   updateArticle(id:number, data: FormData)
   {
-    return this.http.put(`api/articles/update/${id}`, data);
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    return this.http.post(`api/articles/update/${id}`, data, {headers:headers});
   }
 
   buyAnArticle(articleId:number)

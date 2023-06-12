@@ -1,3 +1,5 @@
+@import '../../_variables.scss';
+
 .sidenav-container {
   flex: 1
 }
@@ -17,7 +19,7 @@
 }
 
 .header-section {
-  background-color: #333D51;
+  background-color: map-get($md-dark-blue,500);
   height: 70px;
   display: flex;
   flex-direction: row;
@@ -44,7 +46,7 @@
 .options-section {
   display: flex;
   flex: 1;
-  max-width: 170px;
+  max-width: 140px;
   align-items: center;
   justify-content: space-between;
   padding-right: 10px;
@@ -66,13 +68,20 @@
 
 .hamburger-button,
 .logo-section {
+  padding-left:10px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .logo-section {
-  padding-left: 10px;
+  display:flex;
+  flex:1;
+  max-width:150px;
+}
+
+.logo-section > img{
+  width:100%;
 }
 
 .whole-section {
@@ -108,6 +117,7 @@
   font-size:30px;
   height: 30px;
   width: 30px;
+  color:#e7e7e7
 }
 
 mat-sidenav {
@@ -122,7 +132,7 @@ mat-sidenav-container {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #F4F3EA;
+  background-color: #e7e7e7;
 }
 
 .searchTerm {
@@ -140,7 +150,7 @@ mat-sidenav-container {
   width: 550px;
   min-width: 50px;
   border: 3px solid #F4F3EA;
-  background-color: #f3f3f3;
+  background-color: #e7e7e7;
   height: 40px;
   border-radius: 12px;
   outline: none;
@@ -156,7 +166,7 @@ mat-sidenav-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #333D51;
+  background: map-get($md-light-blue,600);
   text-align: center;
   color: #262626;
   border-radius: 0px 11px 11px 0px;
@@ -167,7 +177,7 @@ mat-sidenav-container {
 }
 
 .searchButton:hover{
-  background:#4c5567
+  background:map-get($md-light-blue,400);
 }
 .login-button{  
   background-color: transparent;
@@ -212,5 +222,13 @@ mat-sidenav-content {
   flex: 1;
 }
 
+
+.footer{
+  display:flex;
+  flex-direction:row;
+  height:100px;
+  background-color: map-get($md-dark-blue,500);
+  margin-top:-120px;
+}
 
 

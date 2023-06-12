@@ -43,7 +43,6 @@ import { ActivateProfileComponent } from './activate-profile/activate-profile.co
     ProfileComponent,
     ImageSliderComponent,
     NewArticleComponent,
-    AttributesDialogComponent,
     WarningDialogComponent,
     ApproveDialogComponent,
     UpdateArticleComponent,

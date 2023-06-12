@@ -1,7 +1,7 @@
 <div class="container">
     <div class="upper-section">
         <div class="selected-filters-container">
-            <mat-chip *ngFor="let selected of this.filterService.getSelectedFilters()">{{selected.name}}:{{selected.value}}</mat-chip>
+            <mat-chip-option selected="true" *ngFor="let selected of this.filterService.getSelectedFilters()" >{{selected.name}}:{{selected.value}}</mat-chip-option>
         </div>
         <button (click)="onFilter()" mat-icon-button style="align-self: end;">
             <mat-icon>settings</mat-icon>

@@ -1,3 +1,5 @@
+@import '../../_variables.scss';
+
 .main-container{
     display:flex;
     height:100%;
@@ -68,7 +70,7 @@ app-messages-list{
 }
 
 .chat-textarea:focus{
-    border: solid 2px purple;
+    border: solid 2px map-get($md-dark-blue,500);
     color:grey
 }
 

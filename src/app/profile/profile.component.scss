@@ -1,9 +1,11 @@
+@import '../../_variables.scss';
+
 .main-container{
     display:flex;
     flex-direction: row;
     flex:1;
     height: 100%;
-    background-color: #F4F3EA;
+    background-color: map-get($md-silver-gray,500);
 }
 
 .profile-container{
@@ -68,13 +70,13 @@
 .username{
     font-size: 18px;
     font-weight: 700;
-    color:#323232
+    color:map-get($md-dark-blue,500)
 }
 
 .city{
     font-size: 16px;
     font-weight: lighter;
-    color:#444444
+    color:map-get($md-dark-blue,300)
 }
 
 mat-divider{
@@ -124,7 +126,7 @@ mat-divider{
 
 .paginator-container > mat-paginator{
    
-    background-color: #F4F3EA;
+    background-color: map-get($md-silver-gray,500);
 }
 
 ::ng-deep .mat-mdc-tab-body-wrapper {

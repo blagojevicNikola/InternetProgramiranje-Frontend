@@ -12,7 +12,7 @@
 </ng-template>
 
 <ng-template #content>
-    <section style="display: flex; flex-direction: row; flex:1; justify-content: center;"
+    <section style="display: flex; flex-direction: row; flex:1; justify-content: center; padding-bottom:20px;"
         *ngIf="articleInfo!=null; else empty">
         <div class="middle-container">
             <div class="header-container">
@@ -44,6 +44,16 @@
             <app-image-slider *ngIf="articleInfo.photos.length>0 else noimages"
                 [images]="articleInfo.photos"></app-image-slider>
             <h2 #osobine class="attributes-style">Osobine</h2>
+            <div class="is-used" *ngIf="articleInfo.isNew">
+                <div class="border-attr">
+                    <a>New</a>
+                </div>
+            </div>
+            <div class="is-used" *ngIf="articleInfo.isNew==false">
+                <div class="border-attr">
+                    <a>Used</a>
+                </div>
+            </div>
             <div class="attributes-container" *ngIf="articleInfo.attributes.length>0; else noattributes">
                 <div class="single-attribute-container" *ngFor="let att of articleInfo.attributes">
                     <a class="attribute-name">{{att.name}}</a>
@@ -65,10 +75,10 @@
                 <form [formGroup]="commentGroup" (submit)="postComment()">
                     <mat-form-field appearance="outline">
                         <mat-label>Komentar</mat-label>
-                        <textarea formControlName="comment" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-                            cdkAutosizeMaxRows="5"></textarea>
+                        <textarea formControlName="comment" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                            cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
                     </mat-form-field>
-                    <button [disabled]="postCommentDisabled" mat-flat-button>Post</button>
+                    <button color="primary" [disabled]="postCommentDisabled" mat-flat-button>Post</button>
                 </form>
             </div>
             <div class="comments-section"
@@ -92,22 +102,22 @@
                     <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #moreOptionsMenu="matMenu">
-                    <button mat-menu-item (click)="onDeleteArticle()" *ngIf="this.isAuthenticatedUser()">
-                        <mat-icon>delete_outline</mat-icon>
-                        <a>Obrisi</a>
+                    <button mat-menu-item (click)="openProfile()">
+                        <mat-icon>person</mat-icon>
+                        <a>Profile</a>
                     </button>
                     <button mat-menu-item (click)="onUpdateArticle()" *ngIf="this.isAuthenticatedUser()">
                         <mat-icon>edit</mat-icon>
-                        <a>Izmjeni</a>
+                        <a>Edit</a>
                     </button>
-                    <button mat-menu-item (click)="openProfile()">
-                        <mat-icon>person</mat-icon>
-                        <a>Otvori profil</a>
+                    <button mat-menu-item (click)="onDeleteArticle()" *ngIf="this.isAuthenticatedUser()">
+                        <mat-icon>delete_outline</mat-icon>
+                        <a>Delete</a>
                     </button>
                 </mat-menu>
             </div>
             <div class="overeview-nav-container">
-                <button (click)="scroll(slike)" class="scroll-nav-button">Slike</button>
+                <button color="accent" (click)="scroll(slike)" class="scroll-nav-button">Slike</button>
                 <button (click)="scroll(osobine)" class="scroll-nav-button">Osobine</button>
                 <button (click)="scroll(detalji)" class="scroll-nav-button">Detalji</button>
                 <button (click)="scroll(komentari)" class="scroll-nav-button">Komentari</button>

@@ -6,8 +6,8 @@
         <div class="send-container">
             <form [formGroup]="formGroupMsg">
             <textarea formControlName="msg" rows="3" placeholder="Message..." class="chat-textarea"></textarea>
-            <button [disabled]="formGroupMsg.valid===false" (click)="sendMessage()" mat-mini-fab>
-                <mat-icon>send</mat-icon>
+            <button color="primary" [disabled]="formGroupMsg.valid===false" (click)="sendMessage()" mat-mini-fab>
+                <mat-icon style="color:white">send</mat-icon>
               </button>
             </form>
         </div>

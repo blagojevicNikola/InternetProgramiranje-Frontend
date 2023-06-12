@@ -6,6 +6,6 @@ export interface NewArticleReq
     price: number;
     details: string;
     isNew: boolean;
-    categoryId:number;
+    categoryName:string;
     attributes: Attribute[]
 }

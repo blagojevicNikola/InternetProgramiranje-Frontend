@@ -1,3 +1,6 @@
+@import '../../_variables.scss';
+
+
 .main-container{
     display:flex;
     height: 100%;
@@ -40,6 +43,7 @@
 .title a{
     font-size: 1.2rem;
     font-weight: 200;
+    color:map-get($md-light-blue,700)
 }
 
 @media screen and (max-width: 600px){

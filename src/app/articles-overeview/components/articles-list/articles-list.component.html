@@ -6,6 +6,7 @@
             </div>
             <div class="card-header">
                 <a class="header">{{a.title}}</a>
+                <mat-icon class="new-icon" *ngIf="a.isNew" matTooltip="New">new_releases</mat-icon>
             </div>
             <!-- <mat-divider style="margin-top:10px; margin-bottom:10px; margin-right:4px; margin-left:4px;"></mat-divider> -->
             <div class="card-content">

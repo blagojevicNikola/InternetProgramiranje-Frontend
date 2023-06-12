@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { map, shareReplay, take } from 'rxjs/operators';
 import { CategoryService } from '../share/services/category.service';
 import { Router } from '@angular/router';
 import { Category } from '../share/models/category';
@@ -10,11 +10,12 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from '../share/services/auth/auth.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FilterService } from '../share/services/filter/filter.service';
+import { SpinnerService } from '../share/services/spinner/spinner.service';
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit, OnDestroy {
 
@@ -37,11 +38,13 @@ export class NavigationComponent implements OnInit, OnDestroy {
   })
 
   constructor(private breakpointObserver: BreakpointObserver, private categoryService: CategoryService, private router: Router,
-    public sidebarService: SidebarService, public authService: AuthService, private filterService:FilterService) { }
+    public sidebarService: SidebarService, public authService: AuthService, private filterService:FilterService,
+    public spinnerService:SpinnerService) { }
   
   ngOnInit(): void {
-    this.categoriesSub = this.categoryService.getCategories().subscribe((data)=>{
+    this.categoriesSub = this.categoryService.getCategories().pipe(take(1)).subscribe((data)=>{
       this.categories = data;
+      console.log('TESSSSSSSSSSSSSSSSSSST');
     })
     //this.categories$ = this.categoryService.getCategories$.pipe((data) => { return data }, shareReplay(1))
   }
@@ -51,6 +54,11 @@ export class NavigationComponent implements OnInit, OnDestroy {
     {
       this.categoriesSub.unsubscribe();
     }
+  }
+
+  mainNav()
+  {
+    this.router.navigateByUrl('');
   }
 
   loginNav() {
@@ -78,7 +86,6 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   search(){
-    console.log('333')
     if(this.searchGroup.get('search')?.value !== '')
     {
       let fullUrl = this.router.url;

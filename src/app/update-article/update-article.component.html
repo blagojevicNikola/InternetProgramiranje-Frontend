@@ -10,7 +10,7 @@
                 <mat-form-field style="flex:1; margin-right:10px" appearance="outline">
                     <mat-label>Kategorija</mat-label>
                     <mat-select formControlName="cat" (opened)="test()" [(value)]="selectedCategory" (selectionChange)="onChanged()">
-                        <mat-option *ngFor="let cat of cates" [value]="cat.id">{{cat.name}}</mat-option>
+                        <mat-option *ngFor="let cat of cates" [value]="cat.name">{{cat.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field style="flex:1; margin-left:10px;" appearance="outline">
@@ -35,10 +35,10 @@
                 <mat-icon style="color:#333D51">edit</mat-icon>
             </button>
         </div>
-        <div *ngIf="dialogResult && dialogResult.attributes.length > 0; else attribute_message" class="attribute-list">
-            <div *ngFor="let a of dialogResult.attributes" class="attr">
-                <a>{{a.name}}</a>
-                <a class="value-text">{{a.value}}</a>
+        <div *ngIf="validAttributes().length > 0; else attribute_message" class="attribute-list">
+            <div *ngFor="let att of validAttributes()" class="attr">
+                <a>{{att.viewName}}</a>
+                <a class="value-text">{{att.value}}</a>
             </div>
         </div>
         <div class="attributes-header">

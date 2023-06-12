@@ -3,14 +3,19 @@
 </div>
 
 <ng-template #content>
-    <div class="dialog-contianer" *ngIf="attributes.length>0; else empty">
+    <div class="dialog-contianer" *ngIf="innerState.length>0; else empty">
         <form [formGroup]="attributeFormGroup">
-                <mat-form-field appearance="outline" *ngFor="let att of attributes; let i = index">
+            <ng-container *ngFor="let att of innerState">
+                <mat-form-field appearance="outline">
                     <mat-label>
-                        {{att.name}}
+                        {{att.viewName}}
                     </mat-label>
-                    <input matInput formControlName="{{att.name}}">
+                    <input *ngIf="att.multivalue===false" matInput formControlName="{{att.viewName}}">
+                    <mat-select *ngIf="att.multivalue" formControlName="{{att.viewName}}">
+                        <mat-option value="{{cont}}" *ngFor="let cont of att.content">{{cont}}</mat-option>
+                    </mat-select> 
                 </mat-form-field>
+            </ng-container>
         </form>
         <button mat-flat-button (click)="onNoClick()">Potvrdi</button>
     </div>

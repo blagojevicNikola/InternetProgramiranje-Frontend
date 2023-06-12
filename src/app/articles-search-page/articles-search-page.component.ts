@@ -14,7 +14,7 @@ import { MatGridTileHeaderCssMatStyler } from '@angular/material/grid-list';
 @Component({
   selector: 'app-articles-search-page',
   templateUrl: './articles-search-page.component.html',
-  styleUrls: ['./articles-search-page.component.css']
+  styleUrls: ['./articles-search-page.component.scss']
 })
 export class ArticlesSearchPageComponent implements OnInit, OnDestroy {
 

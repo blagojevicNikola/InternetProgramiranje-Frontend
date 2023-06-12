@@ -1,7 +1,9 @@
+@import '../../_variables.scss';
+
 .main-container {
     display: flex;
     flex: 1;
-    background-color: #F4F3EA;
+    background-color: #e7e7e7;
     justify-content: center;
     flex-direction: row;
     min-height:100%
@@ -18,7 +20,7 @@
 
 .title-style {
     font-weight: 100;
-    color:#333D51;
+    color:map-get($map: $md-dark-blue, $key: 500);
     font-size:22px;
     font-style: normal;
 }
@@ -58,10 +60,10 @@
 }
 
 .price-container>a{
-    font-weight: 700;
+    font-weight: 400;
     font-size:22px;
-    color:#333D51;
-    align-self: center;;
+    color:map-get($md-light-blue,600);
+    align-self: center;
 }
 
 .price-container>button{
@@ -70,7 +72,7 @@
     padding-right:15px;
     padding-left:15px;
     border-radius:7px;
-    background-color:#D3AC2B;
+    background-color:map-get($md-gold-yellow,800);
     color:#F4F3EA;
     border:none;
     cursor:pointer;
@@ -79,11 +81,33 @@
     align-self: center;
 }
 
+.is-used{
+    margin-left: 30px;
+    margin-top:10px;
+    margin-bottom:10px;
+    display:flex;
+}
+
+.border-attr{
+    display:flex;
+    padding:5px;
+    padding-right:8px;
+    padding-left:8px;
+    border:none;
+    border-radius:15px;
+    background-color: map-get($md-light-blue, 700);
+}
+
+.border-attr > a{
+    color: map-get($md-silver-gray,400);
+    font-weight: bold;
+    font-size:16px;
+}
 
 .attributes-style{
     margin:10px;
     font-weight: 500;
-    color:#333D51;
+    color:map-get($map: $md-dark-blue, $key:300 );
 }
 
 .attributes-container{
@@ -99,7 +123,7 @@
 }
 
 .attribute-name{
-    color:rgb(57, 57, 57);
+    color: map-get($md-dark-blue,400);
     font-weight: bold;
     font-size:16px;
 }
@@ -165,7 +189,7 @@
     flex-direction: column;
     align-self: flex-start;
     position:sticky;
-    margin-top:90px;
+    margin-top:103px;
     margin-left:20px;
     top:0px;
 }
@@ -193,7 +217,7 @@
     font-size: 14px;
     margin-bottom:5px;
     background-color: transparent;
-    color:#D3AC2B;
+    color:map-get($md-light-blue,600);
     border: none;
     cursor:pointer;
 }
@@ -206,7 +230,7 @@
     display:flex;
     flex:1;
     flex-direction: column;
-    background-color:rgb(232, 232, 232);
+    background-color:map-get($md-silver-gray, 300);
     border-radius:3px;
     border:1px solid #333D51;
 }
@@ -229,23 +253,25 @@
 .username{
     font-weight: bolder;
     font-size: medium;
-    color:#333D51
+    color:map-get($md-dark-blue,500)
 }
 
 .city{
     font-weight: lighter;
     font-size: 14px;
-    color:rgb(106, 106, 106)
+    color:map-get($md-dark-blue, 200)
 }
 
 .user-info-container{
-    background-color: white;
+    background-image: linear-gradient(to top, rgba(255,0,0,0), map-get($md-silver-gray,200));
     display:flex;
     flex-direction: row;
     flex:1;
     margin-right:10px;
     margin-left:10px;
     padding:5px;
+    border-radius:4px;
+    padding-bottom:15px;
 }
 
 .spinner-container
