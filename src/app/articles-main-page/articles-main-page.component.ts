@@ -17,13 +17,14 @@ import { PageEvent } from '@angular/material/paginator';
 export class ArticlesMainPageComponent implements OnInit, OnDestroy {
   private articlesSub: Subscription | null = null;
   public page: any | null;
+  currentPage: number =0;
   constructor(private articleService: ArticlesService, private route: ActivatedRoute, public spinnerService: SpinnerService,
     private categoryService: CategoryService, public filterService: FilterService, private router: Router, private dialog: MatDialog) { }
 
 
   ngOnInit(): void {
     this.filterService.restartState();
-    this.articlesSub = this.articleService.getAllArticles().subscribe({
+    this.articlesSub = this.articleService.getAllArticles(null).subscribe({
       next: (value) => { this.page = value; }
     })
   }
@@ -45,9 +46,16 @@ export class ArticlesMainPageComponent implements OnInit, OnDestroy {
   }
 
   onPageChange(event: PageEvent) {
-    // this.currentPage = event.pageIndex;
-    this.filterService.setPageNo(event.pageIndex);
-    this.router.navigate([``], { queryParams: this.filterService.getUrlQuery() })
+    console.log(event.pageIndex);
+    this.currentPage = event.pageIndex;
+    if(this.articlesSub)
+    {
+      this.articlesSub.unsubscribe();
+    }
+    this.articlesSub = this.articleService.getAllArticles(event.pageIndex)
+    .subscribe({
+      next:(value)=>{this.page = value}
+    })
   }
 
 }

@@ -24,6 +24,7 @@
     flex-direction: row;
     background-color: transparent;
     align-items: center;
+    margin-left:10px;
 }
 
 .divider-section{
@@ -54,4 +55,47 @@
 
 .chip-style{
     background-color: map-get($md-light-blue, 500);
+}
+
+.lower-section {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    display: grid;
+    flex: 1;
+    row-gap: 40px;
+    column-gap: 16px;
+    grid-template-columns: 1fr 1fr 1fr
+}
+
+
+@media (max-width: 300px) {
+    .lower-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 300px) and (max-width:750px) {
+    .lower-section {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 750px) and (max-width: 900px) {
+    .lower-section {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (min-width:900px) and (max-width: 1050px) {
+    .lower-section {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media (min-width:1050px) {
+    .lower-section {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
 }

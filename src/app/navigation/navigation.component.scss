@@ -122,7 +122,7 @@
 
 mat-sidenav {
   width: 200px;
-  background-color: #CBD0D8;
+  background-color: map-get($md-silver-gray,900);
 }
 
 mat-sidenav-container {

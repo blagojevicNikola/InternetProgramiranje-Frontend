@@ -22,8 +22,14 @@ export class ArticlesService {
     return this.http.get<any|null>(`api/articles/search`, {params:params});
   }
 
-  getAllArticles()
+  getAllArticles(pageNo:number|null)
   {
+    if(pageNo)
+    {
+      var params = new HttpParams();
+      params = params.append('pageNo', pageNo);
+      return this.http.get<any | null> (`api/articles/all`, {params:params});
+    }
     return this.http.get<any | null>(`api/articles/all`);
   }
 
@@ -32,14 +38,37 @@ export class ArticlesService {
     return this.http.get<ArticleInfo>(`api/articles/info/${id}`)
   }
 
-  getAllActiveArticlesByUsername(name: string | null)
+  getAllActiveArticlesByUsername(name: string | null, pageNo:number | null)
   {
-    return this.http.get<any | null> (`api/articles/active/user/${name}`);
+    if(pageNo)
+    {
+      var params = new HttpParams();
+      params = params.append('pageNo', pageNo);
+      return this.http.get<any | null> (`api/articles/active/user/${name}`, {params:params});
+    }
+    return this.http.get<any|null> (`api/articles/active/user/${name}`);
   }
 
-  getAllSoldArticlesByUsername(name: string | null)
+  getAllSoldArticlesByUsername(name: string | null, pageNo:number | null)
   {
+    if(pageNo)
+    {
+      var params = new HttpParams();
+      params = params.append('pageNo', pageNo);
+      return this.http.get<any | null> (`api/articles/sold/user/${name}`, {params:params});
+    }
     return this.http.get<any | null> (`api/articles/sold/user/${name}`);
+  }
+
+  getAllBoughtArticlesByUsername(name:string, pageNo:number | null)
+  {
+    if(pageNo)
+    {
+      var params = new HttpParams();
+      params = params.append('pageNo', pageNo);
+      return this.http.get<any | null> (`api/articles/bought/user/${name}`, {params:params});
+    }
+    return this.http.get<any | null> (`api/articles/bought/user/${name}`);
   }
 
   createArticle(data: FormData)

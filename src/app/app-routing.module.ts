@@ -16,23 +16,27 @@ import { ArticlesMainPageComponent } from './articles-main-page/articles-main-pa
 import { ArticlesSearchPageComponent } from './articles-search-page/articles-search-page.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ActivateProfileComponent } from './activate-profile/activate-profile.component';
+import { SignedInGuard } from './share/guards/signed-in.guard';
+import { CanActivateGuard } from './share/guards/can-activate.guard';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
-  {path:"activate", component:ActivateProfileComponent},
+  {path:"activate", component:ActivateProfileComponent, canActivate:[CanActivateGuard]},
   {path: '', component: NavigationComponent, children: [
     {path:'', component:ArticlesMainPageComponent},
     {path:'search', component: ArticlesSearchPageComponent},
     {path:':name', component: ArticlesOvereviewComponent},
-    {path: 'article/new', component: NewArticleComponent},
+    {path: 'article/new', component: NewArticleComponent, canActivate:[SignedInGuard]},
     {path:"article/:id", component: ReviewComponent},
     {path: "profile/:name", component: ProfileComponent},
-    {path: 'update/:id', component: UpdateArticleComponent},
-    {path: 'profile/edit/:username', component: EditProfileComponent},
-    {path: 'support/chat', component: SupportChatComponent},
-    {path: 'buy/:id', component: PaymentComponent}
+    {path: 'update/:id', component: UpdateArticleComponent, canActivate:[SignedInGuard]},
+    {path: 'profile/edit/:username', component: EditProfileComponent, canActivate:[SignedInGuard]},
+    {path: 'support/chat', component: SupportChatComponent, canActivate:[SignedInGuard]},
+    {path: 'buy/:id', component: PaymentComponent, canActivate:[SignedInGuard]}
   ]},
+  {path:'**', component:NotFoundComponent}
 ];
 
 @NgModule({

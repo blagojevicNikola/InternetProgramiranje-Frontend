@@ -21,7 +21,7 @@
                     <a class="date">{{articleInfo.date | date: 'dd-MM-yyyy'}}</a>
                 </div>
                 <div class="price-container">
-                    <a>{{articleInfo.price}}KM</a>
+                    <a>{{articleInfo.price}} KM</a>
                     <button *ngIf="canBuy()" (click)="onBuyNav()">Kupi</button>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <div class="whole-section">
   <div class="header-section" color="primary">
     <div class="hamburger-button">
-      <button color="accent" type="button" aria-label="Toggle sidenav" mat-icon-button>
+      <button color="accent" type="button" aria-label="Toggle sidenav" (click)="toggle()" mat-icon-button>
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
     </div>
@@ -34,11 +34,11 @@
   </div>
   <div class="content-section">
     <mat-sidenav-container>
-      <!-- <mat-sidenav #drawer mode="side" *ngIf="showSidenav === true"
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="(isHandset$ | async) === false && showSidenav === true">
+      <mat-sidenav [class.mat-elevation-z5]="true" #drawer mode="over"
+        [attr.role]="'dialog'"
+        >
         <app-side-nav [categories]="categories"></app-side-nav>
-      </mat-sidenav> -->
+      </mat-sidenav> 
       <mat-sidenav-content>
         <router-outlet></router-outlet>
       </mat-sidenav-content>

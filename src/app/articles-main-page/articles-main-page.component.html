@@ -3,7 +3,7 @@
         <div class="selected-filters-container">
             <mat-chip *ngFor="let selected of this.filterService.getSelectedFilters()">{{selected.name}}:{{selected.value}}</mat-chip>
         </div>
-        <button (click)="onFilter()" mat-icon-button style="align-self: end;">
+        <button color="primary" (click)="onFilter()" mat-icon-button style="align-self: end;">
             <mat-icon>settings</mat-icon>
         </button>
         <!-- <mat-paginator #paginator  [length]="prod.length" [pageSize]="numOfArticles" [pageSizeOptions]="[5,10]" aria-label="Select page"></mat-paginator> -->
@@ -19,11 +19,11 @@
 <ng-template #loading>
     <div style="display:flex; flex-direction:column; height: 100%;" *ngIf="page!=null; else empty">
         <div>
-            <app-articles-list [articles]="page.content"></app-articles-list>
+            <app-articles-list class="lower-section" [articles]="page.content"></app-articles-list>
         </div>
         <div class="paginator-container">
             <mat-paginator [hidePageSize]="true" [pageSize]="page.size"
-            [pageIndex]="this.filterService.getPageNo()"
+            [pageIndex]="this.currentPage"
                 [length]="page.totalElements" (page)="onPageChange($event)"></mat-paginator>
         </div>
     </div>

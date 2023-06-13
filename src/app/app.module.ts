@@ -33,6 +33,7 @@ import { ArticlesMainPageComponent } from './articles-main-page/articles-main-pa
 import { ArticlesSearchPageComponent } from './articles-search-page/articles-search-page.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ActivateProfileComponent } from './activate-profile/activate-profile.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ActivateProfileComponent } from './activate-profile/activate-profile.co
     ArticlesSearchPageComponent,
     PaymentComponent,
     ActivateProfileComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

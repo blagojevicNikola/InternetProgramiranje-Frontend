@@ -24,6 +24,7 @@
     grid-template-columns: 1fr 1fr 1fr
 }
 
+
 @media (max-width: 300px) {
     .lower-section {
         grid-template-columns: 1fr;
@@ -36,7 +37,7 @@
     }
 }
 
-@media (min-width: 751px) and (max-width: 900px) {
+@media (min-width: 750px) and (max-width: 900px) {
     .lower-section {
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -87,7 +88,7 @@ mat-card:hover{
 .header {
     font-size: larger;
     color: map-get($md-dark-blue,500);
-    font-weight: 600;
+    font-weight: 400;
     font-size: 20px;
     word-wrap: normal;
     overflow: hidden;

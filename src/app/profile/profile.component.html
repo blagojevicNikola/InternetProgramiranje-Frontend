@@ -18,25 +18,37 @@
             <mat-tab-group style="display:flex; flex:1; height:100%">
                 <mat-tab label="Aktivno">
                     <div style="display:flex; flex:1; height:100%; flex-direction:column"  *ngIf="activeProducts!=null">
-                        <app-articles-list
+                        <app-articles-list class="lower-section"
                             [articles]="activeProducts.content"></app-articles-list>
                         <div class="paginator-container">
-                            <mat-paginator [hidePageSize]="true"
-                                [length]="activeProducts.numberOfElements"></mat-paginator>
+                            <mat-paginator [hidePageSize]="true" [pageSize]="activeProducts.pageSize"
+                                [pageIndex]="activeProdPage"
+                                [length]="activeProducts.numberOfElements" (page)="activePageChange($event)"></mat-paginator>
                         </div>
                     </div>
                 </mat-tab>
                 <mat-tab label="Zavrseno">
                     <div style="display:flex; flex:1; height:100%; flex-direction:column" *ngIf="soldProducts!=null">
-                        <app-articles-list 
+                        <app-articles-list class="lower-section"
                             [articles]="soldProducts.content"></app-articles-list>
                         <div class="paginator-container">
-                            <mat-paginator [hidePageSize]="true"
-                                [length]="soldProducts.numberOfElements"></mat-paginator>
+                            <mat-paginator [hidePageSize]="true" [pageSize]="soldProducts.pageSize"
+                                [pageIndex]="soldProdPage"
+                                [length]="soldProducts.numberOfElements" (page)="soldPageChange($event)"></mat-paginator>
                         </div>
                     </div>
                 </mat-tab>
-                <mat-tab *ngIf="this.isAuthenticatedUser()" label="Kupljeno">Content3</mat-tab>
+                <mat-tab *ngIf="this.isAuthenticatedUser()" label="Kupljeno">
+                    <div style="display:flex; flex:1; height:100%; flex-direction:column" *ngIf="boughtProducts!=null">
+                        <app-articles-list class="lower-section"
+                            [articles]="boughtProducts.content"></app-articles-list>
+                        <div class="paginator-container">
+                            <mat-paginator [hidePageSize]="true" [pageSize]="boughtProducts.pageSize"
+                                [pageIndex]="boughtProdPage"
+                                [length]="boughtProducts.numberOfElements" (page)="boughtPageChange($event)"></mat-paginator>
+                        </div>
+                    </div>
+                </mat-tab>
             </mat-tab-group>
 
         </div>
