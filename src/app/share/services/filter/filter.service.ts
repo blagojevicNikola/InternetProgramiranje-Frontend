@@ -9,10 +9,11 @@ import { CategoryState } from 'src/app/articles-overeview/models/category-state'
 })
 export class FilterService {
 
-  search:string=''
-  category:string|undefined = undefined;
+  search: string = ''
+  category: string | undefined = undefined;
   priceFromState: CategoryState = { viewName: 'Price[min]', queryName: 'priceFrom', multivalue: false, content: [], value: undefined }
   priceToState: CategoryState = { viewName: 'Price[max]', queryName: 'priceTo', multivalue: false, content: [], value: undefined }
+  articleState: string = "all";
   sortState: { sort: string, direction: string } = { sort: "date", direction: "desc" };
   private pageNo: number = 0;
   attrState: CategoryState[] = []
@@ -20,9 +21,11 @@ export class FilterService {
 
 
   public setParam(params: Params) {
-    if(params['q'] != null && params['q']!=='')
-    {
+    if (params['q'] != null && params['q'] !== '') {
       this.search = params['q'];
+    }
+    if (params['s'] != null) {
+      this.articleState = params['s'];
     }
     if (params['pageNo'] != null) {
       this.pageNo = +params['pageNo'];
@@ -33,8 +36,7 @@ export class FilterService {
     if (params['priceTo'] != null) {
       this.priceToState.value = params['priceTo'];
     }
-    if(params['sort']!=null)
-    {
+    if (params['sort'] != null) {
       let data = params['sort'].split(',')
       this.sortState.sort = data[0];
       this.sortState.direction = data[1];
@@ -47,16 +49,13 @@ export class FilterService {
     })
   }
 
-  public setCategory(cat:string)
-  {
+  public setCategory(cat: string) {
     this.category = cat;
   }
 
-  public setState(options:CategoryState[])
-  {
+  public setState(options: CategoryState[]) {
     this.attrState = options;
-    for(var i = 0; i < this.attrState.length; i++)
-    {
+    for (var i = 0; i < this.attrState.length; i++) {
       this.attrState[i].queryName = this.attrState[i].viewName;
     }
   }
@@ -102,19 +101,22 @@ export class FilterService {
     this.restartPriceStates();
     this.attrState = [];
     this.pageNo = 0;
-    this.category=undefined;
+    this.category = undefined;
+    this.articleState = 'all';
+    this.search = '';
   }
 
-  public restartSearch()
-  {
+  public restartSearch() {
     this.search = '';
   }
 
   public getUrlQuery(): { [key: string]: string } {
     let result: { [key: string]: string } = {}
-    if(this.search!=='')
-    {
+    if (this.search !== '') {
       result['q'] = this.search;
+    }
+    if (this.articleState !== 'all') {
+      result['s'] = this.articleState;
     }
     if (!(this.sortState.sort === 'date' && this.sortState.direction === 'desc')) {
       result['sort'] = this.sortState.sort + ',' + this.sortState.direction;
@@ -125,12 +127,10 @@ export class FilterService {
     if (this.priceToState.value !== undefined && this.priceToState.value !== '') {
       result[this.priceToState.queryName] = this.priceToState.value;
     }
-    if(this.pageNo!==0)
-    {
-      result['pageNo']=this.pageNo.toString()
+    if (this.pageNo !== 0) {
+      result['pageNo'] = this.pageNo.toString()
     }
-    if(this.category!=null)
-    {
+    if (this.category != null) {
       result['category'] = this.category;
     }
     for (const key of this.attrState) {
@@ -143,10 +143,11 @@ export class FilterService {
 
   public getHttpParam(): HttpParams {
     let result = new HttpParams();
-    if(this.search!=='')
-    {      console.log("HTTP search-->" + this.search)
-
+    if (this.search !== '') {
       result = result.append('q', this.search);
+    }
+    if (this.articleState !== 'all') {
+      result = result.append('s', this.articleState);
     }
     if (!(this.sortState.sort === 'date' && this.sortState.direction === 'desc')) {
       result = result.append('sort', this.sortState.sort + ',' + this.sortState.direction);
@@ -160,8 +161,7 @@ export class FilterService {
     if (this.pageNo !== 0) {
       result = result.append('pageNo', this.pageNo.toString());
     }
-    if(this.category != null)
-    {
+    if (this.category != null) {
       result = result.append('category', this.category);
     }
     for (const key of this.attrState) {

@@ -1,5 +1,6 @@
 <div class="main-container">
     <div class="sort-controls-container">
+        <div class="heading-controls-container">
         <mat-chip-listbox [(ngModel)]="orderBy">
             <mat-chip-option selected="true" value="date">By date</mat-chip-option>
             <mat-chip-option value="price">By price</mat-chip-option>
@@ -8,6 +9,14 @@
             <mat-button-toggle [value]="true" matTooltip="Descending"><mat-icon>keyboard_arrow_down</mat-icon></mat-button-toggle>
             <mat-button-toggle [value]="false" matTooltip="Ascending"><mat-icon>keyboard_arrow_up</mat-icon></mat-button-toggle>
         </mat-button-toggle-group>
+    </div>
+    <div class="radio-buttons-container">
+        <mat-radio-group [(ngModel)]="articleState" color="primary" aria-label="Select an option">
+            <mat-radio-button value="all">All</mat-radio-button>
+            <mat-radio-button value="new">New</mat-radio-button>
+            <mat-radio-button value="used">Used</mat-radio-button>
+        </mat-radio-group>        
+    </div>  
     </div>
     <form [formGroup]="formFilters">
         <div class="title-container">

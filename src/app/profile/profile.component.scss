@@ -146,13 +146,13 @@ mat-divider{
 }
 
 
-@media (max-width: 300px) {
+@media (min-width: 0px) and (max-width:450px) {
     .lower-section {
         grid-template-columns: 1fr;
     }
 }
 
-@media (min-width: 300px) and (max-width:750px) {
+@media (min-width: 450px) and (max-width:750px) {
     .lower-section {
         grid-template-columns: 1fr 1fr;
     }

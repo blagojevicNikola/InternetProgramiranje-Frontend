@@ -17,7 +17,7 @@
 </div>
 
 <ng-template #loading>
-    <div style="display:flex; flex-direction:column; height: 100%;" *ngIf="page!=null; else empty">
+    <div style="display:flex; flex-direction:column; height: 100%;" *ngIf="page!=null && page.content.length>0; else empty">
         <div>
             <app-articles-list class="lower-section" [articles]="page.content"></app-articles-list>
         </div>
@@ -29,4 +29,8 @@
     </div>
 </ng-template>
 
-<ng-template #empty>Prazna lista</ng-template>
+<ng-template #empty>
+    <div class="empty-list">
+        <a>No articles are found!</a>
+    </div>
+</ng-template>

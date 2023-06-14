@@ -88,8 +88,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   search(){
     if(this.searchGroup.get('search')?.value !== '')
     {
-      let fullUrl = this.router.url;
-      let urlWithoutQuery = fullUrl.split('?')[0];
+      this.filterService.restartState();
       this.filterService.search = this.searchGroup.get('search')?.value
       this.router.navigate(['search'], {queryParams: this.filterService.getUrlQuery()});
     }
