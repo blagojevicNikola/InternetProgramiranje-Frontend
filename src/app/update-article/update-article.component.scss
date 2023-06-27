@@ -1,3 +1,5 @@
+@import '../../_variables.scss';
+
 .container {
     display: flex;
     flex: 1;
@@ -36,7 +38,7 @@
 .attributes-title {
     font-weight: 300;
     font-size: 20px;
-    color: #333D51;
+    color: map-get($map: $md-light-blue, $key:600 );
     margin-right: 10px;
 }
 
@@ -173,4 +175,11 @@ mat-radio-group {
 
 mat-radio-group>mat-radio-button {
     margin-right: 10px;
+}
+
+@media (max-width:900px)
+{
+    .main-container{
+        width:95%;
+    }
 }

@@ -22,11 +22,12 @@
                 </div>
                 <div class="price-container">
                     <a>{{articleInfo.price}} KM</a>
-                    <button *ngIf="canBuy()" (click)="onBuyNav()">Kupi</button>
+                    <button *ngIf="canBuy()" (click)="onBuyNav()">Buy</button>
+                    <a *ngIf="articleInfo.sold">Sold</a>
                 </div>
             </div>
             <mat-divider></mat-divider>
-            <h2 #slike class="attributes-style">Slike</h2>
+            <h2 #slike class="attributes-style">Photos</h2>
             <!-- <div class="images-section">
                 <div class="image-container">
                     <img src="assets/laptop.jpg" class="image-style">
@@ -43,7 +44,7 @@
             </div> -->
             <app-image-slider *ngIf="articleInfo.photos.length>0 else noimages"
                 [images]="articleInfo.photos"></app-image-slider>
-            <h2 #osobine class="attributes-style">Osobine</h2>
+            <h2 #osobine class="attributes-style">Attributes</h2>
             <div class="is-used" *ngIf="articleInfo.isNew">
                 <div class="border-attr">
                     <a>New</a>
@@ -68,13 +69,13 @@
                     </tbody>
                 </table> -->
             </div>
-            <h2 #detalji class="attributes-style">Detalji</h2>
+            <h2 #detalji class="attributes-style">Details</h2>
             <a class="details">{{articleInfo.details}}</a>
-            <h2 #komentari class="attributes-style">Komentari</h2>
-            <div *ngIf="authService.isAuthenticated()" class="post-comment-container">
+            <h2 #komentari class="attributes-style">Comments</h2>
+            <div *ngIf="authService.isAuthenticated() && articleInfo.sold===false" class="post-comment-container">
                 <form [formGroup]="commentGroup" (submit)="postComment()">
                     <mat-form-field appearance="outline">
-                        <mat-label>Komentar</mat-label>
+                        <mat-label>Comment</mat-label>
                         <textarea formControlName="comment" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
                             cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
                     </mat-form-field>
@@ -106,21 +107,21 @@
                         <mat-icon>person</mat-icon>
                         <a>Profile</a>
                     </button>
-                    <button mat-menu-item (click)="onUpdateArticle()" *ngIf="this.isAuthenticatedUser()">
+                    <button mat-menu-item (click)="onUpdateArticle()" *ngIf="this.isAuthenticatedUser() && articleInfo.sold===false">
                         <mat-icon>edit</mat-icon>
                         <a>Edit</a>
                     </button>
-                    <button mat-menu-item (click)="onDeleteArticle()" *ngIf="this.isAuthenticatedUser()">
+                    <button mat-menu-item (click)="onDeleteArticle()" *ngIf="this.isAuthenticatedUser() && articleInfo.sold===false">
                         <mat-icon>delete_outline</mat-icon>
                         <a>Delete</a>
                     </button>
                 </mat-menu>
             </div>
             <div class="overeview-nav-container">
-                <button color="accent" (click)="scroll(slike)" class="scroll-nav-button">Slike</button>
-                <button (click)="scroll(osobine)" class="scroll-nav-button">Osobine</button>
-                <button (click)="scroll(detalji)" class="scroll-nav-button">Detalji</button>
-                <button (click)="scroll(komentari)" class="scroll-nav-button">Komentari</button>
+                <button color="accent" (click)="scroll(slike)" class="scroll-nav-button">Photos</button>
+                <button (click)="scroll(osobine)" class="scroll-nav-button">Attributes</button>
+                <button (click)="scroll(detalji)" class="scroll-nav-button">Details</button>
+                <button (click)="scroll(komentari)" class="scroll-nav-button">Comments</button>
             </div>
         </div>
     </section>
@@ -148,6 +149,6 @@
 
 <ng-template #nocomments>
     <div style="display:flex; flex:1; justify-content: center; align-items: center; margin:30px;">
-        <a> Nema komentara! </a>
+        <a> No comments. </a>
     </div>
 </ng-template>

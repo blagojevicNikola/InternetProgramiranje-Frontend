@@ -4,7 +4,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ArticlesService } from '../share/services/articles/articles.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -34,7 +34,8 @@ export class PaymentComponent implements OnInit, OnDestroy{
   hide = true;
 
 
-  constructor(private sidebarService:SidebarService, private articleService:ArticlesService, private route:ActivatedRoute, private snackBar:MatSnackBar)
+  constructor(private sidebarService:SidebarService, private articleService:ArticlesService, private route:ActivatedRoute, 
+    private router:Router, private snackBar:MatSnackBar)
   {
     this.sidebarService.disable();
   }
@@ -61,6 +62,10 @@ export class PaymentComponent implements OnInit, OnDestroy{
         this.snackBar.open('Error!', 'Okay', {duration:3000});
       }
     })
+  }
+
+  backToHome(){
+    this.router.navigateByUrl('');
   }
 
   ngOnDestroy(): void {

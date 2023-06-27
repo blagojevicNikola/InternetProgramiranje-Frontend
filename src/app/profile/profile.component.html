@@ -3,14 +3,14 @@
         <div class="profile-container" *ngIf="user!=null">
             <div class="upper-container">
                 <div class="avatar-container">
-                    <img src="assets/laptop.jpg" class="avatar-image">
+                    <img *ngIf="user.userAvatar; else noavatar" [src]="'assets/' + user.userAvatar.toString() + '.png'" class="avatar-image">
                 </div>
             </div>
             <a class="username">{{user.username}}</a>
             <a class="city">{{user.userLocationName}}</a>
             <div class="button-section">
-                <button mat-button (click)="onEditProfile()" *ngIf="this.isAuthenticatedUser()">Izmjeni profil</button>
-                <button mat-button>Prikazi kontakt</button>
+                <button mat-raised-button color="primary" (click)="onEditProfile()" *ngIf="this.isAuthenticatedUser()">Edit profile</button>
+                <button mat-raised-button color="primary" (click)="showContact()">Show contact</button>
             </div>
         </div>
         <mat-divider [vertical]="true"></mat-divider>
@@ -59,4 +59,8 @@
     <div class="spinner-container">
         <mat-spinner></mat-spinner>
     </div>
+</ng-template>
+
+<ng-template #noavatar>
+    <mat-icon style="font-size:50px; height: 50px; width:50px;">account_circle</mat-icon>
 </ng-template>

@@ -17,4 +17,5 @@ export interface ArticleInfo
     comments: Comment[];
     attributes:Attributes[];
     photos:Photo[];
+    sold:boolean;
 }

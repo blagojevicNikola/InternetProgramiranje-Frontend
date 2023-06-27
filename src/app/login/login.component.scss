@@ -75,3 +75,10 @@
 form > mat-form-field{
     display: flex;
 }
+
+@media (max-width:600px)
+{
+    .right-container{
+        display:none;
+    }
+}

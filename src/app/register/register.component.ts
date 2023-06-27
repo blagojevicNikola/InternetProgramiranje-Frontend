@@ -13,13 +13,14 @@ import { AuthService } from '../share/services/auth/auth.service';
 export class RegisterComponent {
 
   disabledButton = false;
-
+  chosenAvatar:number|null=null;
   registerForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    surname: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]+$'), Validators.maxLength(16)]),
+    surname: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]+$'), Validators.maxLength(16)]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     username: new FormControl('', [Validators.required, Validators.minLength(5)]),
     city: new FormControl('', [Validators.required]),
+    avatar: new FormControl<number|undefined>(undefined),
     email: new FormControl('', [Validators.required, Validators.email])
   });
   hide = true;
@@ -37,7 +38,7 @@ export class RegisterComponent {
       username: this.registerForm.controls['username'].value!,
       password: this.registerForm.controls['password'].value!,
       email: this.registerForm.controls['email'].value!,
-      avatar: null,
+      avatar: this.chosenAvatar,
       cityName: this.registerForm.controls['city'].value!
     }).subscribe({
       next: (v) => { 
@@ -47,10 +48,10 @@ export class RegisterComponent {
       error: (e) => {
         this.disabledButton = false;
         if (e.status === 400) {
-          this.matSnackBar.open("Neispravni podaci!", "U redu", { duration: 3000 })
+          this.matSnackBar.open("Bad data format!", "Okay", { duration: 3000 })
         }
         else {
-          this.matSnackBar.open("Greska na serveru!", "U redu", { duration: 3000 })
+          this.matSnackBar.open("Error while signing in!", "Okay", { duration: 3000 })
         }
       },
       complete: () => this.disabledButton = false
@@ -58,35 +59,39 @@ export class RegisterComponent {
   }
 
   showNameErrorMessage() {
-    return this.registerForm.controls['name'].hasError('required') ? 'Polje je obavezno!' : '';
+    return this.registerForm.controls['name'].hasError('required') ? 'Characters only (maximum 16)!' : '';
   }
 
   showSurnameErrorMessage() {
-    return this.registerForm.controls['surname'].hasError('required') ? 'Polje je obavezno!' : '';
+    return this.registerForm.controls['surname'].hasError('required') ? 'Characters only (maximum 16)!' : '';
   }
 
   showPasswordErrorMessage() {
     if (this.registerForm.controls['password'].hasError('minlength')) {
-      return 'Potrebno minimalno 8 karaktera!'
+      return 'Minimal 8 characters!'
     }
-    return this.registerForm.controls['password'].hasError('required') ? 'Polje je obavezno!' : '';
+    return '';
+    //return this.registerForm.controls['password'].hasError('required') ? 'Polje je obavezno!' : '';
   }
 
   showUsernameErrorMessage() {
     if (this.registerForm.controls['username'].hasError('minlength')) {
-      return 'Potrebno minimalno 5 karaktera!'
+      return 'Minimal 5 characters!'
     }
-    return this.registerForm.controls['username'].hasError('required') ? 'Polje je obavezno!' : '';
+    return ''
+    //return this.registerForm.controls['username'].hasError('required') ? 'Polje je obavezno!' : '';
   }
 
   showCityErrorMessage() {
-    return this.registerForm.controls['city'].hasError('required') ? 'Polje je obavezno!' : '';
+    return '';
+    //return this.registerForm.controls['city'].hasError('required') ? 'Polje je obavezno!' : '';
   }
 
   showEmailErrorMessage() {
     if (this.registerForm.controls['email'].hasError('email')) {
-      return 'Neispravan format!';
+      return 'Bad format!';
     }
-    return this.registerForm.controls['email'].hasError('required') ? 'Polje je obavezno!' : '';
+    return '';
+    //return this.registerForm.controls['email'].hasError('required') ? 'Polje je obavezno!' : '';
   }
 }

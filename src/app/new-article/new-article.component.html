@@ -1,36 +1,36 @@
 <div class="container">
     <div class="main-container">
-        <a class="header">Novi artikal</a>
+        <a class="header">New article</a>
         <form [formGroup]="tFormGroup">
             <mat-form-field appearance="outline">
-                <mat-label>Naslov</mat-label>
+                <mat-label>Title</mat-label>
                 <input formControlName="title" matInput>
             </mat-form-field>
             <div style="display:flex; flex:1; flex-direction:row">
                 <mat-form-field style="flex:1; margin-right:10px" appearance="outline">
-                    <mat-label>Kategorija</mat-label>
+                    <mat-label>Category</mat-label>
                     <mat-select (opened)="test()" formControlName="cat" [(value)]="selectedCategory" (selectionChange)="onChanged()">
                         <mat-option *ngFor="let cat of categories" value="{{cat.name}}">{{cat.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field style="flex:1; margin-left:10px;" appearance="outline">
-                    <mat-label>Cijena</mat-label>
+                    <mat-label>Price</mat-label>
                     <input formControlName="price" matInput>
                     <span matTextSuffix>KM</span>
                 </mat-form-field>
             </div>
             <mat-form-field appearance="outline">
-                <mat-label>Detalji</mat-label>
+                <mat-label>Details</mat-label>
                 <textarea matInput formControlName="details" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
                 cdkAutosizeMaxRows="5"></textarea>
             </mat-form-field>
             <mat-radio-group color="primary" formControlName="newArticle">
-                <mat-radio-button checked="true"  [value]="true">Novo</mat-radio-button>
-                <mat-radio-button [value]="false">Korišteno</mat-radio-button>
+                <mat-radio-button checked="true"  [value]="true">New</mat-radio-button>
+                <mat-radio-button [value]="false">Used</mat-radio-button>
             </mat-radio-group>
         </form>
         <div class="attributes-header">
-            <a class="attributes-title">Osobine</a>
+            <a class="attributes-title">Attributes</a>
             <button mat-icon-button (click)="openDialog()">
                 <mat-icon style="color:#333D51">edit</mat-icon>
             </button>
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="attributes-header">
-            <a class="attributes-title">Slike</a>
+            <a class="attributes-title">Photos</a>
             <button mat-icon-button (click)="fileinput.click()">
                 <mat-icon style="color:#333D51">add</mat-icon>
                 <input #fileinput accept="image/png,image/jpg" (change)="selectFile($event)" type="file" style="display:none">
@@ -61,12 +61,12 @@
 
 <ng-template #attribute_message>
     <div class="message-container">
-        <a>Nema navedenih osobina.</a>
+        <a>No attributes selected.</a>
     </div>
 </ng-template>
 
 <ng-template #photo_message>
     <div class="message-container">
-        <a>Nema dodanih slika.</a>
+        <a>No photos selected.</a>
     </div>
 </ng-template>

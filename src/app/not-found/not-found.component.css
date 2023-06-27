@@ -9,8 +9,17 @@
 }
 
 .image-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
     height:250px;
     width:300px;
-    background-color: red;
+    margin-bottom:30px;
+}
+
+.image-container > a{
+    font-size:37px;
+    font-weight: 200;
+    color:rgb(66, 66, 66)
 }
 

@@ -1,5 +1,5 @@
 <div class="main-container">
-    <div class="middle-container">
+    <div class="middle-container" *ngIf="(spinnerService.getLoadingStatus()|async)===false; else loading">
         <div class="title">
             <a>
                 User info
@@ -7,24 +7,24 @@
         </div>
         <form [formGroup]="formGroupInfo">
             <mat-form-field>
-                <mat-label>Korisnicko ime</mat-label>
+                <mat-label>Username</mat-label>
                 <input matInput formControlName="username" #input>
             </mat-form-field>
             <div class="grid-container">
                 <mat-form-field>
-                    <mat-label>Ime</mat-label>
+                    <mat-label>Name</mat-label>
                     <input matInput formControlName="name" #input>
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label>Prezime</mat-label>
+                    <mat-label>Surname</mat-label>
                     <input matInput formControlName="surname" #input>
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label>Broj telefona</mat-label>
+                    <mat-label>Phone number</mat-label>
                     <input matInput formControlName="phoneNumber" #input>
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label>Lokacija</mat-label>
+                    <mat-label>Location</mat-label>
                     <mat-select formControlName="location">
                         <mat-option *ngFor="let loc of locations" [value]="loc.id">{{loc.name}}</mat-option>
                     </mat-select>
@@ -64,3 +64,10 @@
         </form>
     </div>
 </div>
+
+<ng-template #loading>
+    <div style="display:flex; flex:1; justify-content:center; align-items:center">
+    <mat-spinner></mat-spinner>
+</div>
+
+</ng-template>

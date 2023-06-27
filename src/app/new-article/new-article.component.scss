@@ -140,3 +140,10 @@ mat-radio-group {
 mat-radio-group>mat-radio-button {
     margin-right: 10px;
 }
+
+@media (max-width:900px)
+{
+    .main-container{
+        width:95%;
+    }
+}

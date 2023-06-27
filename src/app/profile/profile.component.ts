@@ -9,6 +9,9 @@ import { SidebarService } from '../share/services/sidebar/sidebar.service';
 import { SpinnerService } from '../share/services/spinner/spinner.service';
 import { UsersService } from '../share/services/users/users.service';
 import { PageEvent } from '@angular/material/paginator';
+import { UserInfo } from '../review/models/user-info';
+import { MatDialog } from '@angular/material/dialog';
+import { InfoDialogComponent } from './components/info-dialog/info-dialog.component';
 
 @Component({
   selector: 'app-profile',
@@ -34,7 +37,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(private sidebarService: SidebarService, private authService: AuthService, public spinnerService: SpinnerService,
     private route: ActivatedRoute, private articlesService: ArticlesService,
-    private router: Router, private usersService: UsersService) {
+    private router: Router, private usersService: UsersService,
+    private _dialog:MatDialog) {
     this.sidebarService.disable();
   }
 
@@ -46,7 +50,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
         this.activeProdSub = this.articlesService.getAllActiveArticlesByUsername(name, null).subscribe((data) => { this.activeProducts = data });
         
-        if (this.authService.isAuthenticated()) {
+        if (this.authService.isAuthenticated() && this.authService.getUsername()===name) {
           this.boughtProdSub = this.articlesService.getAllBoughtArticlesByUsername(name, null).subscribe((data) => { this.boughtProducts = data });
         }
 
@@ -127,6 +131,22 @@ export class ProfileComponent implements OnInit, OnDestroy {
           this.boughtProducts = value;
         }
       })
+  }
+
+
+  showContact()
+  {
+    if(this.user && this.user.userPhoneNumber)
+    {
+      this._dialog.open(InfoDialogComponent, {
+        data:{message:"Phone number: " + this.user?.userPhoneNumber}
+      });
+    }else
+    {
+      this._dialog.open(InfoDialogComponent, {
+        data:{message:"User didn't provide phone number!"}
+      });
+    }
   }
 
 }

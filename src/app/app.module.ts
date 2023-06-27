@@ -34,6 +34,7 @@ import { ArticlesSearchPageComponent } from './articles-search-page/articles-sea
 import { PaymentComponent } from './payment/payment.component';
 import { ActivateProfileComponent } from './activate-profile/activate-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { InfoDialogComponent } from './profile/components/info-dialog/info-dialog.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     PaymentComponent,
     ActivateProfileComponent,
     NotFoundComponent,
+    InfoDialogComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ApproveDialogComponent } from '../review/components/approve-dialog/approve-dialog.component';
+import { SpinnerService } from '../share/services/spinner/spinner.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -33,16 +34,16 @@ export class EditProfileComponent implements OnInit, OnDestroy {
     name: new FormControl<string>('', [Validators.required]),
     surname: new FormControl<string>('', [Validators.required]),
     username: new FormControl<string>('', [Validators.required]),
-    phoneNumber: new FormControl<string>(''),
+    phoneNumber: new FormControl<string>('', [Validators.pattern('\\d*')]),
     location: new FormControl<number>(0, [Validators.required])
   });
   formGroupPassword: FormGroup = new FormGroup({
-    currPass: new FormControl<string>('', [Validators.required, Validators.min(8)]),
-    newPass: new FormControl<string>('', [Validators.required, Validators.min(8)])
+    currPass: new FormControl<string>('', [Validators.required, Validators.minLength(8)]),
+    newPass: new FormControl<string>('', [Validators.required, Validators.minLength(8)])
   })
 
   constructor(private router: Router, private sidebarService: SidebarService, private locationsService: LocationsService, private userService: UsersService, private authService: AuthService,
-    private snackBar: MatSnackBar, private dialog: MatDialog) {
+    private snackBar: MatSnackBar, private dialog: MatDialog, public spinnerService:SpinnerService) {
     this.sidebarService.disable();
   }
 
@@ -103,13 +104,13 @@ export class EditProfileComponent implements OnInit, OnDestroy {
             userLocationId: this.formGroupInfo.get('location')?.value
           }).subscribe({
             next: () => {
-              this.snackBar.open("Korisnicke informacije uspjesno azurirane!", "U redu", { duration: 3000 });
+              this.snackBar.open("User info updated!", "Okay", { duration: 3000 });
               this.disableInfoButton = false;
               this.authService.logout();
               this.router.navigateByUrl('login');
             },
             error: () => {
-              this.snackBar.open("Greska prilikom azuriranja!", "U redu", { duration: 3000 });
+              this.snackBar.open("Error while updating user info!", "Okay", { duration: 3000 });
               this.disableInfoButton = false;
             }
           })
@@ -131,6 +132,8 @@ export class EditProfileComponent implements OnInit, OnDestroy {
         next: () => {
           this.snackBar.open("Password changed successfully!", "Okay", { duration: 3000 });
           this.disablePassButton = false;
+          this.authService.logout();
+          this.router.navigateByUrl('login');
         },
         error: (err: HttpErrorResponse) => {
           if (err.status === 409) {

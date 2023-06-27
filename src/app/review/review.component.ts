@@ -91,7 +91,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
 
   canBuy()
   {
-    if(this.articleInfo==null)
+    if(this.articleInfo==null || this.articleInfo.sold)
     {
       return false;
     }

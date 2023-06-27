@@ -164,3 +164,21 @@ mat-stepper > mat-step{
     text-decoration: none;
     padding:5px;
 }
+
+.message-container{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-style{
+    display:flex;
+    flex-direction:column;
+}
+
+.message-style > a{
+    font-size:33px;
+    font-weight: 200;
+}

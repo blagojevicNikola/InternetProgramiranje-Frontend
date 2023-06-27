@@ -1,36 +1,36 @@
 <div class="container">
-    <div class="main-container">
-        <a class="header">Azuriranje artikla</a>
+    <div class="main-container" *ngIf="(spinner.getLoadingStatus()|async)===false; else loading">
+        <a class="header">Update article</a>
         <form [formGroup]="tFormGroup">
             <mat-form-field appearance="outline">
-                <mat-label>Naslov</mat-label>
+                <mat-label>Title</mat-label>
                 <input formControlName="title" matInput>
             </mat-form-field>
             <div style="display:flex; flex:1; flex-direction:row">
                 <mat-form-field style="flex:1; margin-right:10px" appearance="outline">
-                    <mat-label>Kategorija</mat-label>
+                    <mat-label>Category</mat-label>
                     <mat-select formControlName="cat" (opened)="test()" [(value)]="selectedCategory" (selectionChange)="onChanged()">
                         <mat-option *ngFor="let cat of cates" [value]="cat.name">{{cat.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field style="flex:1; margin-left:10px;" appearance="outline">
-                    <mat-label>Cijena</mat-label>
+                    <mat-label>Price</mat-label>
                     <input formControlName="price" matInput>
                     <span matTextSuffix>KM</span>
                 </mat-form-field>
             </div>
             <mat-form-field appearance="outline">
-                <mat-label>Detalji</mat-label>
+                <mat-label>Details</mat-label>
                 <textarea matInput formControlName="details" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
                 cdkAutosizeMaxRows="5"></textarea>
             </mat-form-field>
-            <mat-radio-group formControlName="newArticle">
-                <mat-radio-button checked="true"  [value]="true">Novo</mat-radio-button>
-                <mat-radio-button [value]="false">Korišteno</mat-radio-button>
+            <mat-radio-group color="primary" formControlName="newArticle">
+                <mat-radio-button checked="true"  [value]="true">New</mat-radio-button>
+                <mat-radio-button [value]="false">Used</mat-radio-button>
             </mat-radio-group>
         </form>
         <div class="attributes-header">
-            <a class="attributes-title">Osobine</a>
+            <a class="attributes-title">Attributes</a>
             <button mat-icon-button (click)="openDialog()">
                 <mat-icon style="color:#333D51">edit</mat-icon>
             </button>
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="attributes-header">
-            <a class="attributes-title">Slike</a>
+            <a class="attributes-title">Photos</a>
         </div>
         <div class="existing-images-list-container" *ngIf="existingPhotos.length > 0; else photo_message">
             <div class="existing-image-container"  *ngFor="let im of existingPhotos; let i = index">
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="attributes-header">
-            <a class="attributes-title">Dodaj slike</a>
+            <a class="attributes-title">Add photos</a>
             <button mat-icon-button (click)="fileinput.click()">
                 <mat-icon style="color:#333D51">add</mat-icon>
                 <input #fileinput accept="image/png,image/jpg" (change)="selectFile($event)" type="file" style="display:none">
@@ -63,19 +63,24 @@
                 <img  [src]="preview[i]" style=" width: 100%; max-height: 100%; object-fit: contain;">
             </div>
         </div>
-        <button mat-flat-button class="submit-button" [disabled]="sending" (click)="submit()">Objavi</button>
+        <button mat-flat-button color="primary" class="submit-button" [disabled]="sending" (click)="submit()">Update</button>
     </div>
 </div>
 
 
 <ng-template #attribute_message>
     <div class="message-container">
-        <a>Nema navedenih osobina.</a>
+        <a>No attributes selected.</a>
     </div>
 </ng-template>
 
 <ng-template #photo_message>
     <div class="message-container">
-        <a>Nema dodanih slika.</a>
+        <a>No photos selected.</a>
     </div>
 </ng-template>
+
+<ng-template #loading>
+    <div style="display:flex; flex:1; justify-content:center; align-items:center">
+    <mat-spinner></mat-spinner>
+</div>

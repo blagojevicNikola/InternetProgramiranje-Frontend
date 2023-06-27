@@ -16,7 +16,7 @@ export class LoginComponent {
 
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    password: new FormControl('', [Validators.required, Validators.minLength(2)])
+    password: new FormControl('', [Validators.required, Validators.minLength(8)])
   })
   hide = true;
   constructor(private authService: AuthService, private router: Router, private matSnackBar: MatSnackBar) {}
@@ -40,14 +40,30 @@ export class LoginComponent {
       },
       error: (e) => {
         this.disabledButton = false;
-        if (e.status === 400) {
-          this.matSnackBar.open("Neispravni podaci!", "U redu", { duration: 3000 })
+        if (e.status === 400 || e.status === 401) {
+          this.matSnackBar.open("Bad credentials. Try again!", "Okay", { duration: 3000 })
         }
         else {
-          this.matSnackBar.open("Greska na serveru!", "U redu", { duration: 3000 })
+          this.matSnackBar.open("Error while logging in!", "Okay", { duration: 3000 })
         }
       },
       complete: () => this.disabledButton = false
     });
+  }
+
+  showPasswordErrorMessage() {
+    if (this.loginForm.controls['password'].hasError('minlength')) {
+      return 'Minimal 8 characters!'
+    }
+    return '';
+    //return this.registerForm.controls['password'].hasError('required') ? 'Polje je obavezno!' : '';
+  }
+
+  showUsernameErrorMessage() {
+    if (this.loginForm.controls['username'].hasError('minlength')) {
+      return 'Minimal 5 characters!'
+    }
+    return ''
+    //return this.registerForm.controls['username'].hasError('required') ? 'Polje je obavezno!' : '';
   }
 }

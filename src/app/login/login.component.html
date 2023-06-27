@@ -1,22 +1,25 @@
 <div class="main-container">
     <div class="left-container">
         <mat-card class="login-card">
+            <div style="max-width:200px; margin:auto; margin-bottom:20px"><img style="width:100%" src="assets/IPShopLogo1.png"></div>
             <form [formGroup]="loginForm">
                 <mat-form-field appearance="outline">
-                    <mat-label>Korisničko ime</mat-label>
+                    <mat-label>Username</mat-label>
                     <input [(ngModel)]="usernameValue" matInput formControlName="username">
+                    <mat-error *ngIf="this.loginForm.controls['username'].invalid">{{showUsernameErrorMessage()}}</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>Lozinka</mat-label>
+                    <mat-label>Password</mat-label>
                     <input [(ngModel)]="passwordValue" matInput [type]="hide ? 'password' : 'text'" formControlName="password">
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                         [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
+                    <mat-error *ngIf="this.loginForm.controls['password'].invalid">{{showPasswordErrorMessage()}}</mat-error>
                 </mat-form-field>
             </form>
-            <button [disabled]="disabledButton" class="login-button" mat-flat-button color="primary" (click)="onSubmit()">Prijavi se</button>
-            <div [routerLink]="['/register']" class="register-link">Nisi registrovan?</div>
+            <button [disabled]="disabledButton" class="login-button" mat-flat-button color="primary" (click)="onSubmit()">Login</button>
+            <div [routerLink]="['/register']" class="register-link">Not signed in?</div>
         </mat-card>
     </div>
     <div class="right-container">

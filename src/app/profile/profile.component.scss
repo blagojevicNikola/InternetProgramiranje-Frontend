@@ -108,11 +108,8 @@ mat-divider{
     flex-direction: column;
 }
 
-.button-section > button{
-    background-color: #efefef;
-    color:#333D51;
-    margin-bottom:10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+.button-section > button:last-child{
+    margin-top:10px;
 }
 
 .paginator-container{
@@ -169,4 +166,15 @@ mat-divider{
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
+
+@media (max-width:900px)
+{
+    .content{
+        flex-direction: column;
+    }
+    .profile-container{
+        margin-right:70px;
+    }
+}
+
 
